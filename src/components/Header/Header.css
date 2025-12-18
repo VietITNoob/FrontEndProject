@@ -1,0 +1,198 @@
+/* --- CẤU TRÚC CHUNG --- */
+.apple-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: 52px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  /* Sử dụng cubic-bezier của Apple cho chuyển động mượt mà */
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  border-bottom: 1px solid transparent;
+}
+
+.nav-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10; /* Đảm bảo nội dung nav nằm trên dropdown */
+}
+
+/* --- TRẠNG THÁI --- */
+.apple-nav.top {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.apple-nav.scrolled,
+.apple-nav.dropdown-open { /* Khi mở dropdown cũng kích hoạt nền mờ */
+  background-color: rgba(255, 255, 255, 0.8); /* Tăng độ đục lên chút */
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+/* --- LOGO --- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover { opacity: 0.7; }
+
+.logo-text {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+}
+
+/* --- MENU LINKS (Được nâng cấp) --- */
+.nav-links {
+  display: flex;
+  gap: 8px; /* Giảm khoảng cách để thêm padding cho hover */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.nav-link-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 400;
+  color: #1d1d1f;
+  text-decoration: none;
+  opacity: 0.8;
+  /* Thêm padding để tạo vùng hover */
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Hiệu ứng hover mới: Nền xám nhẹ, chữ rõ nét */
+.nav-link:hover, 
+.nav-link-item.active .nav-link {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* --- ACTIONS --- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.icon-btn svg {
+  fill: #1d1d1f;
+  width: 16px;
+  height: 16px;
+}
+
+.icon-btn:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05); /* Thêm nền khi hover icon */
+}
+
+/* Nút Đăng nhập (Nâng cấp bóng đổ) */
+.btn-login {
+  background-color: #0071e3;
+  color: #ffffff;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.btn-login:hover {
+  background-color: #0077ed;
+  transform: translateY(-1px); /* Nảy lên nhẹ */
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); /* Bóng đổ sâu hơn */
+}
+
+.btn-login:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+/* --- MEGA DROPDOWN (Phần mới) --- */
+.mega-dropdown {
+  position: absolute;
+  top: 52px; /* Bắt đầu ngay dưới header */
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  
+  /* Ẩn mặc định */
+  visibility: hidden;
+  opacity: 0;
+  transform-origin: top center;
+  transform: scaleY(0.98) translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+  padding: 40px 0;
+  z-index: 5;
+}
+
+/* Trạng thái hiện dropdown */
+.mega-dropdown.visible {
+  visibility: visible;
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
+}
+
+/* Ví dụ nội dung bên trong dropdown (Bạn có thể tùy biến sau) */
+.dropdown-content-placeholder {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    justify-content: space-around;
+    color: #1d1d1f;
+}
+.dropdown-column h4 { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+.dropdown-column ul { list-style: none; padding: 0; margin: 0; }
+.dropdown-column li a { display: block; text-decoration: none; color: #1d1d1f; font-size: 14px; padding: 6px 0; font-weight: 600;}
+.dropdown-column li a:hover { color: #0071e3; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .btn-login { display: none; }
+  .mega-dropdown { display: none; } /* Ẩn dropdown trên mobile */
+}

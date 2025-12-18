@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer';
 export default function HomePage() {
   return (
     <div>
-      <Header title="Trang chủ" />
+      <Header  />
       <Footer />
     </div>
   );

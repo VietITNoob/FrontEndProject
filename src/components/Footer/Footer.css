@@ -1,0 +1,170 @@
+/* --- CẤU TRÚC CHUNG --- */
+.apple-footer {
+  background-color: #f5f5f7; /* Màu xám đặc trưng của Apple */
+  color: #6e6e73; /* Màu chữ xám trung tính */
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 1.33337;
+  font-weight: 400;
+  padding: 0 22px;
+  /* Đảm bảo footer luôn nằm dưới cùng nếu nội dung ngắn */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  max-width: 980px; /* Độ rộng chuẩn nội dung Apple */
+  margin: 0 auto;
+  padding: 40px 0 20px;
+}
+
+/* --- PHẦN 1: GHI CHÚ (Top Notes) --- */
+.footer-notes {
+  border-bottom: 1px solid #d2d2d7; /* Đường kẻ mảnh */
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-notes p {
+  margin-bottom: 10px;
+  color: #86868b;
+}
+
+.footer-notes a {
+  color: #424245;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* --- PHẦN 2: CÁC CỘT LIÊN KẾT (Columns) --- */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.footer-column {
+  flex-basis: 20%; /* Chia 5 cột đều nhau */
+  min-width: 150px;
+}
+
+.column-section {
+  margin-bottom: 24px;
+}
+
+.column-title {
+  font-size: 12px;
+  font-weight: 600; /* Đậm hơn liên kết */
+  color: #1d1d1f; /* Màu đen */
+  margin-bottom: 9px;
+  display: block;
+}
+
+.column-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column-item {
+  margin-bottom: 9px;
+}
+
+.column-link {
+  color: #424245;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.column-link:hover {
+  text-decoration: underline; /* Apple dùng underline khi hover footer */
+  color: #1d1d1f;
+}
+
+/* --- PHẦN 3: DƯỚI CÙNG (Bottom) --- */
+.footer-bottom {
+  border-top: 1px solid #d2d2d7;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright {
+  color: #6e6e73;
+  margin-right: 10px;
+}
+
+.legal-links {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legal-link {
+  color: #424245;
+  text-decoration: none;
+  padding-right: 10px;
+  border-right: 1px solid #d2d2d7;
+}
+
+.legal-link:last-child {
+  border-right: none;
+}
+
+.legal-link:hover {
+  text-decoration: underline;
+}
+
+.footer-locale {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #424245;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.footer-locale:hover {
+  text-decoration: underline;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column; /* Xếp chồng trên mobile */
+  }
+  
+  .footer-column {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Trên mobile Apple thường dùng accordion (click để mở), 
+     nhưng để đơn giản ta sẽ hiển thị hết hoặc ẩn bớt */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .legal-links {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .legal-link {
+    border-right: none; /* Bỏ gạch ngăn cách trên mobile */
+    margin-right: 8px;
+  }
+}
