@@ -6,7 +6,7 @@
       "title": "Website Bán Hàng React + NodeJS",
       "price": 499000,
       "discount": 20,
-      "categoryId": 1,
+      "categoryId": "web",
       "description": "Full source code website bán hàng, có admin panel",
       "thumbnail": "https://picsum.photos/300/200?1",
       "tech": ["React", "NodeJS", "MongoDB"],
@@ -19,7 +19,7 @@
       "title": "App Quản Lý Công Việc Flutter",
       "price": 299000,
       "discount": 0,
-      "categoryId": 2,
+      "categoryId": "mobile",
       "description": "Source Flutter + Firebase",
       "thumbnail": "https://picsum.photos/300/200?2",
       "tech": ["Flutter", "Firebase"],
@@ -29,10 +29,46 @@
     }
   ],
   "categories": [
-    { "id": 1, "name": "Web App" },
-    { "id": 2, "name": "Mobile App" },
-    { "id": 3, "name": "AI / Machine Learning" },
-    { "id": 4, "name": "Game" }
+    {
+      "id": 1,
+      "name": "Web Apps",
+      "image": "https://cdn-icons-png.flaticon.com/512/1005/1005141.png"
+    },
+    {
+      "id": 2,
+      "name": "Mobile Apps",
+      "image": "https://cdn-icons-png.flaticon.com/512/2586/2586488.png"
+    },
+    {
+      "id": 3,
+      "name": "UI/UX Kits",
+      "image": "https://cdn-icons-png.flaticon.com/512/1253/1253659.png"
+    },
+    {
+      "id": 4,
+      "name": "AI & ML",
+      "image": "https://cdn-icons-png.flaticon.com/512/2103/2103633.png"
+    },
+    {
+      "id": 5,
+      "name": "Game Source",
+      "image": "https://cdn-icons-png.flaticon.com/512/686/686589.png"
+    },
+    {
+      "id": 6,
+      "name": "SaaS Starter",
+      "image": "https://cdn-icons-png.flaticon.com/512/2333/2333499.png"
+    },
+    {
+      "id": 7,
+      "name": "Backend/API",
+      "image": "https://cdn-icons-png.flaticon.com/512/2166/2166823.png"
+    },
+    {
+      "id": 8,
+      "name": "Dev Tools",
+      "image": "https://cdn-icons-png.flaticon.com/512/1086/1086576.png"
+    }
   ],
   "orders": [],
   "reviews": []
