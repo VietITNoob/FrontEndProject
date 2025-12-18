@@ -1,0 +1,267 @@
+/* --- CẤU HÌNH BIẾN --- */
+:root {
+    --bg-color: #f5f5f7;       /* Nền xám nhạt Apple */
+    --card-bg: #ffffff;        /* Nền thẻ trắng */
+    --text-main: #1d1d1f;      /* Chữ đen đậm */
+    --text-gray: #86868b;      /* Chữ xám */
+    --accent-blue: #0071e3;    /* Xanh Apple */
+    --accent-dark: #1d1d1f;    /* Đen Apple */
+    --radius-xl: 24px;         /* Bo góc lớn cho thẻ */
+    --radius-btn: 99px;        /* Bo tròn nút */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- LAYOUT CHÍNH --- */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    background-color: var(--card-bg);
+}
+
+/* Đẩy main content giãn ra để Footer luôn ở dưới cùng */
+.product-content {
+    flex: 1;
+    width: 100%;
+    /* Nếu Header của bạn là 'fixed', hãy bỏ comment dòng dưới và chỉnh px cho phù hợp */
+    /* padding-top: 80px; */
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container-narrow {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- ANIMATION REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 1. HERO SECTION --- */
+.hero-section {
+    padding: 80px 0 60px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #f5f5f7;
+    color: #bf4800;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-size: 56px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.gray-text {
+    color: var(--text-gray);
+}
+
+.hero-desc {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-main);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 60px;
+}
+
+.btn-primary, .btn-secondary {
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: white;
+}
+.btn-primary:hover { background-color: #0077ed; transform: scale(1.02); }
+
+.btn-secondary {
+    background-color: #f5f5f7;
+    color: var(--text-main);
+}
+.btn-secondary:hover { background-color: #e8e8ed; }
+
+/* Mockup Image */
+.hero-mockup {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin-top: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hero-mockup img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- 2. BENTO GRID SECTION --- */
+.bento-section {
+    background-color: var(--bg-color);
+    padding: 80px 0;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Cột trái to hơn cột phải */
+    grid-template-rows: 280px 280px;  /* 2 hàng cao bằng nhau */
+    gap: 24px;
+}
+
+/* Card chung */
+.bento-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.bento-card h3 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+.bento-card p { font-size: 16px; color: var(--text-gray); }
+
+/* Card Lớn (Trái) - Chiếm 2 hàng dọc */
+.bento-card.large {
+    grid-row: span 2;
+    position: relative;
+}
+
+.chart-bg {
+    flex: 1;
+    background-image: linear-gradient(180deg, rgba(0,113,227,0.05) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 12px;
+    margin-top: 20px;
+    border: 1px dashed #d2d2d7;
+    position: relative;
+}
+/* Giả lập cột biểu đồ */
+.chart-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 20px; left: 20px; right: 20px; height: 60%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><rect x="10" y="20" width="10" height="30" fill="%230071e3" rx="2"/><rect x="30" y="10" width="10" height="40" fill="%230071e3" rx="2"/><rect x="50" y="25" width="10" height="25" fill="%230071e3" rx="2"/><rect x="70" y="5" width="10" height="45" fill="%230071e3" rx="2"/></svg>') no-repeat bottom center;
+    background-size: contain;
+    opacity: 0.8;
+}
+
+/* Card Nhỏ */
+.bento-card.small {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Icon Box */
+.icon-box {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.icon-box.blue { background: #eafafe; color: #0071e3; }
+.icon-box.orange { background: #fff5e5; color: #f5a623; }
+
+/* Dark Mode Card */
+.bento-card.dark {
+    background-color: var(--accent-dark);
+}
+.bento-card.dark h3 { color: white; }
+.bento-card.dark p { color: #86868b; }
+
+/* --- 3. SPECS SECTION --- */
+.specs-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.specs-table {
+    border-top: 1px solid #d2d2d7;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #d2d2d7;
+    font-size: 17px;
+}
+
+.spec-label { font-weight: 500; color: var(--text-gray); }
+.spec-value { font-weight: 600; color: var(--text-main); }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 36px; }
+
+    .grid-layout {
+        grid-template-columns: 1fr; /* Chuyển về 1 cột */
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+
+    .bento-card.large { grid-row: auto; height: 350px; }
+    .bento-card.small { height: auto; padding: 24px; }
+
+    .cta-group { flex-direction: column; padding: 0 40px; }
+    .btn-primary, .btn-secondary { width: 100%; }
+}
