@@ -4,7 +4,7 @@ import '../Auth.css'; // File CSS mới
 import { ArrowRight } from 'lucide-react';
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
-
+import '../../../app/App.css'
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const LoginPage = () => {
         
         {/* Tiêu đề: Staggered Animation 1 */}
         <div className="animate-enter delay-1">
-          <h1 className="auth-title">Đăng nhập CodeStore.</h1>
+          <h1 className="auth-title tag-gradient" >Đăng nhập CodeStore.</h1>
           <h2 className="auth-subtitle">Trải nghiệm mua sắm source code nhanh chóng.</h2>
         </div>
 
