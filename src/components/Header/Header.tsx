@@ -23,7 +23,7 @@ const Header = () => {
         {/* LOGO */}
         <a href="/" className="nav-logo">
 
-          <span className="logo-text">CodeStore</span>
+          <span className="logo-text tag-gradient">CodeStore</span>
         </a>
 
         {/* MENU */}

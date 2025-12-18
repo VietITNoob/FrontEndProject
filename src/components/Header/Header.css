@@ -320,3 +320,14 @@
 @media (max-width: 768px) {
   .nav-links, .btn-login, .mega-dropdown { display: none; }
 }
+.tag-gradient {
+  background: var(--gradient-ai);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite; /* Chữ đổi màu liên tục */
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
