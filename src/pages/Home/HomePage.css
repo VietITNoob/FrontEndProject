@@ -1,0 +1,328 @@
+/* --- BIẾN MÔI TRƯỜNG --- */
+:root {
+  --bg-light: #ffffff;
+  --bg-card: #f5f5f7;
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --accent-blue: #0071e3;
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.home-container {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  padding-top: 60px;
+  overflow-x: hidden;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* --- ANIMATION UTILS --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s var(--ease-apple);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- HERO SECTION (Nâng cấp Background) --- */
+.hero-section {
+  text-align: center;
+  padding: 140px 20px 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Mesh Gradient động */
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(circle at 50% 50%, rgba(0,113,227,0.12) 0%, rgba(155,81,224,0.08) 30%, rgba(255,255,255,0) 70%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulse-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-pill span { color: var(--accent-blue); }
+
+.hero-title {
+  font-size: 72px; /* To hơn nữa */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-text {
+  background: linear-gradient(180deg, #1d1d1f 0%, #434344 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight-text {
+  background: linear-gradient(90deg, #2997ff, #9b51e0, #2997ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine { to { background-position: 200% center; } }
+
+.hero-subtitle {
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 48px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: #1d1d1f; /* Đen tuyền sang trọng */
+  color: white;
+  padding: 14px 36px;
+  border-radius: 99px;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-apple);
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- BENTO GRID SECTION (Nâng cấp Chi tiết) --- */
+.section-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 420px; /* Chiều cao cố định mỗi hàng */
+  gap: 24px;
+}
+
+.bento-card {
+  background: var(--bg-card);
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.6s var(--ease-apple);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.02); /* Viền siêu mờ */
+}
+
+/* Hiệu ứng Shine (Quét sáng) khi hover */
+.bento-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bento-card:hover::after {
+  animation: shine-sweep 0.7s;
+}
+
+@keyframes shine-sweep {
+  100% { left: 150%; }
+}
+
+.bento-card:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  z-index: 5;
+}
+
+.card-large { grid-column: span 2; }
+.card-tall { grid-row: span 2; }
+
+/* Nội dung Card */
+.card-header {
+  padding: 36px 36px 0;
+  z-index: 3;
+  position: relative;
+}
+
+.card-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #000;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.card-badge.blue { background: #0071e3; }
+.card-badge.purple { background: #5e5ce6; }
+.card-badge.orange { background: #ff9500; }
+
+.card-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.card-price {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Tech Stack Icons nhỏ góc dưới */
+.card-tech-stack {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tech-dot {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.06);
+  color: #1d1d1f;
+  border-radius: 6px;
+}
+
+.card-image-wrapper {
+  margin-top: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.8s var(--ease-apple);
+  border-radius: 8px;
+}
+
+.bento-card:hover .card-image {
+  transform: scale(1.06);
+  
+}
+
+/* --- INFINITE MARQUEE (Logo trượt) --- */
+.marquee-container {
+  overflow: hidden;
+  padding: 40px 0 100px;
+  background: var(--bg-light);
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Hiệu ứng mờ 2 bên cạnh */
+.marquee-container::before,
+.marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+}
+.marquee-container::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.marquee-container::after { right: 0; background: linear-gradient(to left, #fff, transparent); }
+
+.marquee-content {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+}
+
+.logo-item {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 800;
+  color: #d2d2d7; /* Màu xám nhạt */
+  margin: 0 40px;
+  transition: color 0.3s;
+}
+.logo-item:hover { color: #1d1d1f; }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 960px) {
+  .hero-title { font-size: 48px; }
+  .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 400px; }
+  .card-large, .card-tall { grid-column: auto; grid-row: auto; }
+}

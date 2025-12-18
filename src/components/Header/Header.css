@@ -1,3 +1,15 @@
+/* --- BIẾN CẤU HÌNH (Apple Physics) --- */
+:root {
+  --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1); /* Chuyển động đàn hồi nhẹ */
+  --nav-height: 52px;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-blur: saturate(180%) blur(20px);
+  --border-color: rgba(0, 0, 0, 0.12);
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --blue-primary: #0071e3;
+}
+
 /* --- CẤU TRÚC CHUNG --- */
 .apple-nav {
   position: fixed;
@@ -5,11 +17,16 @@
   left: 0;
   right: 0;
   z-index: 9999;
-  height: 52px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  /* Sử dụng cubic-bezier của Apple cho chuyển động mượt mà */
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-bottom: 1px solid transparent;
+  height: var(--nav-height);
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Chuyển động nền và viền cực mượt */
+  transition: background-color 0.5s var(--apple-ease),
+              backdrop-filter 0.5s var(--apple-ease),
+              border-bottom 0.5s var(--apple-ease);
+              
+  /* Khử răng cưa cho chữ */
+  -webkit-font-smoothing: antialiased; 
 }
 
 .nav-container {
@@ -21,45 +38,47 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 10; /* Đảm bảo nội dung nav nằm trên dropdown */
+  z-index: 20; /* Đảm bảo nằm trên dropdown */
 }
 
-/* --- TRẠNG THÁI --- */
+/* --- TRẠNG THÁI SCROLL & OPEN --- */
 .apple-nav.top {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
 }
 
+/* Khi cuộn hoặc mở menu: Kính mờ */
 .apple-nav.scrolled,
-.apple-nav.dropdown-open { /* Khi mở dropdown cũng kích hoạt nền mờ */
-  background-color: rgba(255, 255, 255, 0.8); /* Tăng độ đục lên chút */
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+.apple-nav.dropdown-open {
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* --- LOGO --- */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
+  gap: 8px;
   text-decoration: none;
+  cursor: pointer;
   transition: opacity 0.3s ease;
 }
 
-.nav-logo:hover { opacity: 0.7; }
+.nav-logo:hover { opacity: 0.65; }
 
 .logo-text {
   font-size: 19px;
   font-weight: 600;
-  letter-spacing: -0.5px;
-  color: #1d1d1f;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
-/* --- MENU LINKS (Được nâng cấp) --- */
+/* --- MENU LINKS --- */
 .nav-links {
   display: flex;
-  gap: 8px; /* Giảm khoảng cách để thêm padding cho hover */
+  gap: 4px; /* Khoảng cách nhỏ để vùng hover liền mạch */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -71,28 +90,29 @@
   height: 100%;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .nav-link {
   font-size: 12px;
   font-weight: 400;
-  color: #1d1d1f;
+  color: var(--text-primary);
   text-decoration: none;
-  opacity: 0.8;
-  /* Thêm padding để tạo vùng hover */
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: 8px;
-  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.8;
+  transition: all 0.3s var(--apple-ease);
 }
 
-/* Hiệu ứng hover mới: Nền xám nhẹ, chữ rõ nét */
+/* Hover Effect: Nền xám nhạt hiện ra */
 .nav-link:hover, 
 .nav-link-item.active .nav-link {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
 }
 
-/* --- ACTIONS --- */
+/* --- ACTIONS (Search, Cart, Login) --- */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -103,96 +123,200 @@
   background: none;
   border: none;
   padding: 8px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.8;
-  border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .icon-btn svg {
-  fill: #1d1d1f;
   width: 16px;
   height: 16px;
+  fill: var(--text-primary);
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s var(--apple-ease);
 }
 
-.icon-btn:hover {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.05); /* Thêm nền khi hover icon */
-}
+.icon-btn:hover { background-color: rgba(0, 0, 0, 0.05); }
+.icon-btn:hover svg { opacity: 1; transform: scale(1.1); }
 
-/* Nút Đăng nhập (Nâng cấp bóng đổ) */
+/* Nút Đăng nhập: Hiệu ứng đàn hồi */
 .btn-login {
-  background-color: #0071e3;
+  background-color: var(--blue-primary);
   color: #ffffff;
   border: none;
-  padding: 5px 14px;
-  border-radius: 12px;
+  padding: 4px 14px;
+  border-radius: 99px;
   font-size: 11px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all 0.4s var(--apple-ease);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-login:hover {
   background-color: #0077ed;
-  transform: translateY(-1px); /* Nảy lên nhẹ */
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); /* Bóng đổ sâu hơn */
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
 }
 
-.btn-login:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: none;
-}
+.btn-login:active { transform: scale(0.96); }
 
-/* --- MEGA DROPDOWN (Phần mới) --- */
+/* --- MEGA DROPDOWN (PHIÊN BẢN PRO) --- */
 .mega-dropdown {
   position: absolute;
-  top: 52px; /* Bắt đầu ngay dưới header */
+  top: var(--nav-height);
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
   
-  /* Ẩn mặc định */
-  visibility: hidden;
+  /* Nền kính mờ tinh khiết */
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  
+  /* Viền bóng đổ nhẹ */
+  border-bottom: 4px solid var(--border-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  
+  /* Animation cơ bản */
+  height: 0;
   opacity: 0;
-  transform-origin: top center;
-  transform: scaleY(0.98) translateY(-10px);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  
-  padding: 40px 0;
-  z-index: 5;
+  overflow: hidden;
+  transition: 
+    height 0.5s var(--apple-ease),
+    opacity 0.4s ease,
+    visibility 0s linear 0.5s;
+  visibility: hidden;
+  z-index: 10;
+  border-radius: 8px;
 }
 
-/* Trạng thái hiện dropdown */
+.mega-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px; /* Line siêu mảnh */
+  
+  /* Gradient màu Apple: Xanh dương -> Tím -> Hồng -> Xanh dương */
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(0, 113, 227, 0) 20%, 
+    #0071e3 40%, 
+    #9b51e0 50%, 
+    #0071e3 60%, 
+    rgba(0, 113, 227, 0) 80%, 
+    transparent 100%
+  );
+  
+  opacity: 0;
+  transform: scaleX(0.5); /* Ban đầu thu nhỏ lại */
+  transform-origin: center;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 11;
+}
+
+/* Trạng thái khi mở Dropdown */
 .mega-dropdown.visible {
   visibility: visible;
+  height: 340px; /* Chiều cao mở rộng */
   opacity: 1;
-  transform: scaleY(1) translateY(0);
+  transition-delay: 0s;
 }
 
-/* Ví dụ nội dung bên trong dropdown (Bạn có thể tùy biến sau) */
+/* Kích hoạt dải sáng khi mở */
+.mega-dropdown.visible::after {
+  opacity: 1;
+  transform: scaleX(1); /* Lan tỏa ra 2 bên */
+  transition-delay: 0.1s; /* Chạy sau khi menu bắt đầu mở */
+}
+
+/* --- NỘI DUNG DROPDOWN --- */
 .dropdown-content-placeholder {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 22px;
-    display: flex;
-    justify-content: space-around;
-    color: #1d1d1f;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 48px 22px; /* Padding rộng hơn cho thoáng */
+  display: flex;
+  justify-content: flex-start;
+  gap: 100px;
 }
-.dropdown-column h4 { font-size: 12px; color: #86868b; margin-bottom: 10px; }
-.dropdown-column ul { list-style: none; padding: 0; margin: 0; }
-.dropdown-column li a { display: block; text-decoration: none; color: #1d1d1f; font-size: 14px; padding: 6px 0; font-weight: 600;}
-.dropdown-column li a:hover { color: #0071e3; }
 
+/* HIỆU ỨNG 2: STAGGERED ANIMATION (CÁC CỘT TRỒI LÊN) */
+.dropdown-column {
+  opacity: 0;
+  transform: translateY(20px); /* Đẩy xuống dưới một chút */
+  transition: all 0.5s var(--apple-ease);
+}
+
+/* Khi mở menu, các cột sẽ hiện lên lần lượt */
+.mega-dropdown.visible .dropdown-column:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s; /* Cột 1 hiện đầu tiên */
+}
+
+.mega-dropdown.visible .dropdown-column:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s; /* Cột 2 hiện sau 0.1s */
+}
+
+.mega-dropdown.visible .dropdown-column:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s; /* Cột 3 hiện sau cùng */
+}
+
+/* Typography chi tiết trong cột */
+.dropdown-column h4 {
+  font-size: 11px;
+  color: #86868b;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dropdown-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-column li {
+  margin-bottom: 14px;
+}
+
+.dropdown-column li a {
+  display: block;
+  text-decoration: none;
+  color: #1d1d1f;
+  font-size: 20px; /* Font to bản, đậm (Phong cách Apple mới) */
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hiệu ứng hover vào từng link */
+.dropdown-column li a:hover {
+  color: #0071e3;
+  transform: translateX(4px); /* Dịch sang phải nhẹ khi hover */
+}
+
+/* Dòng mô tả nhỏ dưới link (nếu có) */
+.dropdown-column li a span {
+  display: block;
+  font-size: 12px;
+  color: #86868b;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0;
+}
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .btn-login { display: none; }
-  .mega-dropdown { display: none; } /* Ẩn dropdown trên mobile */
+  .nav-links, .btn-login, .mega-dropdown { display: none; }
 }
