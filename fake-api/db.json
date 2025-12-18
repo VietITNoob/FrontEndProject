@@ -1,0 +1,39 @@
+{
+  "users": [],
+  "products": [
+    {
+      "id": 1,
+      "title": "Website Bán Hàng React + NodeJS",
+      "price": 499000,
+      "discount": 20,
+      "categoryId": 1,
+      "description": "Full source code website bán hàng, có admin panel",
+      "thumbnail": "https://picsum.photos/300/200?1",
+      "tech": ["React", "NodeJS", "MongoDB"],
+      "rating": 4.8,
+      "sold": 120,
+      "createdAt": "2025-01-01"
+    },
+    {
+      "id": 2,
+      "title": "App Quản Lý Công Việc Flutter",
+      "price": 299000,
+      "discount": 0,
+      "categoryId": 2,
+      "description": "Source Flutter + Firebase",
+      "thumbnail": "https://picsum.photos/300/200?2",
+      "tech": ["Flutter", "Firebase"],
+      "rating": 4.5,
+      "sold": 80,
+      "createdAt": "2025-02-10"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Web App" },
+    { "id": 2, "name": "Mobile App" },
+    { "id": 3, "name": "AI / Machine Learning" },
+    { "id": 4, "name": "Game" }
+  ],
+  "orders": [],
+  "reviews": []
+}
