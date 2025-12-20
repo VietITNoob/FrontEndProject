@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Cart.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { ChevronDown, Loader2 } from 'lucide-react'; // Import Icon Loading
+import { ChevronDown, Loader2, CheckCircle, XCircle } from 'lucide-react'; // Import Icon
 import { useCart } from '../../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -11,7 +11,12 @@ const CartPage = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const [isProcessing, setIsProcessing] = useState(false); // State xử lý loading khi bấm nút
+  const [isProcessing, setIsProcessing] = useState(false);
+  
+  // --- POPUP STATES ---
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStatus, setPopupStatus] = useState<'success' | 'error'>('success');
+  const [popupMessage, setPopupMessage] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,8 +27,13 @@ const CartPage = () => {
 
   const handleCheckout = async () => {
     if (!isAuthenticated || !user) {
-      alert("Vui lòng đăng nhập để tiến hành thanh toán!");
-      navigate('/login');
+      setPopupStatus('error');
+      setPopupMessage("Vui lòng đăng nhập để tiến hành thanh toán!");
+      setShowPopup(true);
+      setTimeout(() => {
+          setShowPopup(false);
+          navigate('/login');
+      }, 2000);
       return;
     }
 
@@ -32,10 +42,10 @@ const CartPage = () => {
     setIsProcessing(true);
 
     const newOrder = {
-      userId: user.id, // ID của user đang đăng nhập
-      date: new Date().toLocaleDateString('vi-VN'), // Ngày hiện tại
+      userId: user.id,
+      date: new Date().toLocaleDateString('vi-VN'),
       status: "Completed",
-      paymentMethod: "Visa (...4242)", // Giả lập phương thức thanh toán
+      paymentMethod: "Visa (...4242)",
       totalPrice: totalPrice,
       customerName: `${user.firstName} ${user.lastName}`,
       email: user.email,
@@ -58,13 +68,27 @@ const CartPage = () => {
 
       if (!response.ok) throw new Error('Đặt hàng thất bại');
 
-      clearCart(); // Xóa giỏ hàng
-      alert("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
-      navigate('/profile'); // Chuyển hướng về trang Profile để xem đơn hàng
+      clearCart();
+      
+      // Show Success Popup
+      setPopupStatus('success');
+      setPopupMessage("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
+      setShowPopup(true);
+
+      // Auto redirect after 2 seconds
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate('/account/home');
+      }, 2000);
 
     } catch (error) {
       console.error("Checkout Error:", error);
-      alert("Có lỗi xảy ra khi thanh toán. Vui lòng thử lại.");
+      setPopupStatus('error');
+      setPopupMessage("Có lỗi xảy ra khi thanh toán. Vui lòng thử lại.");
+      setShowPopup(true);
+      
+      // Auto close error popup
+      setTimeout(() => setShowPopup(false), 3000);
     } finally {
       setIsProcessing(false);
     }
@@ -73,6 +97,25 @@ const CartPage = () => {
   return (
     <div className="cart-container">
       <Header />
+
+      {/* --- CUSTOM POPUP --- */}
+      {showPopup && (
+        <div className="checkout-popup-overlay">
+          <div className={`checkout-popup ${popupStatus}`}>
+            <div className="popup-icon">
+              {popupStatus === 'success' ? (
+                <CheckCircle size={48} color="#34c759" />
+              ) : (
+                <XCircle size={48} color="#ff3b30" />
+              )}
+            </div>
+            <h3 className="popup-title">
+              {popupStatus === 'success' ? 'Thành Công!' : 'Thông Báo'}
+            </h3>
+            <p className="popup-desc">{popupMessage}</p>
+          </div>
+        </div>
+      )}
 
       <section className="cart-header">
         <h1 className="cart-total-title">

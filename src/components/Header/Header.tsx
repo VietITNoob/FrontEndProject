@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import './Header.css';
-import { HEADER_MENU } from './header.data';
+import {HEADER_MENU, HEADER_MENU_SEARCH} from './header.data';
 import MegaDropdown from './MegaDropdown';
 import { useHeaderNavigation } from './hooks/useHeaderNavigation';
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ const Header = () => {
   // --- STATES ---
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [setCategories] = useState<Category[]>([]);
   const [showUserMenu, setShowUserMenu] = useState(false); // State hiển thị menu user
   const [showCartPopover, setShowCartPopover] = useState(false);
   const [showWishlistPopover, setShowWishlistPopover] = useState(false);
@@ -127,10 +127,6 @@ const Header = () => {
     setSearchTerm('');
   };
 
-  const handleCategoryClick = (categoryId: number | string) => {
-    console.log("Navigate to category:", categoryId);
-    setIsSearchOpen(false);
-  };
 
   return (
     <>
@@ -327,16 +323,17 @@ const Header = () => {
                   <div className="quick-links">
                     <h4>Danh mục nổi bật</h4>
                     <ul>
-                        {categories.slice(0, 5).map((cat) => (
-                            <li key={cat.id}>
-                                <a href="#" onClick={(e) => {
-                                    e.preventDefault();
-                                    handleCategoryClick(cat.id);
-                                }}>
-                                    {cat.name}
-                                </a>
-                            </li>
-                        ))}
+                      {HEADER_MENU_SEARCH.map((item) => (
+                          <li
+                              key={item.id}
+                              className={` ${hoveredNavItem === item.id ? 'active' : ''}`}
+                              onMouseEnter={() => onNavItemEnter(item.id, item.hasDropdown)}
+                          >
+                            <Link to={item.path || '#'} className="nav-link">
+                              {item.label}
+                            </Link>
+                          </li>
+                      ))}
                     </ul>
                   </div>
                 )}

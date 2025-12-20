@@ -281,7 +281,7 @@
   overflow: hidden;
   padding: 40px 0 100px;
   background: var(--bg-light);
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   position: relative;
 }
 
