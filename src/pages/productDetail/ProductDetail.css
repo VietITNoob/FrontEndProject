@@ -265,3 +265,193 @@
     .cta-group { flex-direction: column; padding: 0 40px; }
     .btn-primary, .btn-secondary { width: 100%; }
 }
+/* ... Code cũ của bạn ở trên ... */
+
+/* --- 4. REVIEWS SECTION (MỚI) --- */
+.reviews-section {
+    padding: 100px 0;
+    background-color: var(--card-bg); /* Nền trắng */
+    border-top: 1px solid #d2d2d7; /* Đường kẻ ngăn cách mờ */
+}
+
+/* Layout chia cột: Trái (Summary) - Phải (List) */
+.reviews-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Cột trái cố định 300px */
+    gap: 60px;
+    margin-top: 40px;
+}
+
+/* --- Rating Summary (Cột trái) --- */
+.rating-summary {
+    position: sticky;
+    top: 100px; /* Dính lại khi scroll */
+    padding: 30px;
+    background: var(--bg-color); /* Sử dụng nền xám Apple đã khai báo */
+    border-radius: var(--radius-xl);
+    height: fit-content;
+}
+
+.average-score {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.score-number {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text-main);
+    display: block;
+}
+
+.score-stars {
+    margin: 10px 0 5px;
+    color: #f5a623; /* Màu vàng cam đặc trưng cho sao */
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.star-icon.filled {
+    fill: currentColor;
+}
+
+.total-reviews {
+    font-size: 13px;
+    color: var(--text-gray);
+    margin-top: 8px;
+}
+
+/* Thanh Progress bar */
+.bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.star-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-gray);
+    width: 35px;
+    text-align: right;
+}
+
+.progress-track {
+    flex: 1;
+    height: 6px;
+    background: #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #86868b; /* Apple dùng màu xám đậm cho thanh đánh giá */
+    border-radius: 10px;
+}
+
+/* --- Reviews List (Cột phải) --- */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.review-card {
+    background: var(--bg-color); /* Nền xám nhạt */
+    padding: 24px;
+    border-radius: 20px; /* Bo góc mềm mại */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.review-card:hover {
+    background: #e8e8ed; /* Đậm hơn chút khi hover */
+    transform: translateY(-2px);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.review-stars {
+    color: #f5a623;
+    display: flex;
+    gap: 2px;
+}
+.review-stars .filled {
+    fill: currentColor;
+}
+
+.review-date {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.review-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.review-content {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #424245;
+    margin-bottom: 20px;
+}
+
+.review-footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.review-footer strong {
+    color: var(--text-main);
+}
+
+.user-role {
+    color: var(--text-gray);
+    margin-top: 2px;
+}
+
+/* --- Responsive cho Reviews --- */
+@media (max-width: 900px) {
+    .reviews-layout {
+        grid-template-columns: 1fr; /* Chuyển thành 1 cột dọc */
+        gap: 40px;
+    }
+
+    .rating-summary {
+        position: static; /* Bỏ dính */
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        max-width: 100%;
+    }
+
+    .rating-bars {
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .rating-summary {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+    }
+    .rating-bars {
+        width: 100%;
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
