@@ -1,46 +1,4 @@
-// Dữ liệu Danh mục (Categories) - Icon đại diện cho các mảng lập trình
-export const CATEGORIES = [
-  { 
-    id: 'web', 
-    name: 'Web Apps', 
-    image: 'https://cdn-icons-png.flaticon.com/512/1005/1005141.png' // Icon màn hình code
-  },
-  { 
-    id: 'mobile', 
-    name: 'Mobile Apps', 
-    image: 'https://cdn-icons-png.flaticon.com/512/2586/2586488.png' // Icon điện thoại
-  },
-  { 
-    id: 'ui', 
-    name: 'UI/UX Kits', 
-    image: 'https://cdn-icons-png.flaticon.com/512/1253/1253659.png' // Icon bảng màu/design
-  },
-  { 
-    id: 'ai', 
-    name: 'AI & ML', 
-    image: 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png' // Icon não bộ/AI
-  },
-  { 
-    id: 'game', 
-    name: 'Game Source', 
-    image: 'https://cdn-icons-png.flaticon.com/512/686/686589.png' // Icon tay cầm game
-  },
-  { 
-    id: 'saas', 
-    name: 'SaaS Starter', 
-    image: 'https://cdn-icons-png.flaticon.com/512/2333/2333499.png' // Icon cloud
-  },
-  { 
-    id: 'backend', 
-    name: 'Backend/API', 
-    image: 'https://cdn-icons-png.flaticon.com/512/2166/2166823.png' // Icon server
-  },
-  { 
-    id: 'tools', 
-    name: 'Dev Tools', 
-    image: 'https://cdn-icons-png.flaticon.com/512/1086/1086576.png' // Icon cờ lê/búa
-  },
-];
+
 
 // Dữ liệu Sản phẩm mới nhất (Latest Source Codes)
 export const LATEST_PRODUCTS = [
