@@ -1,3 +1,4 @@
+
 import  {useEffect, useState} from 'react';
 import { categoryApi } from '../../../api/categroryApi.tsx';
 import type {Category} from '../../../types';
