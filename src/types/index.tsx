@@ -1,10 +1,20 @@
-export interface product {
+export interface Product {
     id : number;
-    name : string,
+    title : string,
     price : number;
-    image : string;
+    discount : number;
+    categoryId: string;
     description : string;
-    image_url : string;
+    image? : string; // Changed from image_url and made optional
+    thumbnail?: string; // Added thumbnail
+    tech?: string[];
+    database?: string[];
+    "UI Framework"?: string[];
+    BackEnd?: string;
+    review?: number[]; // Changed to array of numbers
+    rating?: number; // Added rating
+    sold: number;
+    createdAt: string;
 }
 
 export interface Category {
