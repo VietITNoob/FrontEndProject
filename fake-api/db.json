@@ -1,5 +1,26 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "Minh Tuấn",
+      "role": "Developer"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Nguyen",
+      "role": "Designer"
+    },
+    {
+      "id": 3,
+      "name": "Hoàng K.",
+      "role": "Founder"
+    },
+    {
+      "id": 4,
+      "name": "David Tran",
+      "role": "Freelancer"
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -15,7 +36,7 @@
       "database": [
         "MongoDB"
       ],
-      "UI Framework": [
+      "UI_Framework": [
         "Custom CSS (No Library)"
       ],
       "BackEnd": ["NodeJS"],
@@ -42,7 +63,7 @@
       "database": [
         "Firebase Firestore","Firebase Realtime Database"
       ],
-      "UI Framework": [
+      "UI_Framework": [
         "Flutter Material"
       ],
       "BackEnd": ["Spring Boot"],
@@ -54,6 +75,144 @@
       "rating": 4.5,
       "sold": 80,
       "createdAt": "2025-02-10"
+    },
+    {
+      "id": 3,
+      "title": "SaaS Starter Kit Next.js + Stripe",
+      "price": 699000,
+      "discount": 15,
+      "categoryId": "web",
+      "description": "Starter kit SaaS đầy đủ auth, subscription, billing với Stripe",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Next.js 14",
+        "TypeScript"
+      ],
+      "database": [
+        "PostgreSQL"
+      ],
+      "UI_Framework": [
+        "Tailwind CSS"
+      ],
+      "BackEnd": [
+        "NodeJS"
+      ],
+      "review": [
+        1,
+        2
+      ],
+      "rating": 4.8,
+      "sold": 56,
+      "createdAt": "2025-03-01"
+    },
+    {
+      "id": 4,
+      "title": "Mobile App UI Kit Flutter",
+      "price": 199000,
+      "discount": 0,
+      "categoryId": "ui",
+      "description": "Bộ UI Kit Flutter gồm hơn 40 màn hình, dễ customize",
+      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Flutter"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Flutter Custom Widgets"
+      ],
+      "BackEnd": [],
+      "review": [
+        3,
+        4
+      ],
+      "rating": 4.6,
+      "sold": 210,
+      "createdAt": "2024-12-20"
+    },
+    {
+      "id": 5,
+      "title": "AI Chatbot OpenAI + LangChain",
+      "price": 899000,
+      "discount": 25,
+      "categoryId": "ai",
+      "description": "Source chatbot AI tích hợp OpenAI API và LangChain, có memory và tools",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "LangChain",
+        "OpenAI API"
+      ],
+      "database": [
+        "Vector Database"
+      ],
+      "UI_Framework": [
+        "Streamlit"
+      ],
+      "BackEnd": [
+        "FastAPI"
+      ],
+      "review": [
+        2,
+        4
+      ],
+      "rating": 4.9,
+      "sold": 34,
+      "createdAt": "2025-02-18"
+    },
+    {
+      "id": 6,
+      "title": "REST API Boilerplate Spring Boot",
+      "price": 349000,
+      "discount": 10,
+      "categoryId": "backend",
+      "description": "Boilerplate Spring Boot chuẩn clean architecture, JWT, role-based access",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Java",
+        "Spring Boot"
+      ],
+      "database": [
+        "PostgreSQL"
+      ],
+      "UI_Framework": [],
+      "BackEnd": [
+        "Spring Boot"
+      ],
+      "review": [
+        1,
+        3
+      ],
+      "rating": 4.7,
+      "sold": 95,
+      "createdAt": "2025-01-22"
+    },
+    {
+      "id": 7,
+      "title": "E-commerce Mobile App Flutter + Firebase",
+      "price": 599000,
+      "discount": 20,
+      "categoryId": "mobile",
+      "description": "App bán hàng Flutter hoàn chỉnh, auth, cart, order, payment",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Firebase"
+      ],
+      "database": [
+        "Cloud Firestore"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [],
+      "review": [
+        2,
+        3,
+        4
+      ],
+      "rating": 4.8,
+      "sold": 140,
+      "createdAt": "2025-03-10"
     }
   ],
   "categories": [
@@ -103,32 +262,32 @@
   "reviews": [
     {
       "id": 1,
-      "user": "Minh Tuấn",
-      "role": "Developer",
+      "productId": 6,
+      "userId": 1,
       "rating": 5,
       "date": "2 ngày trước",
       "content": "Code structure cực kỳ sạch (clean architecture). Rất đáng tiền để học hỏi pattern."
     },
     {
       "id": 2,
-      "user": "Sarah Nguyen",
-      "role": "Designer",
+      "productId": 1,
+      "userId": 2,
       "rating": 5,
       "date": "1 tuần trước",
       "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag."
     },
     {
       "id": 3,
-      "user": "Hoàng K.",
-      "role": "Founder",
+      "productId": 6,
+      "userId": 3,
       "rating": 4,
       "date": "2 tuần trước",
       "content": "Sản phẩm tốt, nhưng document cần chi tiết hơn ở phần deploy server."
     },
     {
       "id": 4,
-      "user": "David Tran",
-      "role": "Freelancer",
+      "productId": 7,
+      "userId": 4,
       "rating": 5,
       "date": "1 tháng trước",
       "content": "Mua source này về customize lại cho khách cực nhanh. Tuyệt vời!"

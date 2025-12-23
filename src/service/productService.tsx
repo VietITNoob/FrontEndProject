@@ -1,7 +1,7 @@
 import type {Product} from '../types'
-import axiosClient from "./axiosClient.tsx";
+import axiosClient from "../api/axiosClient.tsx";
 
-export const productApi = {
+export const productService = {
     getAll: (): Promise<Product[]> => {
         return axiosClient.get('/products');
     },

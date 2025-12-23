@@ -1,7 +1,6 @@
-
 import  {useEffect, useState} from 'react';
-import { categoryApi } from '../../../api/categroryApi.tsx';
 import type {Category} from '../../../types';
+import {categoryService} from "../../../service/categroryService.tsx";
 
 const CategoryNav = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -9,7 +8,7 @@ const CategoryNav = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await categoryApi.getAll();
+        const data = await categoryService.getAll();
         setCategories(data);
       } catch (error) {
         console.error('Lỗi tải danh mục:', error);

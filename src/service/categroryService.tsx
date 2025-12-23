@@ -1,7 +1,7 @@
 import type {Category} from '../types'
-import axiosClient from "./axiosClient.tsx";
+import axiosClient from "../api/axiosClient.tsx";
 
-export const categoryApi = {
+export const categoryService= {
     getAll: (): Promise<Category[]> => {
         return axiosClient.get('/categories');
     }
