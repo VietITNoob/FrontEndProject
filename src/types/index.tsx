@@ -5,14 +5,14 @@ export interface Product {
     discount : number;
     categoryId: string;
     description : string;
-    image? : string; // Changed from image_url and made optional
-    thumbnail?: string; // Added thumbnail
+    image? : string;
+    thumbnail?: string;
     tech?: string[];
     database?: string[];
-    "UI Framework"?: string[];
+    UI_Framework?: string[];
     BackEnd?: string;
-    review?: number[]; // Changed to array of numbers
-    rating?: number; // Added rating
+    review?: number[];
+    rating?: number;
     sold: number;
     createdAt: string;
 }
@@ -22,6 +22,13 @@ export interface Category {
     name : string;
     image : string;
 }
+
+export interface User {
+    id: number;
+    name: string;
+    role: string;
+}
+
 export interface Review {
     id: number;
     userId: number;
@@ -29,4 +36,5 @@ export interface Review {
     rating: number;
     date: string;
     content: string;
+    user?: User;
 }
