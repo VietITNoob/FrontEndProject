@@ -22,3 +22,11 @@ export interface Category {
     name : string;
     image : string;
 }
+export interface Review {
+    id: number;
+    userId: number;
+    productId: number;
+    rating: number;
+    date: string;
+    content: string;
+}
