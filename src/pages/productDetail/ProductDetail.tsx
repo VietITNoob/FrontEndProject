@@ -65,7 +65,7 @@ const ProductDetail = () => {
             <main className="product-content">
                 <HeroSection product={product} />
                 <TechSpecs product={product} />
-                <Reviews product={product} />
+                <Reviews productId={productId} />
             </main>
 
             <Footer />
