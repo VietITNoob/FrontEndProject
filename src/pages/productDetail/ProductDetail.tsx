@@ -1,41 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import './ProductDetail.css';
-import { productApi } from "../../api/productApi";
-import type { Product } from "../../types";
 import HeroSection from "../../components/ProductDetail/components/HeroSection";
 import TechSpecs from "../../components/ProductDetail/components/TechSpecs";
 import Reviews from "../../components/ProductDetail/components/Reviews";
+import { useProductDetail } from "../../hook/useProductDetail";
 
 const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
-    const [product, setProduct] = useState<Product | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-    // Fetch product data
-    useEffect(() => {
-        const fetchProduct = async () => {
-            if (!id) return;
-            try {
-                setLoading(true);
-                const data = await productApi.getById(id);
-                setProduct(data);
-            } catch (err) {
-                console.error("Failed to fetch product:", err);
-                setError("Không thể tải thông tin sản phẩm.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProduct();
-    }, [id]);
+    const productId = id ? parseInt(id, 10) : 0;
+    const { product, loading, error } = useProductDetail(productId);
 
     // Hook Scroll Reveal
     useEffect(() => {
+        if (loading || !product) return;
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -51,7 +32,7 @@ const ProductDetail = () => {
         hiddenElements.forEach((el) => observer.observe(el));
 
         return () => observer.disconnect();
-    }, [product]); // Re-run observer when product loads
+    }, [product, loading]);
 
     if (loading) {
         return (
@@ -70,7 +51,7 @@ const ProductDetail = () => {
             <div className="page-wrapper">
                 <Header />
                 <main className="product-content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-                    <p>{error || "Sản phẩm không tồn tại"}</p>
+                    <p>{error ? "Có lỗi xảy ra" : "Sản phẩm không tồn tại"}</p>
                 </main>
                 <Footer />
             </div>
