@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 interface ProductProps {
   data: {
     id: number;
-    tag: string;
+    tag?: string;
     title: string;
     price: string;
     image: string;
@@ -13,20 +13,23 @@ interface ProductProps {
 }
 
 const ProductCard: React.FC<ProductProps> = ({ data }) => {
-  // Logic hiển thị Tag
-  const isAI = data.tag.toLowerCase().includes('ai') || data.tag.toLowerCase().includes('intelligence') || data.tag.includes('Best Seller');
-  const isNew = data.tag.toLowerCase().includes('new') || data.tag.toLowerCase().includes('free');
+  // Logic hiển thị tag
+  const tag = data.tag || '';
+  const isAI = tag.toLowerCase().includes('ai') || tag.toLowerCase().includes('intelligence') || tag.includes('Best Seller');
+  const isNew = tag.toLowerCase().includes('new') || tag.toLowerCase().includes('free');
 
   return (
     <div className="store-card">
       <div className="card-content">
-        {/* Render Tag với class tương ứng */}
-        <div 
-          className={`card-tag ${isAI ? 'tag-gradient' : ''} ${isNew && !isAI ? 'tag-orange' : ''}`}
-          style={{ color: !isAI && !isNew ? '#6e6e73' : '' }} // Màu xám mặc định
-        >
-          {data.tag}
-        </div>
+        {/* Render Tag nếu có tồn tại */}
+        {tag && (
+          <div 
+            className={`card-tag ${isAI ? 'tag-gradient' : ''} ${isNew && !isAI ? 'tag-orange' : ''}`}
+            style={{ color: !isAI && !isNew ? '#6e6e73' : '' }} // Màu xám mặc định
+          >
+            {tag}
+          </div>
+        )}
         
         <h3 className="card-title">{data.title}</h3>
         <p className="card-price">{data.price}</p>
