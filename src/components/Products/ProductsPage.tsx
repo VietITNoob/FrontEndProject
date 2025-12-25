@@ -4,12 +4,38 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CategoryNav from './components/CategoryNav';
 import ProductCarousel from './components/ProductCarousel';
-import { LATEST_PRODUCTS, ACCESSORIES } from './data/products.data';
+import { useState } from 'react';
+import { productService } from '../../service/productService.tsx';
+
+// xác định kiểu dữ liệu cho sản phẩm
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  discount: number;
+  image?: string;
+  thumbnail?: string;
+  description: string;
+  // Add any other properties you expect from the API
+}
 
 const ProductsPage = () => {
-  // Scroll to top khi vào trang
+  const [products, setProducts] = useState<Product[]>([]);
+
   useEffect(() => {
+    // Cuộn lên đầu trang và tải sản phẩm
     window.scrollTo(0, 0);
+
+    const fetchProducts = async () => {
+      try {
+        const data = await productService.getAll();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   return (
@@ -27,29 +53,12 @@ const ProductsPage = () => {
       {/* 3. Category Icons */}
       <CategoryNav />
 
-      {/* 4. Section: The Latest (iPhone, Mac...) */}
+      {/* 4. Section: All Products */}
       <ProductCarousel 
-        titleStart="The latest." 
-        titleHighlight="Truly awe-inspired gifts." 
-        products={LATEST_PRODUCTS} 
+        titleStart="All Products."
+        titleHighlight="Discover our entire collection."
+        products={products} 
       />
-
-      {/* 5. Section: Personalization (Accessories...) */}
-      {/* Trong ảnh mẫu bạn gửi có phần Holiday picks, ta tái sử dụng component */}
-      <ProductCarousel 
-        titleStart="Holiday picks." 
-        titleHighlight="Designed to delight." 
-        products={ACCESSORIES} 
-      />
-
-      {/* 6. Section: Accessories (More...) */}
-      <div style={{marginTop: '40px'}}>
-         <ProductCarousel 
-          titleStart="Personalization." 
-          titleHighlight="Make it one of a kind." 
-          products={ACCESSORIES} // Có thể thay bằng data khác
-        />
-      </div>
 
       {/* 7. Footer */}
       <Footer />
