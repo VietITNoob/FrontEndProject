@@ -1,5 +1,7 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
+import { useCart } from '../../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductProps {
   data: {
@@ -13,6 +15,14 @@ interface ProductProps {
 }
 
 const ProductCard: React.FC<ProductProps> = ({ data }) => {
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await addToCart(data as any);
+    navigate('/cart');
+  };
   // Logic hiển thị tag
   const tag = data.tag || '';
   const isAI = tag.toLowerCase().includes('ai') || tag.toLowerCase().includes('intelligence') || tag.includes('Best Seller');
@@ -40,9 +50,9 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
       </div>
 
       {/* Nút cộng tròn */}
-      <div className="card-link-overlay">
+      <button onClick={handleAddToCart} className="card-link-overlay" aria-label="Add to cart">
         <Plus size={20} color="#1d1d1f" />
-      </div>
+      </button>
     </div>
   );
 };
