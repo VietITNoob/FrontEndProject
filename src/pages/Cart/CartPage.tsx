@@ -1,39 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './Cart.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { ChevronDown, ShieldCheck } from 'lucide-react'; // Icon cho AppleCare
+import { ChevronDown } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
+  const { cartItems, removeFromCart } = useCart();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Dữ liệu giả lập
-  const cartItems = [
-    {
-      id: 1,
-      name: 'E-Commerce Ultimate',
-      license: 'Giấy phép Doanh nghiệp (Enterprise License)',
-      specs: ['ReactJS + Node.js', 'Full Database', 'Life-time updates'],
-      price: 14726000,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80',
-      quantity: 1,
-      hasAddon: true, // Có thể thêm support
-    },
-    {
-      id: 2,
-      name: 'SaaS Dashboard Pro',
-      license: 'Giấy phép Cá nhân (Personal License)',
-      specs: ['Vue 3 + Laravel', 'Admin Panel', '6 Months updates'],
-      price: 5200000,
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80',
-      quantity: 1,
-      hasAddon: false,
-    }
-  ];
-
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const formatVND = (price: number) => price.toLocaleString('vi-VN') + 'đ';
 
   return (
@@ -51,55 +31,40 @@ const CartPage = () => {
 
       {/* 2. ITEM LIST */}
       <section className="cart-body">
-        {cartItems.map((item) => (
-          <div key={item.id} className="cart-item">
-            {/* Ảnh sản phẩm */}
-            <img src={item.image} alt={item.name} className="item-image" />
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
+              {/* Ảnh sản phẩm */}
+              <img src={item.image || item.thumbnail} alt={item.title} className="item-image" />
 
-            {/* Thông tin */}
-            <div className="item-details">
-              <div className="item-header">
-                <h3 className="item-name">{item.name}</h3>
-                <span className="item-price">{formatVND(item.price)}</span>
-              </div>
-              
-              {/* Quantity Selector giả lập */}
-              <div style={{display: 'flex', alignItems: 'center', gap: 5}}>
-                 <span style={{fontSize: 17, fontWeight: 400}}>SL:</span>
-                 <button className="item-quantity-select">
-                    {item.quantity} <ChevronDown size={14} style={{marginLeft: 4, marginTop: 2}}/>
-                 </button>
-              </div>
-
-              {/* Meta Info */}
-              <div className="item-meta">
-                <p style={{fontWeight: 600, marginBottom: 4}}>{item.license}</p>
-                {item.specs.map((spec, idx) => (
-                  <span key={idx} style={{display:'block'}}>{spec}</span>
-                ))}
-              </div>
-
-              {/* Addon (Giống AppleCare+) */}
-              {item.hasAddon && (
-                <div className="addon-row">
-                   <ShieldCheck size={20} className="addon-icon" />
-                   <div>
-                      <span className="addon-text">Thêm Premium Support (24/7) với giá 2.990.000đ</span>
-                      <span className="addon-desc">
-                        Được hỗ trợ kỹ thuật trực tiếp từ đội ngũ Senior Dev. Fix lỗi trong 24h.
-                        <a href="#" className="addon-link">Tìm hiểu thêm &rsaquo;</a>
-                      </span>
-                   </div>
-                   <a href="#" className="addon-link" style={{whiteSpace:'nowrap'}}>Thêm</a>
+              {/* Thông tin */}
+              <div className="item-details">
+                <div className="item-header">
+                  <h3 className="item-name">{item.title}</h3>
+                  <span className="item-price">{formatVND(item.price)}</span>
                 </div>
-              )}
-              
-              <div className="item-actions">
-                <button className="btn-remove">Xóa</button>
+                
+                {/* Quantity Selector giả lập */}
+                <div style={{display: 'flex', alignItems: 'center', gap: 5}}>
+                   <span style={{fontSize: 17, fontWeight: 400}}>SL:</span>
+                   <button className="item-quantity-select">
+                      {item.quantity} <ChevronDown size={14} style={{marginLeft: 4, marginTop: 2}}/>
+                   </button>
+                </div>
+
+                <div className="item-actions">
+                  <button onClick={() => removeFromCart(item.id)} className="btn-remove">Xóa</button>
+                </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className="empty-cart-message">
+            <h2>Giỏ hàng của bạn đang trống</h2>
+            <p>Hãy khám phá các sản phẩm tuyệt vời của chúng tôi và thêm vào giỏ hàng nhé!</p>
+            <Link to="/products" className="btn-primary">Tiếp tục mua sắm</Link>
           </div>
-        ))}
+        )}
       </section>
 
       {/* 3. SUMMARY FOOTER (Phần tổng kết dưới) */}
