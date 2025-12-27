@@ -1,10 +1,14 @@
-
+import { useState, useRef, useEffect } from 'react';
 import './Header.css';
 import { HEADER_MENU } from './header.data';
 import MegaDropdown from './MegaDropdown';
 import { useHeaderNavigation } from './hooks/useHeaderNavigation';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import useProductSearch from '../../hook/useSearch';
+import { categoryService } from '../../service/categroryService';
+import type { Category } from '../../types';
+
 const Header = () => {
   const {
     scrolled,
@@ -14,57 +18,180 @@ const Header = () => {
     onNavLeave,
   } = useHeaderNavigation();
   const { itemCount } = useCart();
+  const navigate = useNavigate();
+  
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [categories, setCategories] = useState<Category[]>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Sử dụng hook useProductSearch
+  const { products: searchResults, loading: searchLoading } = useProductSearch({
+    search: searchTerm,
+    category: 'all',
+    tech: ''
+  });
+
+  // Fetch categories khi component mount
+  useEffect(() => {
+    categoryService.getAll().then(setCategories).catch(console.error);
+  }, []);
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) {
+      setSearchTerm(''); // Reset search term khi mở lại
+    }
+  };
+
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  }, [isSearchOpen]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleProductClick = (productId: number) => {
+    navigate(`/product/${productId}`);
+    setIsSearchOpen(false);
+    setSearchTerm('');
+  };
+
+  const handleCategoryClick = (categoryId: number | string) => {
+    // Điều hướng đến trang danh sách sản phẩm với filter category (giả sử route là /products?category=...)
+    // Hoặc xử lý theo logic của bạn
+    console.log("Navigate to category:", categoryId);
+    // Ví dụ: navigate(`/products?category=${categoryId}`);
+    setIsSearchOpen(false);
+  };
 
   return (
-    <nav
-      className={`apple-nav ${scrolled ? 'scrolled' : 'top'} ${isDropdownOpen ? 'dropdown-open' : ''
-        }`}
-      onMouseLeave={onNavLeave}
-    >
-      <div className="nav-container">
-        {/* LOGO */}
-        <a href="/" className="nav-logo">
+    <>
+      <nav
+        className={`apple-nav ${scrolled ? 'scrolled' : 'top'} ${isDropdownOpen ? 'dropdown-open' : ''}`}
+        onMouseLeave={onNavLeave}
+      >
+        <div className="nav-container">
+          {/* LOGO */}
+          <a href="/" className="nav-logo">
+            <span className="logo-text tag-gradient">CodeStore</span>
+          </a>
 
-          <span className="logo-text tag-gradient">CodeStore</span>
-        </a>
+          {/* MENU */}
+          <ul className="nav-links">
+            {HEADER_MENU.map((item) => (
+              <li
+                key={item.id}
+                className={`nav-link-item ${hoveredNavItem === item.id ? 'active' : ''}`}
+                onMouseEnter={() => onNavItemEnter(item.id, item.hasDropdown)}
+              >
+                <a href={`#${item.id}`} className="nav-link">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        {/* MENU */}
-        <ul className="nav-links">
-          {HEADER_MENU.map((item) => (
-            <li
-              key={item.id}
-              className={`nav-link-item ${hoveredNavItem === item.id ? 'active' : ''
-                }`}
-              onMouseEnter={() =>
-                onNavItemEnter(item.id, item.hasDropdown)
-              }
-            >
-              <a href={`#${item.id}`} className="nav-link">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* ACTIONS */}
-        <div className="nav-actions">
-          <button className="icon-btn"><svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.716,4.354a8.031,8.031,0,1,0-2.7,13.138l3.58,3.581A3.164,3.164,0,0,0,21.073,16.6l-3.58-3.58A8.046,8.046,0,0,0,15.716,4.354ZM10.034,16.069A6.033,6.033,0,1,1,14.3,14.3,6,6,0,0,1,10.034,16.069Zm9.625,1.943a1.165,1.165,0,0,1-1.647,1.647l-3.186-3.186a8.214,8.214,0,0,0,.89-.757,8.214,8.214,0,0,0,.757-.89Z"></path></g></svg></button>
-                    <Link to="/cart" className="icon-btn cart-icon">
-            <svg viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.5996 21.57C19.7042 21.57 20.5996 20.6746 20.5996 19.57C20.5996 18.4654 19.7042 17.57 18.5996 17.57C17.495 17.57 16.5996 18.4654 16.5996 19.57C16.5996 20.6746 17.495 21.57 18.5996 21.57Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M8.59961 21.57C9.70418 21.57 10.5996 20.6746 10.5996 19.57C10.5996 18.4654 9.70418 17.57 8.59961 17.57C7.49504 17.57 6.59961 18.4654 6.59961 19.57C6.59961 20.6746 7.49504 21.57 8.59961 21.57Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M2 3.55997C2 3.55997 6.64 3.49997 6 7.55997L5.31006 11.62C5.20774 12.1068 5.21778 12.6105 5.33954 13.0929C5.46129 13.5752 5.69152 14.0234 6.01263 14.4034C6.33375 14.7833 6.73733 15.0849 7.19263 15.2854C7.64793 15.4858 8.14294 15.5797 8.64001 15.56H16.64C17.7479 15.5271 18.8119 15.1196 19.6583 14.404C20.5046 13.6884 21.0834 12.7069 21.3 11.62L21.9901 7.50998C22.0993 7.0177 22.0939 6.50689 21.9744 6.017C21.8548 5.52712 21.6242 5.07126 21.3005 4.68467C20.9767 4.29807 20.5684 3.99107 20.1071 3.78739C19.6458 3.58371 19.1438 3.48881 18.64 3.50998H9.94" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
-            {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
-          </Link>
+          {/* ACTIONS */}
           <div className="nav-actions">
-            {/* Thay button bằng Link */}
-            <Link to="/login" className="btn-login">
-              Đăng nhập
+            <button className="icon-btn" onClick={toggleSearch}>
+              <img className="search-i" src="/search_button.svg" alt="Search" width="20" height="20" />
+            </button>
+            <Link to="/cart" className="icon-btn cart-icon">
+              <img src="/cart.svg" alt="Cart" width="20" height="20" />
+              {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
             </Link>
+            <div className="nav-actions">
+              <Link to="/login" className="btn-login">
+                Đăng nhập
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* MEGA DROPDOWN */}
-      <MegaDropdown visible={isDropdownOpen} />
-    </nav>
+        {/* MEGA DROPDOWN */}
+        <MegaDropdown visible={isDropdownOpen} />
+        
+        {/* SEARCH DROPDOWN */}
+        <div className={`mega-dropdown search-dropdown ${isSearchOpen ? 'visible' : ''}`}>
+          <div className="search-container-dropdown">
+             <div className="search-input-wrapper">
+                 <img className="search-icon-input" src="/search_button.svg" alt="Search" width="20" height="20" />
+                <input 
+                  ref={searchInputRef}
+                  type="text" 
+                  className="search-input-large" 
+                  placeholder="Tìm kiếm trên CodeStore" 
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
+             </div>
+             
+             <div className="search-results-container">
+                {searchLoading ? (
+                  <div className="search-loading">Đang tìm kiếm...</div>
+                ) : searchTerm ? (
+                  // KHI CÓ TỪ KHÓA TÌM KIẾM: HIỂN THỊ KẾT QUẢ SẢN PHẨM
+                  searchResults.length > 0 ? (
+                    <div className="search-results-list">
+                      <h4>Gợi ý sản phẩm</h4>
+                      <ul>
+                        {searchResults.map((product) => (
+                          <li key={product.id}>
+                            <a 
+                              href="#" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleProductClick(product.id);
+                              }}
+                              className="search-result-item"
+                            >
+                              {product.title}
+                              <span className="search-result-price">
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                     <div className="search-no-results">Không tìm thấy sản phẩm nào</div>
+                  )
+                ) : (
+                  // KHI CHƯA NHẬP GÌ: HIỂN THỊ DANH MỤC (LIÊN KẾT NHANH)
+                  <div className="quick-links">
+                    <h4>Danh mục nổi bật</h4>
+                    <ul>
+                        {categories.slice(0, 5).map((cat) => (
+                            <li key={cat.id}>
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    handleCategoryClick(cat.id);
+                                }}>
+                                    {cat.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
+             </div>
+          </div>
+        </div>
+      </nav>
+      
+      {/* BACKDROP KHI SEARCH ACTIVE */}
+      <div 
+        className={`search-backdrop ${isSearchOpen ? 'active' : ''}`} 
+        onClick={toggleSearch}
+      ></div>
+    </>
   );
 };
 
