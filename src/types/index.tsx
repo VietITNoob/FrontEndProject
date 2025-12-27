@@ -17,6 +17,18 @@ export interface Product {
     createdAt: string;
 }
 
+export interface ProductParams {
+    title_like?: string;
+    categoryId?: string;
+    q?: string;
+    _sort?: string;
+    _order?: 'asc' | 'desc';
+}
+export interface FilterState {
+    search: string;
+    category: string;
+    tech: string;
+}
 export interface Category {
     id: number | string;
     name : string;
