@@ -141,7 +141,8 @@ const Header = () => {
                     <div className="search-results-list">
                       <h4>Gợi ý sản phẩm</h4>
                       <ul>
-                        {searchResults.map((product) => (
+                        {searchResults.filter(product => product.price && !isNaN(Number(product.price)))
+                            .map((product) => (
                           <li key={product.id}>
                             <a 
                               href="#" 
@@ -153,7 +154,10 @@ const Header = () => {
                             >
                               {product.title}
                               <span className="search-result-price">
-                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}
+                                {product.price && !isNaN(Number(product.price))
+                                    ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(product.price))
+                                    : 'Liên hệ'
+                                }
                               </span>
                             </a>
                           </li>

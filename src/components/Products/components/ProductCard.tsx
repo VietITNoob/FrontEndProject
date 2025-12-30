@@ -23,13 +23,18 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
     await addToCart(data as any);
     navigate('/cart');
   };
+
+  const handleCardClick = () => {
+    navigate(`/product/${data.id}`);
+  };
+
   // Logic hiển thị tag
   const tag = data.tag || '';
   const isAI = tag.toLowerCase().includes('ai') || tag.toLowerCase().includes('intelligence') || tag.includes('Best Seller');
   const isNew = tag.toLowerCase().includes('new') || tag.toLowerCase().includes('free');
 
   return (
-    <div className="store-card">
+    <div className="store-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <div className="card-content">
         {/* Render Tag nếu có tồn tại */}
         {tag && (

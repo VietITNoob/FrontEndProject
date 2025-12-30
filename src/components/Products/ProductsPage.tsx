@@ -6,18 +6,8 @@ import CategoryNav from './components/CategoryNav';
 import ProductCarousel from './components/ProductCarousel';
 import { useState } from 'react';
 import { productService } from '../../service/productService.tsx';
+import type {Product} from "../../types";
 
-// xác định kiểu dữ liệu cho sản phẩm
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  discount: number;
-  image?: string;
-  thumbnail?: string;
-  description: string;
-  // Add any other properties you expect from the API
-}
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
