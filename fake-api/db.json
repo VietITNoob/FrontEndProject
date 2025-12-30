@@ -3,132 +3,132 @@
     {
       "id": "1",
       "name": "Minh Tuấn",
-      "role": "Developer"
+      "job": "Developer"
     },
     {
       "id": "2",
       "name": "Sarah Nguyen",
-      "role": "Designer"
+      "job": "Designer"
     },
     {
       "id": "3",
       "name": "Hoàng K.",
-      "role": "Founder"
+      "job": "Founder"
     },
     {
       "id": "4",
       "name": "David Tran",
-      "role": "Freelancer"
+      "job": "Freelancer"
     },
     {
       "id": "5",
       "name": "Linh Phạm",
-      "role": "Product Manager"
+      "job": "Product Manager"
     },
     {
       "id": "6",
       "name": "Jason Lee",
-      "role": "Startup Owner"
+      "job": "Startup Owner"
     },
     {
       "id": "7",
       "name": "Trần Văn Bảo",
-      "role": "Senior Developer"
+      "job": "Senior Developer"
     },
     {
       "id": "8",
       "name": "Lê Thị Mai",
-      "role": "UI/UX Designer"
+      "job": "UI/UX Designer"
     },
     {
       "id": "9",
       "name": "Phạm Minh Khôi",
-      "role": "DevOps Engineer"
+      "job": "DevOps Engineer"
     },
     {
       "id": "10",
       "name": "Nguyễn Thu Hà",
-      "role": "Business Analyst"
+      "job": "Business Analyst"
     },
     {
       "id": "11",
       "name": "Kevin Nguyen",
-      "role": "Solution Architect"
+      "job": "Solution Architect"
     },
     {
       "id": "12",
       "name": "Đỗ Quang Huy",
-      "role": "Mobile Developer"
+      "job": "Mobile Developer"
     },
     {
       "id": "13",
       "name": "Vũ Thị Lan",
-      "role": "QA Engineer"
+      "job": "QA Engineer"
     },
     {
       "id": "14",
       "name": "Alex Smith",
-      "role": "Tech Lead"
+      "job": "Tech Lead"
     },
     {
       "id": "15",
       "name": "Ngô Văn Hùng",
-      "role": "System Admin"
+      "job": "System Admin"
     },
     {
       "id": "16",
       "name": "Bùi Phương Thảo",
-      "role": "Content Creator"
+      "job": "Content Creator"
     },
     {
       "id": "17",
       "name": "Đặng Tuấn Anh",
-      "role": "Backend Developer"
+      "job": "Backend Developer"
     },
     {
       "id": "18",
       "name": "Hồ Minh Trí",
-      "role": "Frontend Developer"
+      "job": "Frontend Developer"
     },
     {
       "id": "19",
       "name": "Lý Thị Ngọc",
-      "role": "Data Scientist"
+      "job": "Data Scientist"
     },
     {
       "id": "20",
       "name": "Phan Văn Đức",
-      "role": "Project Manager"
+      "job": "Project Manager"
     },
     {
       "id": "21",
       "name": "Trương Mỹ Linh",
-      "role": "Marketing Manager"
+      "job": "Marketing Manager"
     },
     {
       "id": "22",
       "name": "Võ Thanh Tùng",
-      "role": "AI Engineer"
+      "job": "AI Engineer"
     },
     {
       "id": "23",
       "name": "Dương Văn Nam",
-      "role": "Fullstack Developer"
+      "job": "Fullstack Developer"
     },
     {
       "id": "24",
       "name": "Hà Thị Thu",
-      "role": "HR Manager"
+      "job": "HR Manager"
     },
     {
       "id": "25",
       "name": "Nguyễn Quốc Đạt",
-      "role": "Game Developer"
+      "job": "Game Developer"
     },
     {
       "id": "26",
       "name": "Lâm Thị Tuyết",
-      "role": "Customer Support"
+      "job": "Customer Support"
     }
   ],
   "products": [
@@ -162,7 +162,7 @@
       "discount": 0,
       "categoryId": "mobile",
       "description": "Source Flutter + Firebase",
-      "thumbnail": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
       "tech": [
         "Flutter",
         "Firebase"

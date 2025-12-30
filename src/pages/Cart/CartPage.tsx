@@ -35,7 +35,7 @@ const CartPage = () => {
           cartItems.map((item) => (
             <div key={item.id} className="cart-item">
               {/* Ảnh sản phẩm */}
-              <img src={item.image || item.thumbnail} alt={item.title} className="item-image" />
+              <img src={item.image} alt={item.title} className="item-image" />
 
               {/* Thông tin */}
               <div className="item-details">

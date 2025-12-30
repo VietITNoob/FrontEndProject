@@ -22,7 +22,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
                     <button className="btn-secondary">Mua ngay — {product.price.toLocaleString()}đ</button>
                 </div>
                 <div className="hero-mockup">
-                    <img src={product.image || product.thumbnail} alt={product.title} />
+                    <img src={product.image} alt={product.title} />
                 </div>
             </div>
         </section>
