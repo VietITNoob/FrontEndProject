@@ -12,5 +12,14 @@ export const productService = {
     },
     getBycategory: (categoryId: string):Promise<Product[]> => {
         return axiosClient.get(`/products?categoryId=${categoryId}`);
+    },
+    getBestsale: (): Promise<Product[]> => {
+        return axiosClient.get('/products?_sort=sold&_order=desc&_limit=8');
+    },
+    getNewProduct:(): Promise<Product[]> =>{
+        return axiosClient.get('/products?_sort=createdAt&_order=desc&_limit=8');
+    },
+    getRatingProduct:(): Promise<Product[]> => {
+        return axiosClient.get('/products?_sort=rating&_order=desc&_limit=8');
     }
 };
