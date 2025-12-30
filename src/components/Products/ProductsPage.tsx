@@ -6,37 +6,36 @@ import CategoryNav from './components/CategoryNav';
 import ProductCarousel from './components/ProductCarousel';
 import { useState } from 'react';
 import { productService } from '../../service/productService.tsx';
-
-// xác định kiểu dữ liệu cho sản phẩm
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  discount: number;
-  image?: string;
-  thumbnail?: string;
-  description: string;
-  // Add any other properties you expect from the API
-}
+import type {Product} from "../../types";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   useEffect(() => {
     // Cuộn lên đầu trang và tải sản phẩm
     window.scrollTo(0, 0);
-
-    const fetchProducts = async () => {
-      try {
-        const data = await productService.getAll();
-        setProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      }
-    };
-
     fetchProducts();
   }, []);
+
+  const fetchProducts = async (categoryId?: string) => {
+    try {
+      let data;
+      if (categoryId) {
+        data = await productService.getBycategory(categoryId);
+      } else {
+        data = await productService.getAll();
+      }
+      setProducts(data);
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
+  };
+
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    fetchProducts(categoryId);
+  };
 
   return (
     <div className="store-container">
@@ -51,12 +50,12 @@ const ProductsPage = () => {
       </div>
 
       {/* 3. Category Icons */}
-      <CategoryNav />
+      <CategoryNav onSelectCategory={handleCategorySelect} />
 
       {/* 4. Section: All Products */}
       <ProductCarousel 
-        titleStart="All Products."
-        titleHighlight="Discover our entire collection."
+        titleStart={selectedCategory ? "Selected Category." : "All Products."}
+        titleHighlight={selectedCategory ? "Explore our selection." : "Discover our entire collection."}
         products={products} 
       />
 

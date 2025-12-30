@@ -69,7 +69,7 @@ const Reviews: React.FC<ReviewsProps> = ({ productId }) => {
                                     <p className="review-content">{review.content}</p>
                                     <div className="review-footer">
                                         <strong>{review.user?.name || "Người dùng ẩn danh"}</strong>
-                                        <span className="user-role">{review.user?.role || "Khách hàng"}</span>
+                                        <span className="user-role">{review.user?.job || "Khách hàng"}</span>
                                     </div>
                                 </div>
                             ))}
