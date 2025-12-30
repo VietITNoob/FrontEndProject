@@ -9,5 +9,8 @@ export const productService = {
     },
     getById: (id: number | string): Promise<Product> => {
         return axiosClient.get(`/products/${id}`);
+    },
+    getBycategory: (categoryId: string):Promise<Product[]> => {
+        return axiosClient.get(`/products?categoryId=${categoryId}`);
     }
 };

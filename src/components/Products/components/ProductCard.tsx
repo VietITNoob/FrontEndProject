@@ -47,7 +47,7 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
         )}
         
         <h3 className="card-title">{data.title}</h3>
-        <p className="card-price">{data.price}</p>
+        <p className="card-price">{data.price ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(data.price)) : 'Liên hệ'}</p>
       </div>
 
       <div className="card-image-wrapper">

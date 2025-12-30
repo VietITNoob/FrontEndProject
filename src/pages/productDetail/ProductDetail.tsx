@@ -13,6 +13,11 @@ const ProductDetail = () => {
     const productId = id ? parseInt(id, 10) : 0;
     const { product, loading, error } = useProductDetail(productId);
 
+    // Cuộn lên đầu trang khi vào trang chi tiết
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [productId]);
+
     // Hook Scroll Reveal
     useEffect(() => {
         if (loading || !product) return;
