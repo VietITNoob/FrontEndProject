@@ -6,7 +6,6 @@ export interface Product {
     categoryId: string;
     description : string;
     image? : string;
-    thumbnail?: string;
     tech?: string[];
     database?: string[];
     UI_Framework?: string[];
@@ -38,7 +37,7 @@ export interface Category {
 export interface User {
     id: number;
     name: string;
-    role: string;
+    job: string;
 }
 
 export interface Review {

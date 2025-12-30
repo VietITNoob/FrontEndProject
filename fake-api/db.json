@@ -177,7 +177,6 @@
       "BackEnd": [
         "Spring Boot"
       ],
-      "rating": 4.5,
       "sold": 80,
       "createdAt": "2025-02-10"
     },
@@ -202,7 +201,6 @@
       "BackEnd": [
         "NodeJS"
       ],
-      "rating": 4.8,
       "sold": 56,
       "createdAt": "2025-03-01"
     },
@@ -222,7 +220,6 @@
         "Flutter Custom Widgets"
       ],
       "BackEnd": [],
-      "rating": 4.6,
       "sold": 210,
       "createdAt": "2024-12-20"
     },
@@ -248,7 +245,6 @@
       "BackEnd": [
         "FastAPI"
       ],
-      "rating": 4.9,
       "sold": 34,
       "createdAt": "2025-02-18"
     },
@@ -271,7 +267,6 @@
       "BackEnd": [
         "Spring Boot"
       ],
-      "rating": 4.7,
       "sold": 95,
       "createdAt": "2025-01-22"
     },
@@ -294,7 +289,6 @@
         "Flutter Material"
       ],
       "BackEnd": [],
-      "rating": 4.8,
       "sold": 140,
       "createdAt": "2025-03-10"
     },
@@ -316,7 +310,6 @@
         "Framer Motion"
       ],
       "BackEnd": [],
-      "rating": 4.9,
       "sold": 200,
       "createdAt": "2025-03-12"
     },
@@ -337,7 +330,6 @@
         "Ant Design"
       ],
       "BackEnd": [],
-      "rating": 4.7,
       "sold": 90,
       "createdAt": "2025-03-15"
     },
@@ -362,7 +354,6 @@
       "BackEnd": [
         "FastAPI"
       ],
-      "rating": 4.8,
       "sold": 41,
       "createdAt": "2025-03-20"
     },
@@ -383,7 +374,6 @@
         "Unity UI"
       ],
       "BackEnd": [],
-      "rating": 4.5,
       "sold": 45,
       "createdAt": "2025-03-22"
     },
@@ -409,7 +399,6 @@
       "BackEnd": [
         "Laravel"
       ],
-      "rating": 4.8,
       "sold": 67,
       "createdAt": "2025-02-28"
     },
@@ -434,7 +423,6 @@
       "BackEnd": [
         "ExpressJS"
       ],
-      "rating": 4.6,
       "sold": 112,
       "createdAt": "2025-03-05"
     },
@@ -458,7 +446,6 @@
       "BackEnd": [
         "Gin Gonic"
       ],
-      "rating": 4.9,
       "sold": 28,
       "createdAt": "2025-03-18"
     },
@@ -476,7 +463,6 @@
       "database": [],
       "UI_Framework": [],
       "BackEnd": [],
-      "rating": 4.3,
       "sold": 150,
       "createdAt": "2025-01-15"
     },
@@ -501,7 +487,6 @@
       "BackEnd": [
         "Supabase Edge Functions"
       ],
-      "rating": 4.7,
       "sold": 55,
       "createdAt": "2025-03-11"
     },
@@ -525,7 +510,6 @@
       "BackEnd": [
         "ExpressJS"
       ],
-      "rating": 4.6,
       "sold": 89,
       "createdAt": "2025-02-14"
     },
@@ -548,7 +532,6 @@
       "BackEnd": [
         "FastAPI"
       ],
-      "rating": 5,
       "sold": 15,
       "createdAt": "2025-03-25"
     },
@@ -569,7 +552,6 @@
         "Chakra UI"
       ],
       "BackEnd": [],
-      "rating": 4.4,
       "sold": 210,
       "createdAt": "2024-11-20"
     },
@@ -594,9 +576,215 @@
       "BackEnd": [
         "Firebase Functions"
       ],
-      "rating": 4.7,
       "sold": 76,
       "createdAt": "2025-03-08"
+    },
+    {
+      "id": "21",
+      "title": "SaaS Landing Page Template",
+      "price": 120000,
+      "discount": 0,
+      "categoryId": "web",
+      "description": "Landing page hiện đại cho SaaS, tối ưu SEO, responsive hoàn hảo.",
+      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Bootstrap 5"
+      ],
+      "BackEnd": [],
+      "sold": 150,
+      "createdAt": "2025-03-28"
+    },
+    {
+      "id": "22",
+      "title": "Fitness Workout App React Native",
+      "price": 450000,
+      "discount": 15,
+      "categoryId": "mobile",
+      "description": "Ứng dụng tập gym, yoga với video hướng dẫn, lịch tập, theo dõi calo.",
+      "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "React Native",
+        "Redux"
+      ],
+      "database": [
+        "SQLite"
+      ],
+      "UI_Framework": [
+        "NativeBase"
+      ],
+      "BackEnd": [],
+      "sold": 60,
+      "createdAt": "2025-03-15"
+    },
+    {
+      "id": "23",
+      "title": "Job Portal System Node.js",
+      "price": 850000,
+      "discount": 10,
+      "categoryId": "web",
+      "description": "Hệ thống tuyển dụng việc làm, nộp CV, quản lý ứng viên cho HR.",
+      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Node.js",
+        "Express"
+      ],
+      "database": [
+        "MongoDB"
+      ],
+      "UI_Framework": [
+        "EJS"
+      ],
+      "BackEnd": [
+        "ExpressJS"
+      ],
+      "sold": 40,
+      "createdAt": "2025-02-20"
+    },
+    {
+      "id": "24",
+      "title": "3D Game Assets Pack - Fantasy",
+      "price": 300000,
+      "discount": 20,
+      "categoryId": "game",
+      "description": "Bộ asset 3D chủ đề Fantasy gồm nhân vật, vũ khí, môi trường low-poly.",
+      "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/13a391bd-ff16-4b83-a71d-5659c2559fde.jpg",
+      "tech": [
+        "Blender",
+        "FBX"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 95,
+      "createdAt": "2025-01-10"
+    },
+    {
+      "id": "25",
+      "title": "Python Data Analysis Script",
+      "price": 150000,
+      "discount": 0,
+      "categoryId": "backend",
+      "description": "Script Python tự động phân tích dữ liệu Excel/CSV và vẽ biểu đồ báo cáo.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "Pandas",
+        "Matplotlib"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 120,
+      "createdAt": "2025-03-05"
+    },
+    {
+      "id": "26",
+      "title": "Music Streaming App UI Kit",
+      "price": 180000,
+      "discount": 5,
+      "categoryId": "ui",
+      "description": "UI Kit ứng dụng nghe nhạc giống Spotify, dark mode, 50+ màn hình.",
+      "image": "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2148&auto=format&fit=crop",
+      "tech": [
+        "Figma"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 85,
+      "createdAt": "2025-02-25"
+    },
+    {
+      "id": "27",
+      "title": "CRM Dashboard Vue.js",
+      "price": 550000,
+      "discount": 25,
+      "categoryId": "web",
+      "description": "Hệ thống quản lý quan hệ khách hàng (CRM) đầy đủ tính năng, Vue 3.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Vue.js",
+        "Vuex"
+      ],
+      "database": [
+        "Firebase"
+      ],
+      "UI_Framework": [
+        "Element Plus"
+      ],
+      "BackEnd": [],
+      "sold": 35,
+      "createdAt": "2025-03-18"
+    },
+    {
+      "id": "28",
+      "title": "AI Text Summarizer API",
+      "price": 400000,
+      "discount": 0,
+      "categoryId": "ai",
+      "description": "API tóm tắt văn bản tự động sử dụng mô hình NLP tiên tiến.",
+      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2130&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "Flask",
+        "Hugging Face"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [
+        "Flask"
+      ],
+      "sold": 22,
+      "createdAt": "2025-03-30"
+    },
+    {
+      "id": "29",
+      "title": "Travel Booking App Flutter",
+      "price": 600000,
+      "discount": 10,
+      "categoryId": "mobile",
+      "description": "Ứng dụng đặt tour du lịch, vé máy bay, khách sạn trọn gói.",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2348&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Provider"
+      ],
+      "database": [
+        "MySQL"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [
+        "PHP Slim"
+      ],
+      "sold": 50,
+      "createdAt": "2025-01-20"
+    },
+    {
+      "id": "30",
+      "title": "DevOps CI/CD Pipeline Script",
+      "price": 250000,
+      "discount": 0,
+      "categoryId": "devtools",
+      "description": "Script cấu hình Jenkins pipeline tự động build, test và deploy lên AWS.",
+      "image": "https://res.cloudinary.com/dj2vue1ku/image/upload/v1760423929/atmosly/n6i8ra9zmicb7wp4zss9.png",
+      "tech": [
+        "Jenkins",
+        "Groovy",
+        "Docker"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 70,
+      "createdAt": "2025-02-15"
     }
   ],
   "categories": [
@@ -1091,6 +1279,102 @@
       "rating": 5,
       "date": "2025-12-15",
       "content": "Support cài đặt tận tình qua UltraView. 5 sao cho dịch vụ."
+    },
+    {
+      "id": "57",
+      "productId": 21,
+      "userId": 21,
+      "rating": 5,
+      "date": "2025-12-28",
+      "content": "Landing page tối ưu conversion rất tốt, chạy quảng cáo hiệu quả."
+    },
+    {
+      "id": "58",
+      "productId": 21,
+      "userId": 3,
+      "rating": 4,
+      "date": "2025-11-15",
+      "content": "Thiết kế đẹp, clean, dễ chỉnh sửa text."
+    },
+    {
+      "id": "59",
+      "productId": 22,
+      "userId": 12,
+      "rating": 5,
+      "date": "2025-12-10",
+      "content": "Code React Native chuẩn, chạy mượt trên cả Android và iOS."
+    },
+    {
+      "id": "60",
+      "productId": 23,
+      "userId": 24,
+      "rating": 5,
+      "date": "2025-11-20",
+      "content": "Tính năng quản lý ứng viên rất tiện lợi cho HR."
+    },
+    {
+      "id": "61",
+      "productId": 23,
+      "userId": 17,
+      "rating": 4,
+      "date": "2025-12-05",
+      "content": "Backend Node.js xử lý tốt, database design hợp lý."
+    },
+    {
+      "id": "62",
+      "productId": 24,
+      "userId": 25,
+      "rating": 5,
+      "date": "2025-10-25",
+      "content": "Asset low-poly chất lượng, rất hợp với game mobile."
+    },
+    {
+      "id": "63",
+      "productId": 25,
+      "userId": 19,
+      "rating": 5,
+      "date": "2025-12-15",
+      "content": "Script chạy nhanh, vẽ biểu đồ đẹp, tiết kiệm bao nhiêu thời gian làm báo cáo."
+    },
+    {
+      "id": "64",
+      "productId": 26,
+      "userId": 8,
+      "rating": 5,
+      "date": "2025-11-30",
+      "content": "UI Kit thiết kế rất chi tiết, dark mode nhìn rất sang."
+    },
+    {
+      "id": "65",
+      "productId": 27,
+      "userId": 10,
+      "rating": 4,
+      "date": "2025-12-22",
+      "content": "Dashboard trực quan, nhiều biểu đồ hữu ích để phân tích dữ liệu khách hàng."
+    },
+    {
+      "id": "66",
+      "productId": 28,
+      "userId": 22,
+      "rating": 4,
+      "date": "2025-12-01",
+      "content": "API phản hồi nhanh, tóm tắt văn bản tiếng Anh khá chuẩn."
+    },
+    {
+      "id": "67",
+      "productId": 29,
+      "userId": 7,
+      "rating": 5,
+      "date": "2025-11-10",
+      "content": "Source code Flutter tổ chức tốt, dễ maintain và mở rộng."
+    },
+    {
+      "id": "68",
+      "productId": 30,
+      "userId": 9,
+      "rating": 5,
+      "date": "2025-12-18",
+      "content": "Script Jenkins pipeline chuẩn, tích hợp AWS ngon lành."
     }
   ]
 }

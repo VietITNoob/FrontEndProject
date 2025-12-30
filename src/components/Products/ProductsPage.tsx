@@ -1,41 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Products.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CategoryNav from './components/CategoryNav';
 import ProductCarousel from './components/ProductCarousel';
-import { useState } from 'react';
-import { productService } from '../../service/productService.tsx';
-import type {Product} from "../../types";
+import { useProductList } from '../../hook/useProductList';
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  
+  // Sử dụng custom hook để lấy dữ liệu
+  const { all, byCategory, bestSellers, newProducts, topRatedProducts, fetchByCategory } = useProductList();
 
   useEffect(() => {
-    // Cuộn lên đầu trang và tải sản phẩm
+    // Cuộn lên đầu trang
     window.scrollTo(0, 0);
-    fetchProducts();
   }, []);
-
-  const fetchProducts = async (categoryId?: string) => {
-    try {
-      let data;
-      if (categoryId) {
-        data = await productService.getBycategory(categoryId);
-      } else {
-        data = await productService.getAll();
-      }
-      setProducts(data);
-    } catch (error) {
-      console.error("Failed to fetch products:", error);
-    }
-  };
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    fetchProducts(categoryId);
+    if (categoryId) {
+      fetchByCategory(categoryId);
+    }
   };
+
+  // Xác định danh sách sản phẩm hiển thị: nếu có category thì dùng byCategory, ngược lại dùng all
+  const displayedProducts = selectedCategory ? byCategory : all;
 
   return (
     <div className="store-container">
@@ -52,14 +42,36 @@ const ProductsPage = () => {
       {/* 3. Category Icons */}
       <CategoryNav onSelectCategory={handleCategorySelect} />
 
-      {/* 4. Section: All Products */}
+      {/* 4. Section: All Products or Selected Category */}
       <ProductCarousel 
         titleStart={selectedCategory ? "Selected Category." : "All Products."}
         titleHighlight={selectedCategory ? "Explore our selection." : "Discover our entire collection."}
-        products={products} 
+        products={displayedProducts} 
       />
 
-      {/* 7. Footer */}
+      {!selectedCategory && (
+        <>
+          <ProductCarousel 
+            titleStart="Bán chạy nhất."
+            titleHighlight="Sản phẩm được yêu thích."
+            products={bestSellers} 
+          />
+
+          <ProductCarousel 
+            titleStart="Mới nhất."
+            titleHighlight="Công nghệ tiên tiến."
+            products={newProducts} 
+          />
+
+          <ProductCarousel 
+            titleStart="Đánh giá cao."
+            titleHighlight="Chất lượng khẳng định."
+            products={topRatedProducts} 
+          />
+        </>
+      )}
+
+      {/* 8. Footer */}
       <Footer />
     </div>
   );

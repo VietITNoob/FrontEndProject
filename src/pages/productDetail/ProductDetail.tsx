@@ -6,6 +6,7 @@ import './ProductDetail.css';
 import HeroSection from "../../components/ProductDetail/components/HeroSection";
 import TechSpecs from "../../components/ProductDetail/components/TechSpecs";
 import Reviews from "../../components/ProductDetail/components/Reviews";
+import Recomand from "../../components/ProductDetail/components/Recomand";
 import { useProductDetail } from "../../hook/useProductDetail";
 
 const ProductDetail = () => {
@@ -71,6 +72,7 @@ const ProductDetail = () => {
                 <HeroSection product={product} />
                 <TechSpecs product={product} />
                 <Reviews productId={productId} />
+                <Recomand categoryId={product.categoryId} currentProductId={product.id} />
             </main>
 
             <Footer />
