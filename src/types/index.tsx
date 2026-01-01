@@ -34,7 +34,7 @@ export interface Category {
     image : string;
 }
 
-export interface User {
+export interface Member {
     id: number;
     name: string;
     job: string;
@@ -48,4 +48,10 @@ export interface Review {
     date: string;
     content: string;
     user?: User;
+}
+export interface User {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
 }
