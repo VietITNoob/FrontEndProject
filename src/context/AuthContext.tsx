@@ -1,14 +1,10 @@
 // src/context/AuthContext.tsx
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import type {User} from "../types";
 
 // Định nghĩa kiểu dữ liệu User (tùy theo API của bạn trả về gì)
-interface User {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-}
+
 
 interface AuthContextType {
   user: User | null;

@@ -32,8 +32,15 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const addToCart = async (product: Product) => {
     try {
-      const newItem = await cartService.addToCart(product);
-      setCartItems(prevItems => [...prevItems, newItem]);
+      const existingItem = cartItems.find(item => item.id === product.id);
+      if (existingItem) {
+        const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+        const returnedItem = await cartService.updateCartItem(updatedItem);
+        setCartItems(prevItems => prevItems.map(item => item.id === product.id ? returnedItem : item));
+      } else {
+        const newItem = await cartService.addToCart(product);
+        setCartItems(prevItems => [...prevItems, newItem]);
+      }
     } catch (error) {
       console.error("Failed to add item to cart:", error);
     }
