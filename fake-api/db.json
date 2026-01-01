@@ -1,24 +1,134 @@
 {
-  "users": [
+  "members": [
     {
       "id": "1",
       "name": "Minh Tuấn",
-      "role": "Developer"
+      "job": "Developer"
     },
     {
       "id": "2",
       "name": "Sarah Nguyen",
-      "role": "Designer"
+      "job": "Designer"
     },
     {
       "id": "3",
       "name": "Hoàng K.",
-      "role": "Founder"
+      "job": "Founder"
     },
     {
       "id": "4",
       "name": "David Tran",
-      "role": "Freelancer"
+      "job": "Freelancer"
+    },
+    {
+      "id": "5",
+      "name": "Linh Phạm",
+      "job": "Product Manager"
+    },
+    {
+      "id": "6",
+      "name": "Jason Lee",
+      "job": "Startup Owner"
+    },
+    {
+      "id": "7",
+      "name": "Trần Văn Bảo",
+      "job": "Senior Developer"
+    },
+    {
+      "id": "8",
+      "name": "Lê Thị Mai",
+      "job": "UI/UX Designer"
+    },
+    {
+      "id": "9",
+      "name": "Phạm Minh Khôi",
+      "job": "DevOps Engineer"
+    },
+    {
+      "id": "10",
+      "name": "Nguyễn Thu Hà",
+      "job": "Business Analyst"
+    },
+    {
+      "id": "11",
+      "name": "Kevin Nguyen",
+      "job": "Solution Architect"
+    },
+    {
+      "id": "12",
+      "name": "Đỗ Quang Huy",
+      "job": "Mobile Developer"
+    },
+    {
+      "id": "13",
+      "name": "Vũ Thị Lan",
+      "job": "QA Engineer"
+    },
+    {
+      "id": "14",
+      "name": "Alex Smith",
+      "job": "Tech Lead"
+    },
+    {
+      "id": "15",
+      "name": "Ngô Văn Hùng",
+      "job": "System Admin"
+    },
+    {
+      "id": "16",
+      "name": "Bùi Phương Thảo",
+      "job": "Content Creator"
+    },
+    {
+      "id": "17",
+      "name": "Đặng Tuấn Anh",
+      "job": "Backend Developer"
+    },
+    {
+      "id": "18",
+      "name": "Hồ Minh Trí",
+      "job": "Frontend Developer"
+    },
+    {
+      "id": "19",
+      "name": "Lý Thị Ngọc",
+      "job": "Data Scientist"
+    },
+    {
+      "id": "20",
+      "name": "Phan Văn Đức",
+      "job": "Project Manager"
+    },
+    {
+      "id": "21",
+      "name": "Trương Mỹ Linh",
+      "job": "Marketing Manager"
+    },
+    {
+      "id": "22",
+      "name": "Võ Thanh Tùng",
+      "job": "AI Engineer"
+    },
+    {
+      "id": "23",
+      "name": "Dương Văn Nam",
+      "job": "Fullstack Developer"
+    },
+    {
+      "id": "24",
+      "name": "Hà Thị Thu",
+      "job": "HR Manager"
+    },
+    {
+      "id": "25",
+      "name": "Nguyễn Quốc Đạt",
+      "job": "Game Developer"
+    },
+    {
+      "id": "26",
+      "name": "Lâm Thị Tuyết",
+      "job": "Customer Support"
     }
   ],
   "products": [
@@ -52,7 +162,7 @@
       "discount": 0,
       "categoryId": "mobile",
       "description": "Source Flutter + Firebase",
-      "thumbnail": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
       "tech": [
         "Flutter",
         "Firebase"
@@ -67,7 +177,6 @@
       "BackEnd": [
         "Spring Boot"
       ],
-      "rating": 4.5,
       "sold": 80,
       "createdAt": "2025-02-10"
     },
@@ -92,7 +201,6 @@
       "BackEnd": [
         "NodeJS"
       ],
-      "rating": 4.8,
       "sold": 56,
       "createdAt": "2025-03-01"
     },
@@ -112,7 +220,6 @@
         "Flutter Custom Widgets"
       ],
       "BackEnd": [],
-      "rating": 4.6,
       "sold": 210,
       "createdAt": "2024-12-20"
     },
@@ -138,7 +245,6 @@
       "BackEnd": [
         "FastAPI"
       ],
-      "rating": 4.9,
       "sold": 34,
       "createdAt": "2025-02-18"
     },
@@ -161,7 +267,6 @@
       "BackEnd": [
         "Spring Boot"
       ],
-      "rating": 4.7,
       "sold": 95,
       "createdAt": "2025-01-22"
     },
@@ -184,49 +289,542 @@
         "Flutter Material"
       ],
       "BackEnd": [],
-      "rating": 4.8,
       "sold": 140,
       "createdAt": "2025-03-10"
+    },
+    {
+      "id": "8",
+      "title": "Personal Portfolio React Template",
+      "price": 150000,
+      "discount": 10,
+      "categoryId": "web",
+      "description": "Template portfolio cá nhân chuyên nghiệp, dark/light mode, dễ dàng tùy biến.",
+      "image": "https://market-resized.envatousercontent.com/codecanyon.net/files/439183066/Inline%20Preview%20Image%20-%20POS%20(2).png?auto=format&q=94&cf_fit=crop&gravity=top&h=8000&w=590&s=6ed3bf081bac3e9c4d97d94ae1c12b673c9796ee5f509ca4aca3969777546252",
+      "tech": [
+        "React",
+        "TypeScript"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "BackEnd": [],
+      "sold": 200,
+      "createdAt": "2025-03-12"
+    },
+    {
+      "id": "9",
+      "title": "Admin Dashboard React + Ant Design",
+      "price": 399000,
+      "discount": 15,
+      "categoryId": "web",
+      "description": "Admin dashboard hiện đại, hỗ trợ role, chart, dark mode",
+      "image": "https://images.unsplash.com/photo-1556155092-8707de31f9c4?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "React 18",
+        "TypeScript"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Ant Design"
+      ],
+      "BackEnd": [],
+      "sold": 90,
+      "createdAt": "2025-03-15"
+    },
+    {
+      "id": "10",
+      "title": "AI Image Generator Stable Diffusion",
+      "price": 999000,
+      "discount": 30,
+      "categoryId": "ai",
+      "description": "Hệ thống generate ảnh AI dùng Stable Diffusion, có prompt builder",
+      "image": "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "Stable Diffusion"
+      ],
+      "database": [
+        "Vector Database"
+      ],
+      "UI_Framework": [
+        "Gradio"
+      ],
+      "BackEnd": [
+        "FastAPI"
+      ],
+      "sold": 41,
+      "createdAt": "2025-03-20"
+    },
+    {
+      "id": "11",
+      "title": "Unity 2D Platformer Game Kit",
+      "price": 250000,
+      "discount": 0,
+      "categoryId": "game",
+      "description": "Source code game đi cảnh 2D hoàn chỉnh, tích hợp Admob, 30 level sẵn có.",
+      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Unity",
+        "C#"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Unity UI"
+      ],
+      "BackEnd": [],
+      "sold": 45,
+      "createdAt": "2025-03-22"
+    },
+    {
+      "id": "12",
+      "title": "Hotel Booking System Laravel",
+      "price": 799000,
+      "discount": 15,
+      "categoryId": "web",
+      "description": "Hệ thống đặt phòng khách sạn, quản lý phòng, check-in/out, xuất hóa đơn.",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Laravel 10",
+        "PHP"
+      ],
+      "database": [
+        "MySQL"
+      ],
+      "UI_Framework": [
+        "Bootstrap 5",
+        "Blade"
+      ],
+      "BackEnd": [
+        "Laravel"
+      ],
+      "sold": 67,
+      "createdAt": "2025-02-28"
+    },
+    {
+      "id": "13",
+      "title": "Food Delivery App React Native",
+      "price": 650000,
+      "discount": 10,
+      "categoryId": "mobile",
+      "description": "App giao đồ ăn (User + Shipper + Restaurant), có tracking map realtime.",
+      "image": "https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "React Native",
+        "TypeScript"
+      ],
+      "database": [
+        "MongoDB"
+      ],
+      "UI_Framework": [
+        "React Native Paper"
+      ],
+      "BackEnd": [
+        "ExpressJS"
+      ],
+      "sold": 112,
+      "createdAt": "2025-03-05"
+    },
+    {
+      "id": "14",
+      "title": "Microservices Golang Boilerplate",
+      "price": 450000,
+      "discount": 0,
+      "categoryId": "backend",
+      "description": "Khung dự án Microservices dùng Go, gRPC, Docker Compose, Kafka.",
+      "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=2274&auto=format&fit=crop",
+      "tech": [
+        "Golang",
+        "Docker"
+      ],
+      "database": [
+        "PostgreSQL",
+        "Redis"
+      ],
+      "UI_Framework": [],
+      "BackEnd": [
+        "Gin Gonic"
+      ],
+      "sold": 28,
+      "createdAt": "2025-03-18"
+    },
+    {
+      "id": "15",
+      "title": "Crypto Wallet UI Kit",
+      "price": 120000,
+      "discount": 50,
+      "categoryId": "ui",
+      "description": "Bộ UI ví điện tử Crypto hiện đại, dark mode, biểu đồ giá coin.",
+      "image": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=2169&auto=format&fit=crop",
+      "tech": [
+        "Figma"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 150,
+      "createdAt": "2025-01-15"
+    },
+    {
+      "id": "16",
+      "title": "LMS - E-learning Platform VueJS",
+      "price": 890000,
+      "discount": 20,
+      "categoryId": "web",
+      "description": "Nền tảng học trực tuyến, tạo khóa học, quiz, cấp chứng chỉ PDF.",
+      "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2274&auto=format&fit=crop",
+      "tech": [
+        "Vue 3",
+        "Nuxt.js"
+      ],
+      "database": [
+        "Supabase"
+      ],
+      "UI_Framework": [
+        "Vuetify"
+      ],
+      "BackEnd": [
+        "Supabase Edge Functions"
+      ],
+      "sold": 55,
+      "createdAt": "2025-03-11"
+    },
+    {
+      "id": "17",
+      "title": "Realtime Chat Server Socket.io",
+      "price": 199000,
+      "discount": 0,
+      "categoryId": "backend",
+      "description": "Backend chat server scale lớn, hỗ trợ group chat, file upload, status online.",
+      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2274&auto=format&fit=crop",
+      "tech": [
+        "NodeJS",
+        "Socket.io"
+      ],
+      "database": [
+        "Redis",
+        "MongoDB"
+      ],
+      "UI_Framework": [],
+      "BackEnd": [
+        "ExpressJS"
+      ],
+      "sold": 89,
+      "createdAt": "2025-02-14"
+    },
+    {
+      "id": "18",
+      "title": "AI Voice Clone & TTS Tool",
+      "price": 1200000,
+      "discount": 10,
+      "categoryId": "ai",
+      "description": "Tool clone giọng nói và Text-to-Speech dùng model Coqui TTS.",
+      "image": "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "PyTorch"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "React"
+      ],
+      "BackEnd": [
+        "FastAPI"
+      ],
+      "sold": 15,
+      "createdAt": "2025-03-25"
+    },
+    {
+      "id": "19",
+      "title": "VS Code Theme Generator",
+      "price": 99000,
+      "discount": 0,
+      "categoryId": "devtools",
+      "description": "Công cụ web giúp developer tự thiết kế theme VS Code và export file .vsix.",
+      "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "TypeScript",
+        "React"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Chakra UI"
+      ],
+      "BackEnd": [],
+      "sold": 210,
+      "createdAt": "2024-11-20"
+    },
+    {
+      "id": "20",
+      "title": "Tinder Clone App Flutter",
+      "price": 550000,
+      "discount": 25,
+      "categoryId": "mobile",
+      "description": "Ứng dụng hẹn hò với tính năng Swipe, Match, Chat realtime.",
+      "image": "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=2440&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Bloc"
+      ],
+      "database": [
+        "Firebase Firestore"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [
+        "Firebase Functions"
+      ],
+      "sold": 76,
+      "createdAt": "2025-03-08"
+    },
+    {
+      "id": "21",
+      "title": "SaaS Landing Page Template",
+      "price": 120000,
+      "discount": 0,
+      "categoryId": "web",
+      "description": "Landing page hiện đại cho SaaS, tối ưu SEO, responsive hoàn hảo.",
+      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Bootstrap 5"
+      ],
+      "BackEnd": [],
+      "sold": 150,
+      "createdAt": "2025-03-28"
+    },
+    {
+      "id": "22",
+      "title": "Fitness Workout App React Native",
+      "price": 450000,
+      "discount": 15,
+      "categoryId": "mobile",
+      "description": "Ứng dụng tập gym, yoga với video hướng dẫn, lịch tập, theo dõi calo.",
+      "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "React Native",
+        "Redux"
+      ],
+      "database": [
+        "SQLite"
+      ],
+      "UI_Framework": [
+        "NativeBase"
+      ],
+      "BackEnd": [],
+      "sold": 60,
+      "createdAt": "2025-03-15"
+    },
+    {
+      "id": "23",
+      "title": "Job Portal System Node.js",
+      "price": 850000,
+      "discount": 10,
+      "categoryId": "web",
+      "description": "Hệ thống tuyển dụng việc làm, nộp CV, quản lý ứng viên cho HR.",
+      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Node.js",
+        "Express"
+      ],
+      "database": [
+        "MongoDB"
+      ],
+      "UI_Framework": [
+        "EJS"
+      ],
+      "BackEnd": [
+        "ExpressJS"
+      ],
+      "sold": 40,
+      "createdAt": "2025-02-20"
+    },
+    {
+      "id": "24",
+      "title": "3D Game Assets Pack - Fantasy",
+      "price": 300000,
+      "discount": 20,
+      "categoryId": "game",
+      "description": "Bộ asset 3D chủ đề Fantasy gồm nhân vật, vũ khí, môi trường low-poly.",
+      "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/13a391bd-ff16-4b83-a71d-5659c2559fde.jpg",
+      "tech": [
+        "Blender",
+        "FBX"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 95,
+      "createdAt": "2025-01-10"
+    },
+    {
+      "id": "25",
+      "title": "Python Data Analysis Script",
+      "price": 150000,
+      "discount": 0,
+      "categoryId": "backend",
+      "description": "Script Python tự động phân tích dữ liệu Excel/CSV và vẽ biểu đồ báo cáo.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "Pandas",
+        "Matplotlib"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 120,
+      "createdAt": "2025-03-05"
+    },
+    {
+      "id": "26",
+      "title": "Music Streaming App UI Kit",
+      "price": 180000,
+      "discount": 5,
+      "categoryId": "ui",
+      "description": "UI Kit ứng dụng nghe nhạc giống Spotify, dark mode, 50+ màn hình.",
+      "image": "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2148&auto=format&fit=crop",
+      "tech": [
+        "Figma"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 85,
+      "createdAt": "2025-02-25"
+    },
+    {
+      "id": "27",
+      "title": "CRM Dashboard Vue.js",
+      "price": 550000,
+      "discount": 25,
+      "categoryId": "web",
+      "description": "Hệ thống quản lý quan hệ khách hàng (CRM) đầy đủ tính năng, Vue 3.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop",
+      "tech": [
+        "Vue.js",
+        "Vuex"
+      ],
+      "database": [
+        "Firebase"
+      ],
+      "UI_Framework": [
+        "Element Plus"
+      ],
+      "BackEnd": [],
+      "sold": 35,
+      "createdAt": "2025-03-18"
+    },
+    {
+      "id": "28",
+      "title": "AI Text Summarizer API",
+      "price": 400000,
+      "discount": 0,
+      "categoryId": "ai",
+      "description": "API tóm tắt văn bản tự động sử dụng mô hình NLP tiên tiến.",
+      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2130&auto=format&fit=crop",
+      "tech": [
+        "Python",
+        "Flask",
+        "Hugging Face"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [
+        "Flask"
+      ],
+      "sold": 22,
+      "createdAt": "2025-03-30"
+    },
+    {
+      "id": "29",
+      "title": "Travel Booking App Flutter",
+      "price": 600000,
+      "discount": 10,
+      "categoryId": "mobile",
+      "description": "Ứng dụng đặt tour du lịch, vé máy bay, khách sạn trọn gói.",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2348&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Provider"
+      ],
+      "database": [
+        "MySQL"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [
+        "PHP Slim"
+      ],
+      "sold": 50,
+      "createdAt": "2025-01-20"
+    },
+    {
+      "id": "30",
+      "title": "DevOps CI/CD Pipeline Script",
+      "price": 250000,
+      "discount": 0,
+      "categoryId": "devtools",
+      "description": "Script cấu hình Jenkins pipeline tự động build, test và deploy lên AWS.",
+      "image": "https://res.cloudinary.com/dj2vue1ku/image/upload/v1760423929/atmosly/n6i8ra9zmicb7wp4zss9.png",
+      "tech": [
+        "Jenkins",
+        "Groovy",
+        "Docker"
+      ],
+      "database": [],
+      "UI_Framework": [],
+      "BackEnd": [],
+      "sold": 70,
+      "createdAt": "2025-02-15"
     }
   ],
   "categories": [
     {
-      "id": "1",
+      "id": "web",
       "name": "Web Apps",
       "image": "https://cdn-icons-png.flaticon.com/512/1005/1005141.png"
     },
     {
-      "id": "2",
+      "id": "mobile",
       "name": "Mobile Apps",
       "image": "https://cdn-icons-png.flaticon.com/512/2586/2586488.png"
     },
     {
-      "id": "3",
+      "id": "ui",
       "name": "UI/UX Kits",
       "image": "https://cdn-icons-png.flaticon.com/512/1253/1253659.png"
     },
     {
-      "id": "4",
+      "id": "ai",
       "name": "AI & ML",
       "image": "https://cdn-icons-png.flaticon.com/512/2103/2103633.png"
     },
     {
-      "id": "5",
+      "id": "game",
       "name": "Game Source",
       "image": "https://cdn-icons-png.flaticon.com/512/686/686589.png"
     },
     {
-      "id": "6",
+      "id": "saas",
       "name": "SaaS Starter",
       "image": "https://cdn-icons-png.flaticon.com/512/2333/2333499.png"
     },
     {
-      "id": "7",
+      "id": "backend",
       "name": "Backend/API",
       "image": "https://cdn-icons-png.flaticon.com/512/2166/2166823.png"
     },
     {
-      "id": "8",
+      "id": "devtools",
       "name": "Dev Tools",
       "image": "https://cdn-icons-png.flaticon.com/512/1086/1086576.png"
     }
@@ -265,6 +863,534 @@
       "rating": 5,
       "date": "1 tháng trước",
       "content": "Mua source này về customize lại cho khách cực nhanh. Tuyệt vời!"
+    },
+    {
+      "id": "5",
+      "productId": 9,
+      "userId": 5,
+      "rating": 5,
+      "date": "3 ngày trước",
+      "content": "Dashboard rất chuyên nghiệp, dùng cho project công ty là quá ổn."
+    },
+    {
+      "id": "6",
+      "productId": 10,
+      "userId": 6,
+      "rating": 4,
+      "date": "5 ngày trước",
+      "content": "AI chạy ổn, cần GPU mạnh nhưng chất lượng ảnh rất tốt."
+    },
+    {
+      "id": "7",
+      "productId": 11,
+      "userId": 12,
+      "rating": 5,
+      "date": "2025-12-10",
+      "content": "Code game Unity viết rất gọn, comment dễ hiểu. Đã reskin và publish thành công."
+    },
+    {
+      "id": "8",
+      "productId": 3,
+      "userId": 5,
+      "rating": 4,
+      "date": "2025-11-05",
+      "content": "Phần Stripe integration hoạt động tốt, nhưng config env hơi phức tạp một chút."
+    },
+    {
+      "id": "9",
+      "productId": 15,
+      "userId": 8,
+      "rating": 5,
+      "date": "2025-10-22",
+      "content": "Design quá đẹp, dark mode chuẩn chỉnh, import vào Figma không bị lỗi font."
+    },
+    {
+      "id": "10",
+      "productId": 1,
+      "userId": 2,
+      "rating": 5,
+      "date": "2025-09-15",
+      "content": "Website chạy nhanh, SEO score cao ngay từ đầu. Rất đáng tiền."
+    },
+    {
+      "id": "11",
+      "productId": 5,
+      "userId": 19,
+      "rating": 3,
+      "date": "2025-12-01",
+      "content": "Cần update thêm document về phần LangChain memory, mình mất 2 ngày mới setup được."
+    },
+    {
+      "id": "12",
+      "productId": 20,
+      "userId": 1,
+      "rating": 5,
+      "date": "2025-12-20",
+      "content": "Animation vuốt trái phải mượt như app thật, logic match chạy ổn định."
+    },
+    {
+      "id": "13",
+      "productId": 8,
+      "userId": 7,
+      "rating": 5,
+      "date": "2025-12-25",
+      "content": "Portfolio đơn giản mà tinh tế, animation scroll mượt."
+    },
+    {
+      "id": "14",
+      "productId": 13,
+      "userId": 15,
+      "rating": 4,
+      "date": "2025-11-12",
+      "content": "App giao hàng đầy đủ tính năng, nhưng phần map tracking đôi khi bị delay 1-2s."
+    },
+    {
+      "id": "15",
+      "productId": 6,
+      "userId": 11,
+      "rating": 5,
+      "date": "2025-10-30",
+      "content": "Best Spring Boot boilerplate I've bought. Clean architecture chuẩn sách giáo khoa."
+    },
+    {
+      "id": "16",
+      "productId": 18,
+      "userId": 3,
+      "rating": 5,
+      "date": "2025-12-15",
+      "content": "Model train giọng khá nhanh, chất lượng voice clone đạt tầm 85% giọng thật."
+    },
+    {
+      "id": "17",
+      "productId": 2,
+      "userId": 4,
+      "rating": 4,
+      "date": "2025-11-18",
+      "content": "Giao diện đẹp nhưng logic Firebase rules cần siết chặt hơn để bảo mật."
+    },
+    {
+      "id": "18",
+      "productId": 10,
+      "userId": 18,
+      "rating": 5,
+      "date": "2025-12-05",
+      "content": "Generate ảnh nhanh, tích hợp sẵn nhiều model LoRA hay."
+    },
+    {
+      "id": "19",
+      "productId": 12,
+      "userId": 9,
+      "rating": 4,
+      "date": "2025-10-10",
+      "content": "Hệ thống booking tốt, quản lý phòng trực quan. Mong bản update có thêm cổng thanh toán VNPay."
+    },
+    {
+      "id": "20",
+      "productId": 19,
+      "userId": 14,
+      "rating": 5,
+      "date": "2025-09-28",
+      "content": "Tool quá tiện, mình đã tự làm được theme riêng chỉ trong 15 phút."
+    },
+    {
+      "id": "21",
+      "productId": 14,
+      "userId": 13,
+      "rating": 5,
+      "date": "2025-12-02",
+      "content": "Cấu trúc Go Microservices rất chuyên nghiệp, Docker compose chạy phát ăn ngay."
+    },
+    {
+      "id": "22",
+      "productId": 7,
+      "userId": 20,
+      "rating": 3,
+      "date": "2025-11-25",
+      "content": "App hơi nặng, cần tối ưu lại ảnh khi load list sản phẩm."
+    },
+    {
+      "id": "23",
+      "productId": 16,
+      "userId": 6,
+      "rating": 5,
+      "date": "2025-12-18",
+      "content": "Vue 3 + Supabase là combo tuyệt vời. Tính năng quiz làm rất hay."
+    },
+    {
+      "id": "24",
+      "productId": 4,
+      "userId": 5,
+      "rating": 5,
+      "date": "2025-10-05",
+      "content": "UI Kit rất đầy đủ, custom widget dễ dàng, tiết kiệm cả tháng code giao diện."
+    },
+    {
+      "id": "25",
+      "productId": 17,
+      "userId": 10,
+      "rating": 4,
+      "date": "2025-11-30",
+      "content": "Socket server chịu tải tốt, test thử 1000 connect vẫn ok."
+    },
+    {
+      "id": "26",
+      "productId": 9,
+      "userId": 16,
+      "rating": 5,
+      "date": "2025-12-12",
+      "content": "Admin dashboard nhìn chuyên nghiệp, code React phân chia component hợp lý."
+    },
+    {
+      "id": "27",
+      "productId": 11,
+      "userId": 2,
+      "rating": 5,
+      "date": "2025-11-15",
+      "content": "Đã mua và rất hài lòng, support trả lời nhiệt tình khi mình gặp lỗi build Android."
+    },
+    {
+      "id": "28",
+      "productId": 3,
+      "userId": 14,
+      "rating": 4,
+      "date": "2025-10-20",
+      "content": "Code base tốt, nhưng cần upgrade lên Next.js bản mới nhất."
+    },
+    {
+      "id": "29",
+      "productId": 13,
+      "userId": 8,
+      "rating": 5,
+      "date": "2025-12-22",
+      "content": "Phần app cho shipper xử lý logic nhận đơn rất thông minh."
+    },
+    {
+      "id": "30",
+      "productId": 1,
+      "userId": 17,
+      "rating": 3,
+      "date": "2025-11-08",
+      "content": "Giao diện mobile chưa responsive lắm ở phần giỏ hàng."
+    },
+    {
+      "id": "31",
+      "productId": 18,
+      "userId": 12,
+      "rating": 5,
+      "date": "2025-12-08",
+      "content": "Tuyệt vời, mình dùng code này build tool đọc truyện tranh tự động."
+    },
+    {
+      "id": "32",
+      "productId": 5,
+      "userId": 4,
+      "rating": 5,
+      "date": "2025-10-15",
+      "content": "Chatbot thông minh, phản hồi nhanh, code Python dễ đọc."
+    },
+    {
+      "id": "33",
+      "productId": 15,
+      "userId": 10,
+      "rating": 4,
+      "date": "2025-12-01",
+      "content": "Đẹp nhưng thiếu màn hình Swap coin chi tiết."
+    },
+    {
+      "id": "34",
+      "productId": 2,
+      "userId": 7,
+      "rating": 5,
+      "date": "2025-11-22",
+      "content": "Source Flutter clean, chạy mượt trên cả iOS và Android."
+    },
+    {
+      "id": "35",
+      "productId": 20,
+      "userId": 6,
+      "rating": 4,
+      "date": "2025-12-19",
+      "content": "Tính năng chat realtime ổn, nhưng phần lọc user theo vị trí cần chính xác hơn."
+    },
+    {
+      "id": "36",
+      "productId": 10,
+      "userId": 3,
+      "rating": 5,
+      "date": "2025-11-02",
+      "content": "Đáng đồng tiền bát gạo, setup GPU xong chạy phà phà."
+    },
+    {
+      "id": "37",
+      "productId": 8,
+      "userId": 15,
+      "rating": 5,
+      "date": "2025-12-27",
+      "content": "Code nhẹ, load trang cực nhanh. 10/10."
+    },
+    {
+      "id": "38",
+      "productId": 12,
+      "userId": 19,
+      "rating": 4,
+      "date": "2025-11-10",
+      "content": "Backend Laravel xử lý logic đặt phòng trùng ngày rất tốt."
+    },
+    {
+      "id": "39",
+      "productId": 14,
+      "userId": 11,
+      "rating": 5,
+      "date": "2025-12-14",
+      "content": "Dành cho ai muốn học Go Microservices, source này là tài liệu tham khảo cực tốt."
+    },
+    {
+      "id": "40",
+      "productId": 6,
+      "userId": 1,
+      "rating": 5,
+      "date": "2025-10-28",
+      "content": "Security config rất kỹ, JWT + Role base access control đầy đủ."
+    },
+    {
+      "id": "41",
+      "productId": 19,
+      "userId": 18,
+      "rating": 4,
+      "date": "2025-11-15",
+      "content": "Hữu ích, nhưng bảng màu color picker nên thêm tính năng lưu palette."
+    },
+    {
+      "id": "42",
+      "productId": 16,
+      "userId": 13,
+      "rating": 5,
+      "date": "2025-12-05",
+      "content": "Platform học online đầy đủ nhất mình từng thấy với giá này."
+    },
+    {
+      "id": "43",
+      "productId": 4,
+      "userId": 9,
+      "rating": 5,
+      "date": "2025-09-20",
+      "content": "Thiết kế hiện đại, code Flutter tách widget rất dễ tái sử dụng."
+    },
+    {
+      "id": "44",
+      "productId": 17,
+      "userId": 2,
+      "rating": 4,
+      "date": "2025-12-20",
+      "content": "Phần gửi file/ảnh đôi khi bị lỗi nếu file > 10MB."
+    },
+    {
+      "id": "45",
+      "productId": 7,
+      "userId": 14,
+      "rating": 5,
+      "date": "2025-11-01",
+      "content": "Full flow e-commerce hoạt động trơn tru. Rất hài lòng."
+    },
+    {
+      "id": "46",
+      "productId": 11,
+      "userId": 20,
+      "rating": 5,
+      "date": "2025-12-12",
+      "content": "Game hay, level design tool đi kèm rất tiện để tạo màn chơi mới."
+    },
+    {
+      "id": "47",
+      "productId": 9,
+      "userId": 16,
+      "rating": 5,
+      "date": "2025-10-18",
+      "content": "Ant Design tùy biến lại nhìn không bị nhàm chán, rất đẹp."
+    },
+    {
+      "id": "48",
+      "productId": 13,
+      "userId": 5,
+      "rating": 3,
+      "date": "2025-11-28",
+      "content": "Setup MongoDB replica set hơi cực, document chưa nói kỹ đoạn này."
+    },
+    {
+      "id": "49",
+      "productId": 15,
+      "userId": 12,
+      "rating": 5,
+      "date": "2025-12-24",
+      "content": "UI xuất sắc, đáng để mua về tham khảo cách làm design system."
+    },
+    {
+      "id": "50",
+      "productId": 5,
+      "userId": 17,
+      "rating": 5,
+      "date": "2025-11-09",
+      "content": "Kết hợp với OpenAI API chạy mượt, trả lời thông minh."
+    },
+    {
+      "id": "51",
+      "productId": 2,
+      "userId": 8,
+      "rating": 5,
+      "date": "2025-12-26",
+      "content": "Mua lần 2 ủng hộ team, code vẫn chất lượng như mọi khi."
+    },
+    {
+      "id": "52",
+      "productId": 12,
+      "userId": 10,
+      "rating": 5,
+      "date": "2025-11-05",
+      "content": "Khách sạn bên mình đang dùng source này, chạy ổn định 2 tháng nay rồi."
+    },
+    {
+      "id": "53",
+      "productId": 18,
+      "userId": 4,
+      "rating": 4,
+      "date": "2025-10-12",
+      "content": "Cần máy cấu hình cao chút mới train nhanh được, nhưng kết quả xứng đáng."
+    },
+    {
+      "id": "54",
+      "productId": 20,
+      "userId": 19,
+      "rating": 5,
+      "date": "2025-12-03",
+      "content": "App dating full tính năng nhất trên chợ hiện tại. Good job."
+    },
+    {
+      "id": "55",
+      "productId": 14,
+      "userId": 6,
+      "rating": 5,
+      "date": "2025-11-20",
+      "content": "Code Go sạch, chia package hợp lý, dễ mở rộng."
+    },
+    {
+      "id": "56",
+      "productId": 1,
+      "userId": 15,
+      "rating": 5,
+      "date": "2025-12-15",
+      "content": "Support cài đặt tận tình qua UltraView. 5 sao cho dịch vụ."
+    },
+    {
+      "id": "57",
+      "productId": 21,
+      "userId": 21,
+      "rating": 5,
+      "date": "2025-12-28",
+      "content": "Landing page tối ưu conversion rất tốt, chạy quảng cáo hiệu quả."
+    },
+    {
+      "id": "58",
+      "productId": 21,
+      "userId": 3,
+      "rating": 4,
+      "date": "2025-11-15",
+      "content": "Thiết kế đẹp, clean, dễ chỉnh sửa text."
+    },
+    {
+      "id": "59",
+      "productId": 22,
+      "userId": 12,
+      "rating": 5,
+      "date": "2025-12-10",
+      "content": "Code React Native chuẩn, chạy mượt trên cả Android và iOS."
+    },
+    {
+      "id": "60",
+      "productId": 23,
+      "userId": 24,
+      "rating": 5,
+      "date": "2025-11-20",
+      "content": "Tính năng quản lý ứng viên rất tiện lợi cho HR."
+    },
+    {
+      "id": "61",
+      "productId": 23,
+      "userId": 17,
+      "rating": 4,
+      "date": "2025-12-05",
+      "content": "Backend Node.js xử lý tốt, database design hợp lý."
+    },
+    {
+      "id": "62",
+      "productId": 24,
+      "userId": 25,
+      "rating": 5,
+      "date": "2025-10-25",
+      "content": "Asset low-poly chất lượng, rất hợp với game mobile."
+    },
+    {
+      "id": "63",
+      "productId": 25,
+      "userId": 19,
+      "rating": 5,
+      "date": "2025-12-15",
+      "content": "Script chạy nhanh, vẽ biểu đồ đẹp, tiết kiệm bao nhiêu thời gian làm báo cáo."
+    },
+    {
+      "id": "64",
+      "productId": 26,
+      "userId": 8,
+      "rating": 5,
+      "date": "2025-11-30",
+      "content": "UI Kit thiết kế rất chi tiết, dark mode nhìn rất sang."
+    },
+    {
+      "id": "65",
+      "productId": 27,
+      "userId": 10,
+      "rating": 4,
+      "date": "2025-12-22",
+      "content": "Dashboard trực quan, nhiều biểu đồ hữu ích để phân tích dữ liệu khách hàng."
+    },
+    {
+      "id": "66",
+      "productId": 28,
+      "userId": 22,
+      "rating": 4,
+      "date": "2025-12-01",
+      "content": "API phản hồi nhanh, tóm tắt văn bản tiếng Anh khá chuẩn."
+    },
+    {
+      "id": "67",
+      "productId": 29,
+      "userId": 7,
+      "rating": 5,
+      "date": "2025-11-10",
+      "content": "Source code Flutter tổ chức tốt, dễ maintain và mở rộng."
+    },
+    {
+      "id": "68",
+      "productId": 30,
+      "userId": 9,
+      "rating": 5,
+      "date": "2025-12-18",
+      "content": "Script Jenkins pipeline chuẩn, tích hợp AWS ngon lành."
+    }
+  ],
+  "users": [
+    {
+      "email": "22130328@st.hcmuaf.edu.vn",
+      "password": "$2a$10$Lu8LLOE4EqQOfHDvuG6Ks.rSFfs17VFCOMp5G0BciE72gXJ3HcJz2",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "1",
+        "day": "2",
+        "year": "2023"
+      },
+      "id": 1
     }
   ]
 }

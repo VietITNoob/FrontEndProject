@@ -6,7 +6,6 @@ export interface Product {
     categoryId: string;
     description : string;
     image? : string;
-    thumbnail?: string;
     tech?: string[];
     database?: string[];
     UI_Framework?: string[];
@@ -17,6 +16,18 @@ export interface Product {
     createdAt: string;
 }
 
+export interface ProductParams {
+    title_like?: string;
+    categoryId?: string;
+    q?: string;
+    _sort?: string;
+    _order?: 'asc' | 'desc';
+}
+export interface FilterState {
+    search: string;
+    category: string;
+    tech: string;
+}
 export interface Category {
     id: number | string;
     name : string;
@@ -26,7 +37,7 @@ export interface Category {
 export interface User {
     id: number;
     name: string;
-    role: string;
+    job: string;
 }
 
 export interface Review {
