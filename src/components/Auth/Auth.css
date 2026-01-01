@@ -565,7 +565,6 @@ body {
   height: 100%;
   border: none;
   background: transparent;
-  padding: 0 18px;
   font-size: 17px;
   color: var(--text-primary);
   border-radius: var(--input-radius);
@@ -713,4 +712,28 @@ body {
 .btn-continue:active {
   transform: translateY(1px) scale(0.98); /* Hiệu ứng lún xuống khi click */
   box-shadow: none;
+}
+/* --- PASSWORD EXPAND ANIMATION --- */
+.password-expand-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: all 0.5s var(--ease-apple-spring);
+}
+
+.password-expand-wrapper.open {
+  max-height: 100px; /* Đủ chiều cao cho input */
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 16px; /* Khoảng cách giữa Email và Password */
+}
+
+/* Khi đã chuyển sang bước Password, ô Email nhìn sẽ mờ đi chút để focus vào password */
+.apple-input-wrapper.dimmed {
+  background-color: #f5f5f7;
+  border-color: transparent;
+}
+.apple-input-wrapper.dimmed .apple-input {
+  color: var(--text-secondary);
 }
