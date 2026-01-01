@@ -1,15 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
 import './index.css'
-import App from './app/App';
-import { CartProvider } from './context/CartContext';
-import './output.css';
+import { AuthProvider } from './context/AuthContext.tsx' 
+import { CartProvider } from './context/CartContext.tsx' 
+import App from './app/App.tsx'
 
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    {/* 2. Bọc AuthProvider ra ngoài cùng (hoặc bên trong CartProvider đều được) */}
+    <AuthProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </AuthProvider>
+  </React.StrictMode>,
 )

@@ -5,11 +5,14 @@ import MegaDropdown from './MegaDropdown';
 import { useHeaderNavigation } from './hooks/useHeaderNavigation';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext'; // Import Context Auth
 import useProductSearch from '../../hook/useSearch';
 import { categoryService } from '../../service/categroryService';
 import type { Category } from '../../types';
+import { User, LogOut, Package, UserCircle } from 'lucide-react'; // Import Icons
 
 const Header = () => {
+  // --- HOOKS ---
   const {
     scrolled,
     hoveredNavItem,
@@ -17,33 +20,31 @@ const Header = () => {
     onNavItemEnter,
     onNavLeave,
   } = useHeaderNavigation();
+
   const { itemCount } = useCart();
+  const { user, logout, isAuthenticated } = useAuth(); // Lấy thông tin user và hàm logout
   const navigate = useNavigate();
-  
+
+  // --- STATES ---
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState<Category[]>([]);
+  const [showUserMenu, setShowUserMenu] = useState(false); // State hiển thị menu user
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Sử dụng hook useProductSearch
+  // --- SEARCH LOGIC ---
   const { products: searchResults, loading: searchLoading } = useProductSearch({
     search: searchTerm,
     category: 'all',
     tech: ''
   });
 
-  // Fetch categories khi component mount
+  // Fetch categories
   useEffect(() => {
     categoryService.getAll().then(setCategories).catch(console.error);
   }, []);
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    if (!isSearchOpen) {
-      setSearchTerm(''); // Reset search term khi mở lại
-    }
-  };
-
+  // Auto focus search input
   useEffect(() => {
     if (isSearchOpen && searchInputRef.current) {
       setTimeout(() => {
@@ -51,6 +52,14 @@ const Header = () => {
       }, 100);
     }
   }, [isSearchOpen]);
+
+  // Handlers
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) {
+      setSearchTerm('');
+    }
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -63,10 +72,7 @@ const Header = () => {
   };
 
   const handleCategoryClick = (categoryId: number | string) => {
-    // Điều hướng đến trang danh sách sản phẩm với filter category (giả sử route là /products?category=...)
-    // Hoặc xử lý theo logic của bạn
     console.log("Navigate to category:", categoryId);
-    // Ví dụ: navigate(`/products?category=${categoryId}`);
     setIsSearchOpen(false);
   };
 
@@ -77,12 +83,12 @@ const Header = () => {
         onMouseLeave={onNavLeave}
       >
         <div className="nav-container">
-          {/* LOGO */}
-          <a href="/" className="nav-logo">
+          {/* 1. LOGO */}
+          <Link to="/" className="nav-logo">
             <span className="logo-text tag-gradient">CodeStore</span>
-          </a>
+          </Link>
 
-          {/* MENU */}
+          {/* 2. MAIN MENU */}
           <ul className="nav-links">
             {HEADER_MENU.map((item) => (
               <li
@@ -90,34 +96,81 @@ const Header = () => {
                 className={`nav-link-item ${hoveredNavItem === item.id ? 'active' : ''}`}
                 onMouseEnter={() => onNavItemEnter(item.id, item.hasDropdown)}
               >
-                <a href={`#${item.id}`} className="nav-link">
+                <Link to={item.label || '#'} className="nav-link">
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
-          {/* ACTIONS */}
+          {/* 3. RIGHT ACTIONS (Search, Cart, User) */}
           <div className="nav-actions">
+            {/* Search Button */}
             <button className="icon-btn" onClick={toggleSearch}>
               <img className="search-i" src="/search_button.svg" alt="Search" width="20" height="20" />
             </button>
+            
+            {/* Cart Button */}
             <Link to="/cart" className="icon-btn cart-icon">
               <img src="/cart.svg" alt="Cart" width="20" height="20" />
               {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
             </Link>
-            <div className="nav-actions">
-              <Link to="/login" className="btn-login">
-                Đăng nhập
-              </Link>
+
+            {/* --- USER AUTH SECTION (Thay đổi chính) --- */}
+            <div 
+              className="auth-action-wrapper"
+              onMouseEnter={() => setShowUserMenu(true)}
+              onMouseLeave={() => setShowUserMenu(false)}
+            >
+              {isAuthenticated && user ? (
+                // TRƯỜNG HỢP: ĐÃ ĐĂNG NHẬP
+                <div className="user-profile-btn">
+                   <span className="user-greeting">Hi, {user.lastName}</span>
+                   <UserCircle size={24} className="user-avatar-icon" />
+                   
+                   {/* Dropdown Menu */}
+                   <div className={`user-dropdown-menu ${showUserMenu ? 'active' : ''}`}>
+                      {/* Header của Dropdown */}
+                      <div className="user-info-header">
+                        <p className="user-fullname">{user.firstName} {user.lastName}</p>
+                        <p className="user-email">{user.email}</p>
+                      </div>
+                      
+                      {/* List Menu */}
+                      <ul className="user-menu-list">
+                        <li>
+                          <Link to="/profile" className="user-menu-item">
+                            <User size={16} /> Thông tin tài khoản
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/orders" className="user-menu-item">
+                            <Package size={16} /> Đơn hàng của tôi
+                          </Link>
+                        </li>
+                        <li className="divider"></li>
+                        <li>
+                          <button onClick={logout} className="user-menu-item logout-btn">
+                            <LogOut size={16} /> Đăng xuất
+                          </button>
+                        </li>
+                      </ul>
+                   </div>
+                </div>
+              ) : (
+                // TRƯỜNG HỢP: CHƯA ĐĂNG NHẬP
+                <Link to="/login" className="btn-login">
+                  Đăng nhập
+                </Link>
+              )}
             </div>
           </div>
         </div>
 
-        {/* MEGA DROPDOWN */}
+        {/* 4. MEGA DROPDOWN (Menu sản phẩm) */}
         <MegaDropdown visible={isDropdownOpen} />
         
-        {/* SEARCH DROPDOWN */}
+        {/* 5. SEARCH DROPDOWN */}
         <div className={`mega-dropdown search-dropdown ${isSearchOpen ? 'visible' : ''}`}>
           <div className="search-container-dropdown">
              <div className="search-input-wrapper">
@@ -136,7 +189,7 @@ const Header = () => {
                 {searchLoading ? (
                   <div className="search-loading">Đang tìm kiếm...</div>
                 ) : searchTerm ? (
-                  // KHI CÓ TỪ KHÓA TÌM KIẾM: HIỂN THỊ KẾT QUẢ SẢN PHẨM
+                  // KẾT QUẢ TÌM KIẾM
                   searchResults.length > 0 ? (
                     <div className="search-results-list">
                       <h4>Gợi ý sản phẩm</h4>
@@ -168,7 +221,7 @@ const Header = () => {
                      <div className="search-no-results">Không tìm thấy sản phẩm nào</div>
                   )
                 ) : (
-                  // KHI CHƯA NHẬP GÌ: HIỂN THỊ DANH MỤC (LIÊN KẾT NHANH)
+                  // DANH MỤC GỢI Ý (KHI CHƯA NHẬP)
                   <div className="quick-links">
                     <h4>Danh mục nổi bật</h4>
                     <ul>
@@ -190,7 +243,7 @@ const Header = () => {
         </div>
       </nav>
       
-      {/* BACKDROP KHI SEARCH ACTIVE */}
+      {/* BACKDROP */}
       <div 
         className={`search-backdrop ${isSearchOpen ? 'active' : ''}`} 
         onClick={toggleSearch}

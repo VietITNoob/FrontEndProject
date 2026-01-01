@@ -1,92 +1,120 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../Auth.css'; // File CSS mới
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import '../Auth.css';
+import { ArrowRight, Edit2 } from 'lucide-react';
+
+import { useLogin } from './useLogin'; // Hook Logic
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
-import '../../../app/App.css'
+
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorShake, setErrorShake] = useState(false); // State để kích hoạt rung
+  // 1. Lấy data và logic từ Custom Hook
+  const {
+    step,
+    email, setEmail,
+    password, setPassword,
+    isFocused, setIsFocused,
+    loading,
+    errorShake,
+    isEmailValid,
+    isPasswordValid,
+    inputRef,
+    passwordRef,
+    handleSubmit,
+    handleEditEmail
+  } = useLogin();
 
-  const handleSubmit = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    
-    // Nếu rỗng, kích hoạt hiệu ứng rung
-    if (!email) {
-      setErrorShake(true);
-      setTimeout(() => setErrorShake(false), 400); // Tắt rung sau 0.4s
-      return;
-    }
-
-    setLoading(true);
-    // Giả lập chuyển trang sau 1s
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 1200);
-  };
-
-  const isActive = isFocused || email.length > 0;
-  const isValid = email.length > 0;
+  // 2. Component nút mũi tên (View only)
+  const ArrowButton = ({ isValid }: { isValid: boolean }) => (
+    <button 
+      type="submit" 
+      className="btn-arrow-submit" 
+      disabled={!isValid || loading}
+      onClick={handleSubmit}
+    >
+      {loading ? (
+          <div className="spinner-loading"></div> // Nhớ CSS cho class này (border-radius 50%, xoay vòng)
+      ) : (
+          <ArrowRight size={20} strokeWidth={2.5} />
+      )}
+    </button>
+  );
 
   return (
     <div className="auth-container">
-      
-      {/* Header Component */}
       <Header />
 
-      {/* Nội dung chính */}
       <div className="auth-content">
-        
-        {/* Tiêu đề: Staggered Animation 1 */}
         <div className="animate-enter delay-1">
-          <h1 className="auth-title tag-gradient" >Đăng nhập CodeStore.</h1>
+          <h1 className="auth-title tag-gradient">
+            {step === 'email' ? 'Đăng nhập CodeStore.' : 'Nhập mật khẩu.'}
+          </h1>
           <h2 className="auth-subtitle">Trải nghiệm mua sắm source code nhanh chóng.</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="animate-enter delay-2">
+          
           <div className="apple-input-group">
-            {/* Input Wrapper: Thêm class 'shake' nếu có lỗi */}
-            <div className={`apple-input-wrapper ${isFocused ? 'focused' : ''} ${isActive ? 'active' : ''} ${isValid ? 'valid' : ''} ${errorShake ? 'shake' : ''}`}>
-              
+            
+            {/* INPUT EMAIL */}
+            <div className={`apple-input-wrapper ${isFocused === 'email' ? 'focused' : ''} ${email.length > 0 ? 'active' : ''} ${step === 'email' && isEmailValid ? 'valid' : ''} ${errorShake && step === 'email' ? 'shake' : ''} ${step === 'password' ? 'dimmed' : ''}`}>
               <label className="apple-label">Email hoặc Số điện thoại</label>
-              
               <input 
+                ref={inputRef}
                 type="text" 
                 className="apple-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                onFocus={() => setIsFocused('email')}
+                onBlur={() => setIsFocused(null)}
+                disabled={step === 'password'} 
               />
-
-              <button 
-                type="submit" 
-                className="btn-arrow-submit" 
-                disabled={loading} // Cho phép bấm để test hiệu ứng Shake, logic chặn ở handleSubmit
-                onClick={handleSubmit} // Đảm bảo click vào nút cũng submit
-              >
-                {loading ? (
-                   <div style={{width: 16, height: 16, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.4)', borderTopColor: '#fff', animation: 'spin 0.8s linear infinite'}}><svg viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3.98047 3.51001C1.43047 4.39001 0.980469 9.09992 0.980469 12.4099C0.980469 15.7199 1.41047 20.4099 3.98047 21.3199C6.69047 22.2499 14.9805 16.1599 14.9805 12.4099C14.9805 8.65991 6.69047 2.58001 3.98047 3.51001Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M23 5.92004C23 4.53933 21.8807 3.42004 20.5 3.42004C19.1193 3.42004 18 4.53933 18 5.92004V18.92C18 20.3008 19.1193 21.42 20.5 21.42C21.8807 21.42 23 20.3008 23 18.92V5.92004Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                ) : (
-                   <ArrowRight size={20} strokeWidth={2.5} />
-                )}
-              </button>
-
+              {step === 'email' && <ArrowButton isValid={isEmailValid} />}
             </div>
+
+            {/* INPUT PASSWORD (Slide Down) */}
+            <div className={`password-expand-wrapper ${step === 'password' ? 'open' : ''}`}>
+              <div className={`apple-input-wrapper ${isFocused === 'password' ? 'focused' : ''} ${password.length > 0 ? 'active' : ''} ${isPasswordValid ? 'valid' : ''} ${errorShake && step === 'password' ? 'shake' : ''}`}>
+                <label className="apple-label">Mật khẩu</label>
+                <input 
+                  ref={passwordRef}
+                  type="password" 
+                  className="apple-input"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setIsFocused('password')}
+                  onBlur={() => setIsFocused(null)}
+                />
+                {step === 'password' && <ArrowButton isValid={isPasswordValid} />}
+              </div>
+            </div>
+
           </div>
 
+          {/* OPTIONS & LINKS (Đã gộp gọn gàng) */}
           <div className="auth-options">
-            <label className="checkbox-wrapper" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer'}}>
-              <input type="checkbox" style={{width: 16, height: 16, accentColor: '#0071e3'}} />
-              <span style={{fontSize: '15px', color: '#1d1d1f'}}>Ghi nhớ đăng nhập</span>
-            </label>
+            
+            {/* Nếu đang ở bước Password -> Hiện nút Sửa Email */}
+            {step === 'password' ? (
+               <div style={{textAlign: 'center', marginBottom: 15}}>
+                  <span style={{fontSize: 14, color: '#6e6e73'}}>Đang đăng nhập: <b>{email}</b></span> 
+                  <button 
+                    type="button" 
+                    onClick={handleEditEmail} 
+                    style={{border:'none', background:'none', color:'#0071e3', cursor:'pointer', marginLeft: 5, display: 'inline-flex', alignItems: 'center', gap: 4}}
+                  >
+                    <Edit2 size={12}/> Sửa
+                  </button>
+               </div>
+            ) : (
+                /* Nếu đang ở bước Email -> Hiện Checkbox Ghi nhớ */
+                <label className="checkbox-wrapper" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', marginBottom: 15}}>
+                  <input type="checkbox" style={{width: 16, height: 16, accentColor: '#0071e3'}} />
+                  <span style={{fontSize: '15px', color: '#1d1d1f'}}>Ghi nhớ đăng nhập</span>
+                </label>
+            )}
 
+            {/* Links chung */}
             <div className="auth-links">
               <a href="#" className="link-blue">
                 Quên mật khẩu? <span className="link-icon">↗</span>
@@ -98,16 +126,12 @@ const LoginPage = () => {
                  </a>
               </div>
             </div>
+
           </div>
+
         </form>
       </div>
-
-      {/* Footer Component */}
       <Footer />
-
-      <style>{`
-        @keyframes spin { to { transform: rotate(360deg); } }
-      `}</style>
     </div>
   );
 };
