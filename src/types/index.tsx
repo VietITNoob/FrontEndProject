@@ -34,12 +34,6 @@ export interface Category {
     image : string;
 }
 
-export interface Member {
-    id: number;
-    name: string;
-    job: string;
-}
-
 export interface Review {
     id: number;
     userId: number;
