@@ -1,20 +1,30 @@
 import React from 'react';
-import type {Product} from "../../../types";
+import { useNavigate } from 'react-router-dom';
+import type { Product } from '../../../types';
+import { useCart } from '../../../context/CartContext';
 
 interface HeroSectionProps {
     product: Product;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
+    const { addToCart } = useCart();
+    const navigate = useNavigate();
+
+    const handleAddToCart = async () => {
+        await addToCart(product);
+        navigate('/cart');
+    };
+
     const hasDiscount = product.discount > 0;
-    const discountedPrice = hasDiscount 
-        ? product.price * (1 - product.discount / 100) 
+    const discountedPrice = hasDiscount
+        ? product.price * (1 - product.discount / 100)
         : product.price;
 
     return (
         <section className="hero-section reveal">
             <div className="container">
-                <div style={{display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '1rem'}}>
+                <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '1rem' }}>
                     {/*<span className="badge">Mới ra mắt</span>*/}
                 </div>
                 <h1 className="hero-title">
@@ -25,11 +35,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
                     {product.description}
                 </p>
                 <div className="cta-group">
-                    <button className="btn-primary shadow-blue">Thêm vào giỏ</button>
-                    <button className="btn-secondary" style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                    <button className="btn-primary shadow-blue" onClick={handleAddToCart}>Thêm vào giỏ</button>
+                    <button className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span>Mua ngay — {discountedPrice.toLocaleString()}đ</span>
                         {hasDiscount && (
-                            <span style={{textDecoration: 'line-through', opacity: 0.7, fontSize: '0.9em'}}>
+                            <span style={{ textDecoration: 'line-through', opacity: 0.7, fontSize: '0.9em' }}>
                                 {product.price.toLocaleString()}đ
                             </span>
                         )}
