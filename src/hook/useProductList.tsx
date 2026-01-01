@@ -3,16 +3,17 @@ import { productService } from '../service/productService';
 import type {Product} from '../types';
 
 
-export const useProductList = () => {
+export const useProductList = (autoFetch: boolean = true) => {
     const [all, setAll] = useState<Product[]>([]);
     const [byCategory, setByCategory] = useState<Product[]>([]);
     const [bestSellers, setBestSellers] = useState<Product[]>([]);
     const [newProducts, setNewProducts] = useState<Product[]>([]);
     const [topRatedProducts, setTopRatedProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(autoFetch);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (!autoFetch) return;
         const fetchData = async () => {
             try {
                 setLoading(true);
@@ -34,7 +35,7 @@ export const useProductList = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [autoFetch]);
 
     const fetchByCategory = async (categoryId: string) => {
         try {

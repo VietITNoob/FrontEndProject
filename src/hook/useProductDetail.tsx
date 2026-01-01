@@ -10,6 +10,7 @@ export const useProductDetail = (productId: number) => {
 
     useEffect(() => {
         const fetchData = async () =>{
+            setLoading(true);
             try{
                 const productRes = await productService.getById(productId);
                 setProduct(productRes);
@@ -19,7 +20,9 @@ export const useProductDetail = (productId: number) => {
                 setLoading(false);
             }
         }
-        fetchData();
+        if (productId) {
+            fetchData();
+        }
     }, [productId]);
     return {product, loading, error};
 }
