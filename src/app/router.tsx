@@ -6,6 +6,7 @@ import RegisterPage from '../components/Auth/Register/RegisterPage';
 import ProductDetail from "../pages/productDetail/ProductDetail.tsx";
 import ProductsPage from "../components/Products/ProductsPage.tsx";
 import CartPage from '../pages/Cart/CartPage';
+import UserProfilePage from '../components/Profile/UserProfilePage.tsx';
 
 
 export const router = createBrowserRouter([
@@ -34,5 +35,11 @@ export const router = createBrowserRouter([
     path:"/product/:id",
     element: <ProductDetail />
   }
+  ,
+  {
+    path:"/account/home",
+    element:<UserProfilePage/>
+  }
+
 
 ]);

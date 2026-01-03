@@ -48,4 +48,13 @@ export interface User {
     email: string;
     firstName: string;
     lastName: string;
+    phone:string;
+    country:string;
+    birthday:Date
+}
+
+export interface Date{
+    month:string;
+    day:string;
+    year:string;
 }

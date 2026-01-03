@@ -1,17 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext'; // <--- 1. IMPORT AUTH CONTEXT
+import type { User } from '../../../types';
 
 // Cập nhật Interface khớp với dữ liệu User bạn cần hiển thị trên Header
 interface LoginResponse {
   accessToken: string;
-  user: {
-    email: string;
-    id: number;
-    firstName: string; // Thêm trường này để hiển thị "Hi, Name"
-    lastName: string;  // Thêm trường này
+  user: User
   };
-}
+
 
 export const useLogin = () => {
   const navigate = useNavigate();
