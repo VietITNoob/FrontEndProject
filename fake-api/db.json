@@ -698,7 +698,34 @@
     }
   ],
   "orders": [],
-  "cart": [],
+  "cart": [
+    {
+      "id": "2",
+      "title": "App Quản Lý Công Việc Flutter",
+      "price": 299000,
+      "discount": 0,
+      "categoryId": "mobile",
+      "description": "Source Flutter + Firebase",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Firebase"
+      ],
+      "database": [
+        "Firebase Firestore",
+        "Firebase Realtime Database"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [
+        "Spring Boot"
+      ],
+      "sold": 80,
+      "createdAt": "2025-02-10",
+      "quantity": 1
+    }
+  ],
   "reviews": [
     {
       "id": "1",
@@ -714,7 +741,50 @@
       "rating": 5,
       "date": "2026-01-01",
       "content": "hay",
-      "id": "wrJnJIB"
+      "id": "wrJnJIB",
+      "rating": 5,
+      "date": "1 tuần trước",
+      "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag."
+    },
+    {
+      "id": "10",
+      "productId": 1,
+      "userId": 2,
+      "rating": 5,
+      "date": "2025-09-15",
+      "content": "Website chạy nhanh, SEO score cao ngay từ đầu. Rất đáng tiền."
+    },
+    {
+      "id": "12",
+      "productId": 20,
+      "userId": 1,
+      "rating": 5,
+      "date": "2025-12-20",
+      "content": "Animation vuốt trái phải mượt như app thật, logic match chạy ổn định."
+    },
+    {
+      "id": "27",
+      "productId": 11,
+      "userId": 2,
+      "rating": 5,
+      "date": "2025-11-15",
+      "content": "Đã mua và rất hài lòng, support trả lời nhiệt tình khi mình gặp lỗi build Android."
+    },
+    {
+      "id": "40",
+      "productId": 6,
+      "userId": 1,
+      "rating": 5,
+      "date": "2025-10-28",
+      "content": "Security config rất kỹ, JWT + Role base access control đầy đủ."
+    },
+    {
+      "id": "44",
+      "productId": 17,
+      "userId": 2,
+      "rating": 4,
+      "date": "2025-12-20",
+      "content": "Phần gửi file/ảnh đôi khi bị lỗi nếu file > 10MB."
     }
   ],
   "users": [
@@ -744,7 +814,47 @@
         "day": "7",
         "year": "2004"
       },
+      "id": 2,
+      "email": "vufit2004@icloud.com",
+      "password": "$2a$10$8vkWjeIEmaKBTodCzvP1Mu8XzYKjsPrhP8IOe9a6VBRPTrokf0yXC",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "2",
+        "year": "2021"
+      },
       "id": 2
+    },
+    {
+      "email": "vufit20045@icloud.com",
+      "password": "$2a$10$6PPwSQwRFQ3ApnnBzjFueukwxaaSV8hlhFE6G5DfdENfde0toTz3i",
+      "firstName": "Hoang",
+      "lastName": "Vu",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "4",
+        "year": "2020"
+      },
+      "id": 3
+    },
+    {
+      "email": "hoangvu30@gmail.com",
+      "password": "$2a$10$cF0itJs22bwRWqckWGLLQOeADgUS.CF0fYSWqa/nJGHKbn2m5hiue",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "2",
+        "year": "2021"
+      },
+      "id": 4
     }
   ]
 }
