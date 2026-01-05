@@ -7,6 +7,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: Product) => Promise<void>;
   removeFromCart: (cartItemId: string | number) => Promise<void>;
+  clearCart: () => void;
   itemCount: number;
 }
 
@@ -54,11 +55,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       console.error("Failed to remove item from cart:", error);
     }
   };
-
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem('cart');
+  };
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, itemCount }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, itemCount }}>
       {children}
     </CartContext.Provider>
   );

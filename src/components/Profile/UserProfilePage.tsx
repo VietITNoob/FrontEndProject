@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
-import { ChevronRight, Code, Layers, Loader2 } from 'lucide-react'; // Thêm Loader2
-import Header from '../../components/Header/Header'; // Sửa lại đường dẫn import Header của bạn cho đúng
-import Footer from '../../components/Footer/Footer'; // Sửa lại đường dẫn import Footer của bạn cho đúng
+import { ChevronRight, Code, Layers, Loader2, ShoppingBag } from 'lucide-react'; 
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import { useAuth } from '../../context/AuthContext';
 
-// --- TYPES ---
+// --- TYPES (Khớp với dữ liệu lưu từ CartPage) ---
 interface OrderItem {
   id: number;
   productName: string;
@@ -16,116 +16,59 @@ interface OrderItem {
 }
 
 interface Order {
-  id: string; 
+  id: string | number; // Json-server có thể sinh ID số hoặc chuỗi
   date: string;
   status: 'Completed' | 'Processing' | 'Cancelled';
   totalPrice: number;
   items: OrderItem[]; 
 }
 
-// --- MOCK DATA (Source Code style) ---
-const MOCK_SOURCE_CODE_ORDERS: Order[] = [
-  {
-    id: "ORD-882910",
-    date: "12/05/2024",
-    status: "Completed",
-    totalPrice: 1590000,
-    items: [
-      {
-        id: 1,
-        productName: "E-commerce UI Kit Pro",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
-        category: "UI Kit",
-        price: 890000
-      },
-      {
-        id: 2,
-        productName: "React Admin Dashboard",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2370",
-        category: "Template",
-        price: 700000
-      }
-    ]
-  },
-  {
-    id: "ORD-882911",
-    date: "25/04/2024",
-    status: "Completed",
-    totalPrice: 450000,
-    items: [
-      {
-        id: 3,
-        productName: "Flutter Food Delivery App",
-        image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&q=80&w=2555",
-        category: "Mobile App",
-        price: 450000
-      }
-    ]
-  },
-  {
-    id: "ORD-882912",
-    date: "02/01/2025",
-    status: "Processing",
-    totalPrice: 2200000,
-    items: [
-      {
-        id: 4,
-        productName: "Banking System Backend (Java)",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2532",
-        category: "Backend",
-        price: 1200000
-      },
-      {
-        id: 5,
-        productName: "Figma iOS 17 Design System",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=2574",
-        category: "Design",
-        price: 500000
-      },
-      {
-        id: 6,
-        productName: "Portfolio Template Next.js",
-        image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=2555",
-        category: "Web",
-        price: 500000
-      }
-    ]
-  }
-];
-
 const UserProfilePage = () => {
-  // 1. Lấy thêm isLoading từ Context để xử lý
+  // 1. Lấy context
   const { user, logout, isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  // 2. Logic Redirect an toàn
+  // 2. State lưu trữ đơn hàng thật
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isOrdersLoading, setIsOrdersLoading] = useState(true);
+
+  // 3. Logic Redirect bảo mật
   useEffect(() => {
-    // Chỉ redirect khi ĐÃ load xong (isLoading = false) VÀ chưa đăng nhập
     if (!isLoading && !isAuthenticated) {
       navigate('/login');
     }
   }, [isLoading, isAuthenticated, navigate]);
 
+  // 4. FETCH API: Lấy đơn hàng thật của User
+  useEffect(() => {
+    if (user?.id) {
+      // Gọi API json-server: Lọc theo userId
+      fetch(`http://localhost:3001/orders?userId=${user.id}`)
+        .then(res => res.json())
+        .then((data) => {
+          // Sắp xếp đơn hàng mới nhất lên đầu (nếu json-server không tự làm)
+          // Giả sử id tăng dần theo thời gian hoặc bạn có thể sort theo date
+          const sortedOrders = data.reverse(); 
+          setOrders(sortedOrders);
+        })
+        .catch(err => console.error("Lỗi tải đơn hàng:", err))
+        .finally(() => setIsOrdersLoading(false));
+    }
+  }, [user]);
+
   const formatCurrency = (price: number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   };
 
-  // 3. Màn hình Loading (Hiển thị khi đang check localStorage)
+  // 5. Màn hình Loading khi chờ Auth
   if (isLoading) {
     return (
-      <div style={{ 
-        height: '100vh', 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        backgroundColor: '#f5f5f7'
-      }}>
+      <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f7' }}>
         <Loader2 className="animate-spin" size={40} color="#86868b" />
       </div>
     );
   }
 
-  // 4. Nếu load xong mà vẫn không có user (thường useEffect đã đẩy đi rồi, nhưng check cho an toàn TypeScript)
   if (!user) return null;
 
   return (
@@ -148,59 +91,81 @@ const UserProfilePage = () => {
           Manage your purchased source codes, invoices, and download links.
         </div>
 
-        <div className="orders-grid">
-          {MOCK_SOURCE_CODE_ORDERS.map((order) => (
-            <div key={order.id} className="order-card">
-              
-              {/* Card Header: Order Info */}
-              <div className="order-card-header">
-                <div className="order-meta">
-                  <span className="order-date">{order.date}</span>
-                  <span className="order-id">#{order.id}</span>
+        {/* --- RENDER LOGIC: LOADING / EMPTY / LIST --- */}
+        {isOrdersLoading ? (
+           <div style={{padding: 40, textAlign: 'center', color: '#86868b'}}>
+              Loading your orders...
+           </div>
+        ) : orders.length > 0 ? (
+          <div className="orders-grid">
+            {orders.map((order) => (
+              <div key={order.id} className="order-card">
+                
+                {/* Card Header */}
+                <div className="order-card-header">
+                  <div className="order-meta">
+                    <span className="order-date">{order.date}</span>
+                    <span className="order-id">#{order.id}</span>
+                  </div>
+                  <span className={`order-status ${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </span>
                 </div>
-                <span className={`order-status ${order.status.toLowerCase()}`}>
-                  {order.status}
-                </span>
-              </div>
 
-              {/* Card Body: Items Preview */}
-              <div className="order-items-preview">
-                {order.items.slice(0, 3).map((item) => (
-                  <div key={item.id} className="item-thumbnail-wrapper" title={item.productName}>
-                     <img src={item.image} alt={item.productName} className="item-thumbnail" />
-                  </div>
-                ))}
-                {/* Badge số lượng nếu > 3 sản phẩm */}
-                {order.items.length > 3 && (
-                  <div className="item-more-badge">
-                    +{order.items.length - 3}
-                  </div>
-                )}
-              </div>
+                {/* Card Body: Items Preview */}
+                <div className="order-items-preview">
+                  {order.items.slice(0, 3).map((item, index) => (
+                    <div key={index} className="item-thumbnail-wrapper" title={item.productName}>
+                       <img src={item.image} alt={item.productName} className="item-thumbnail" />
+                    </div>
+                  ))}
+                  {/* Badge số lượng nếu > 3 sản phẩm */}
+                  {order.items.length > 3 && (
+                    <div className="item-more-badge">
+                      +{order.items.length - 3}
+                    </div>
+                  )}
+                </div>
 
-              {/* Card Content: Summary */}
-              <div className="order-summary">
-                 <div className="order-summary-text">
-                    <span className="item-count">
-                        {order.items.length} product{order.items.length > 1 ? 's' : ''}
-                    </span>
-                    <span className="total-price">
-                        {formatCurrency(order.totalPrice)}
-                    </span>
-                 </div>
-                 <div className="order-names-list">
-                    {order.items.map(i => i.productName).join(', ')}
-                 </div>
-              </div>
+                {/* Card Content: Summary */}
+                <div className="order-summary">
+                   <div className="order-summary-text">
+                      <span className="item-count">
+                          {order.items.length} product{order.items.length > 1 ? 's' : ''}
+                      </span>
+                      <span className="total-price">
+                          {formatCurrency(order.totalPrice)}
+                      </span>
+                   </div>
+                   <div className="order-names-list">
+                      {order.items.map(i => i.productName).join(', ')}
+                   </div>
+                </div>
 
-              <div className="order-card-footer">
-                <a href={`/orders/${order.id}`} className="card-link">
-                  View Order Details <ChevronRight size={12} style={{display:'inline'}}/>
-                </a>
+                <div className="order-card-footer">
+                  <a href={`/orders/${order.id}`} className="card-link">
+                    View Order Details <ChevronRight size={12} style={{display:'inline'}}/>
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          // EMPTY STATE (Nếu chưa có đơn hàng)
+          <div className="empty-orders-state" style={{
+              background: '#fff', borderRadius: 18, padding: 60, 
+              textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+          }}>
+              <ShoppingBag size={48} color="#d2d2d7" style={{marginBottom: 20}} />
+              <h3 style={{fontSize: 20, fontWeight: 600, marginBottom: 10}}>No orders yet</h3>
+              <p style={{color: '#86868b', marginBottom: 20}}>
+                You haven't purchased any source code yet. Start exploring now!
+              </p>
+              <a href="/" className="card-link" style={{fontSize: 16}}>
+                 Browse Store <ChevronRight size={16} />
+              </a>
+          </div>
+        )}
 
         <div className="divider-line"></div>
 
@@ -224,15 +189,12 @@ const UserProfilePage = () => {
                     <span className="user-detail-label">Email</span>
                     <span className="user-detail-value">{user.email}</span>
                 </div>
-                
-                {/* Chỉ hiện phone nếu có */}
                 {user.phone && (
                     <div className="user-detail-row" style={{border: 'none'}}>
                         <span className="user-detail-label">Phone</span>
                         <span className="user-detail-value">{user.phone}</span>
                     </div>
                 )}
-
                 <a href="/profile/edit" className="card-link" style={{fontSize: 15, marginTop: 15}}>
                   Edit Profile <ChevronRight size={14} style={{display:'inline', verticalAlign: 'middle'}}/>
                 </a>

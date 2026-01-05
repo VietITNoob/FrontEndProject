@@ -25,25 +25,25 @@ export const router = createBrowserRouter([
   },
   {
     path: "/products",      // <--- 2. Đường dẫn mới
-    element: <ProductsPage />, 
+    element: <ProductsPage />,
   },
   {
-    path:'/cart',
+    path: '/cart',
     element: <CartPage />,
 
   },
   {
-    path:"/product/:id",
+    path: "/product/:id",
     element: <ProductDetail />
   }
   ,
   {
-    path:"/account/home",
-    element:<UserProfilePage/>
+    path: "/account/home",
+    element: <UserProfilePage />
   },
   {
-    path:'/orders',
-    element:<OrderDetailsPage/>
+    path: '/orders/:id',
+    element: <OrderDetailsPage />
   }
 
 
