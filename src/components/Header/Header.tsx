@@ -96,7 +96,7 @@ const Header = () => {
                 className={`nav-link-item ${hoveredNavItem === item.id ? 'active' : ''}`}
                 onMouseEnter={() => onNavItemEnter(item.id, item.hasDropdown)}
               >
-                <Link to={item.label || '#'} className="nav-link">
+                <Link to={item.path || '#'} className="nav-link">
                   {item.label}
                 </Link>
               </li>
