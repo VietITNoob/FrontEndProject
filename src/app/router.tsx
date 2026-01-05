@@ -8,6 +8,7 @@ import ProductsPage from "../components/Products/ProductsPage.tsx";
 import CartPage from '../pages/Cart/CartPage';
 import UserProfilePage from '../components/Profile/UserProfilePage.tsx';
 import OrderDetailsPage from '../pages/Order/OrderDetailsPage.tsx';
+import MobilePage from '../pages/Mobile/MobilePage.tsx';
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
   {
     path: '/orders/:id',
     element: <OrderDetailsPage />
+  },
+  {
+    path:'/mobiles',
+    element:<MobilePage/>
   }
 
 
