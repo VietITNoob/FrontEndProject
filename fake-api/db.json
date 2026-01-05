@@ -697,32 +697,85 @@
       "image": "https://cdn-icons-png.flaticon.com/512/1086/1086576.png"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "userId": 3,
+      "date": "5/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 1196000,
+      "customerName": "Hoang Vu",
+      "email": "vufit20045@icloud.com",
+      "items": [
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 2
+        },
+        {
+          "id": "19",
+          "productName": "VS Code Theme Generator",
+          "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2340&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 99000,
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "date": "5/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 120000,
+      "customerName": "Hoang Vu",
+      "email": "vufit20045@icloud.com",
+      "items": [
+        {
+          "id": "21",
+          "productName": "SaaS Landing Page Template",
+          "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 120000,
+          "quantity": 1
+        }
+      ],
+      "id": 2
+    }
+  ],
   "cart": [
     {
-      "id": "2",
-      "title": "App Quản Lý Công Việc Flutter",
-      "price": 299000,
+      "id": "21",
+      "title": "SaaS Landing Page Template",
+      "price": 120000,
       "discount": 0,
-      "categoryId": "mobile",
-      "description": "Source Flutter + Firebase",
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "categoryId": "web",
+      "description": "Landing page hiện đại cho SaaS, tối ưu SEO, responsive hoàn hảo.",
+      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
       "tech": [
-        "Flutter",
-        "Firebase"
+        "HTML5",
+        "CSS3",
+        "JavaScript"
       ],
-      "database": [
-        "Firebase Firestore",
-        "Firebase Realtime Database"
-      ],
+      "database": [],
       "UI_Framework": [
-        "Flutter Material"
+        "Bootstrap 5"
       ],
-      "BackEnd": [
-        "Spring Boot"
-      ],
-      "sold": 80,
-      "createdAt": "2025-02-10",
+      "BackEnd": [],
+      "sold": 150,
+      "createdAt": "2025-03-28",
       "quantity": 1
     }
   ],
@@ -739,12 +792,9 @@
       "userId": 2,
       "productId": 1,
       "rating": 5,
-      "date": "2026-01-01",
-      "content": "hay",
-      "id": "wrJnJIB",
-      "rating": 5,
       "date": "1 tuần trước",
-      "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag."
+      "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag.",
+      "id": "wrJnJIB"
     },
     {
       "id": "10",
@@ -803,18 +853,6 @@
       "id": 1
     },
     {
-      "email": "hacaotantruong0@gmail.com",
-      "password": "$2a$10$Bb0AZkw/K0YmSLPBbWRj6uq1ROup9hM8IbxD.jtpCSAnDDcZDZfou",
-      "firstName": "Hà ",
-      "lastName": "Trường",
-      "phone": "0398322109",
-      "country": "Vietnam",
-      "birthday": {
-        "month": "1",
-        "day": "7",
-        "year": "2004"
-      },
-      "id": 2,
       "email": "vufit2004@icloud.com",
       "password": "$2a$10$8vkWjeIEmaKBTodCzvP1Mu8XzYKjsPrhP8IOe9a6VBRPTrokf0yXC",
       "firstName": "Vũ",

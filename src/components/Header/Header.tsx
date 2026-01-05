@@ -139,7 +139,7 @@ const Header = () => {
                       {/* List Menu */}
                       <ul className="user-menu-list">
                         <li>
-                          <Link to="/profile" className="user-menu-item">
+                          <Link to="/account/home" className="user-menu-item">
                             <User size={16} /> Thông tin tài khoản
                           </Link>
                         </li>
