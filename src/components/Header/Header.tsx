@@ -21,7 +21,7 @@ const Header = () => {
     onNavLeave,
   } = useHeaderNavigation();
 
-  const { itemCount } = useCart();
+  const { itemCount, lastAddedItem, clearLastAddedItem } = useCart();
   const { user, logout, isAuthenticated } = useAuth(); // Lấy thông tin user và hàm logout
   const navigate = useNavigate();
 
@@ -30,7 +30,35 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState<Category[]>([]);
   const [showUserMenu, setShowUserMenu] = useState(false); // State hiển thị menu user
+  const [showCartPopover, setShowCartPopover] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const popoverTimerRef = useRef<number | null>(null);
+
+  // LOGIC POPOVER GIỎ HÀNG
+  useEffect(() => {
+    if (lastAddedItem) {
+      setShowCartPopover(true);
+
+
+        // Xóa bộ đếm thời gian trước đó nếu có.
+      if (popoverTimerRef.current) {
+        clearTimeout(popoverTimerRef.current);
+      }
+
+      // Đặt bộ hẹn giờ mới để ẩn cửa sổ bật lên.
+      popoverTimerRef.current = window.setTimeout(() => {
+        setShowCartPopover(false);
+        clearLastAddedItem();
+      }, 4000); // ẩn sau 4 giây
+    }
+
+    // Bộ hẹn giờ được dọn dẹp khi gỡ bỏ thành phần
+    return () => {
+      if (popoverTimerRef.current) {
+        clearTimeout(popoverTimerRef.current);
+      }
+    };
+  }, [lastAddedItem, clearLastAddedItem]);
 
   // --- SEARCH LOGIC ---
   const { products: searchResults, loading: searchLoading } = useProductSearch({
@@ -110,11 +138,31 @@ const Header = () => {
               <img className="search-i" src="/search_button.svg" alt="Search" width="20" height="20" />
             </button>
             
-            {/* Cart Button */}
-            <Link to="/cart" className="icon-btn cart-icon">
-              <img src="/cart.svg" alt="Cart" width="20" height="20" />
-              {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
-            </Link>
+            {/* Cart Button & Popover */}
+            <div className="cart-action-wrapper">
+              <Link to="/cart" className="icon-btn cart-icon">
+                <img src="/cart.svg" alt="Cart" width="20" height="20" />
+                {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
+              </Link>
+
+              {/* --- CART POPOVER --- */}
+              <div className={`cart-popover ${showCartPopover ? 'active' : ''}`}>
+                {lastAddedItem && (
+                  <>
+                    <div className="popover-header">Đã thêm vào giỏ hàng</div>
+                    <div className="popover-body">
+                      <img src={lastAddedItem.image} alt={lastAddedItem.title} className="popover-item-image" />
+                      <span className="popover-item-title">{lastAddedItem.title}</span>
+                    </div>
+                    <div className="popover-footer">
+                      <Link to="/cart" className="btn-view-cart">
+                        Xem giỏ hàng ({itemCount})
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
 
             {/* --- USER AUTH SECTION (Thay đổi chính) --- */}
             <div 

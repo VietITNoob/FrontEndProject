@@ -7,19 +7,18 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: Product) => Promise<void>;
   removeFromCart: (cartItemId: string | number) => Promise<void>;
-  clearCart: () => void;
   itemCount: number;
+  lastAddedItem: CartItem | null;
+  clearLastAddedItem: () => void;
 }
 
-// tạo 1 context với giá trị mặc định
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// tạo 1 provider component
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
 
   useEffect(() => {
-    // Lấy các mặt hàng ban đầu trong giỏ hàng
     const fetchCart = async () => {
       try {
         const items = await cartService.getCartItems();
@@ -38,9 +37,11 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
         const returnedItem = await cartService.updateCartItem(updatedItem);
         setCartItems(prevItems => prevItems.map(item => item.id === product.id ? returnedItem : item));
+        setLastAddedItem(returnedItem);
       } else {
         const newItem = await cartService.addToCart(product);
         setCartItems(prevItems => [...prevItems, newItem]);
+        setLastAddedItem(newItem);
       }
     } catch (error) {
       console.error("Failed to add item to cart:", error);
@@ -55,14 +56,15 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       console.error("Failed to remove item from cart:", error);
     }
   };
-  const clearCart = () => {
-    setCartItems([]);
-    localStorage.removeItem('cart');
+
+  const clearLastAddedItem = () => {
+    setLastAddedItem(null);
   };
+
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, itemCount }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, itemCount, lastAddedItem, clearLastAddedItem }}>
       {children}
     </CartContext.Provider>
   );

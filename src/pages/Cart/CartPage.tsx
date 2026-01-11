@@ -5,6 +5,12 @@ import Footer from '../../components/Footer/Footer';
 import { ChevronDown, Loader2 } from 'lucide-react'; // Import Icon Loading
 import { useCart } from '../../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+
+const CartPage = () => {
+  const { cartItems, removeFromCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 import { useAuth } from '../../context/AuthContext'; // Import Auth để lấy User ID
 
 const CartPage = () => {
@@ -18,6 +24,17 @@ const CartPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCheckout = () => {
+    if (isAuthenticated) {
+      // Logic thanh toán thực tế sẽ ở đây
+      console.log('Redirecting to checkout...');
+      alert('Chức năng thanh toán đang được phát triển!');
+    } else {
+      alert('Bạn cần đăng nhập để thực hiện thanh toán.');
+      navigate('/login');
+    }
+  };
 
   // Tính tổng tiền
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -88,14 +105,7 @@ const CartPage = () => {
           Tổng giá trị giỏ hàng của bạn là <span className="cart-total-price">{formatVND(totalPrice)}.</span>
         </h1>
         <p className="cart-message">Vận chuyển miễn phí (Gửi qua Email ngay lập tức).</p>
-        
-        <button 
-          className="btn-checkout-hero"
-          onClick={handleCheckout}
-          disabled={isProcessing || cartItems.length === 0}
-        >
-          {isProcessing ? "Đang xử lý..." : "Thanh toán"}
-        </button>
+        <button className="btn-checkout-hero" onClick={handleCheckout}>Thanh toán</button>
       </section>
 
       {/* 2. ITEM LIST */}
@@ -166,6 +176,10 @@ const CartPage = () => {
              <div style={{marginTop: 5, fontSize: 12}}>Lãi suất 0% trong 12 tháng. <a href="#" style={{color: '#0066cc'}}>Tìm hiểu thêm</a></div>
           </div>
 
+        <div className="checkout-area">
+           <button className="btn-checkout-bottom" onClick={handleCheckout}>Thanh Toán</button>
+        </div>
+      </section>
           <div className="checkout-area">
              <button 
                 className="btn-checkout-bottom"

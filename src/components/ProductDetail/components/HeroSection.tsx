@@ -1,19 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import type { Product } from '../../../types';
 import { useCart } from '../../../context/CartContext';
-
 interface HeroSectionProps {
     product: Product;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
     const { addToCart } = useCart();
-    const navigate = useNavigate();
 
     const handleAddToCart = async () => {
         await addToCart(product);
-        navigate('/cart');
+
     };
 
     const hasDiscount = product.discount > 0;
