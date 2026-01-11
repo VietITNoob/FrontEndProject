@@ -6,6 +6,9 @@ import RegisterPage from '../components/Auth/Register/RegisterPage';
 import ProductDetail from "../pages/productDetail/ProductDetail.tsx";
 import ProductsPage from "../components/Products/ProductsPage.tsx";
 import CartPage from '../pages/Cart/CartPage';
+import UserProfilePage from '../components/Profile/UserProfilePage.tsx';
+import OrderDetailsPage from '../pages/Order/OrderDetailsPage.tsx';
+import MobilePage from '../pages/Mobile/MobilePage.tsx';
 
 
 export const router = createBrowserRouter([
@@ -23,16 +26,30 @@ export const router = createBrowserRouter([
   },
   {
     path: "/products",      // <--- 2. Đường dẫn mới
-    element: <ProductsPage />, 
+    element: <ProductsPage />,
   },
   {
-    path:'/cart',
+    path: '/cart',
     element: <CartPage />,
 
   },
   {
-    path:"/product/:id",
+    path: "/product/:id",
     element: <ProductDetail />
   }
+  ,
+  {
+    path: "/account/home",
+    element: <UserProfilePage />
+  },
+  {
+    path: '/orders/:id',
+    element: <OrderDetailsPage />
+  },
+  {
+    path:'/mobiles',
+    element:<MobilePage/>
+  }
+
 
 ]);

@@ -1,37 +1,54 @@
-// src/context/AuthContext.tsx
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
-import type {User} from "../types";
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-// Định nghĩa kiểu dữ liệu User (tùy theo API của bạn trả về gì)
+// 1. Định nghĩa kiểu dữ liệu User
+export interface User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  country?: string;
+}
 
-
+// 2. Định nghĩa Context Type
 interface AuthContextType {
   user: User | null;
   login: (userData: User, token: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  isLoading: boolean; // <--- QUAN TRỌNG: Thêm biến này để fix lỗi F5
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// 3. Provider Component
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  
+  // Mặc định là TRUE (Đang load) để chặn các trang bảo mật chưa chạy vội
+  const [isLoading, setIsLoading] = useState(true); 
 
-  // Khi app mới chạy, kiểm tra xem trong LocalStorage có user chưa
+  // Kiểm tra LocalStorage khi App vừa chạy
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const token = localStorage.getItem('accessToken');
-    
-    if (storedUser && token) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        console.error("Lỗi parse user từ local storage", e);
-        localStorage.removeItem('user');
-        localStorage.removeItem('accessToken');
+    const checkAuth = async () => {
+      const storedUser = localStorage.getItem('user');
+      const token = localStorage.getItem('accessToken');
+      
+      if (storedUser && token) {
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch (e) {
+          console.error("Lỗi parse user từ local storage", e);
+          // Nếu lỗi data rác thì xóa đi
+          localStorage.removeItem('user');
+          localStorage.removeItem('accessToken');
+        }
       }
-    }
+      // Dù có user hay không, chạy xong logic thì tắt Loading
+      setIsLoading(false);
+    };
+
+    checkAuth();
   }, []);
 
   const login = (userData: User, token: string) => {
@@ -44,17 +61,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('accessToken');
-    // Có thể điều hướng về trang chủ hoặc login tại đây nếu muốn
     window.location.href = '/login'; 
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// 4. Hook sử dụng Context
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

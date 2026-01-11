@@ -124,7 +124,7 @@ const Header = () => {
                 className={`nav-link-item ${hoveredNavItem === item.id ? 'active' : ''}`}
                 onMouseEnter={() => onNavItemEnter(item.id, item.hasDropdown)}
               >
-                <Link to={item.label || '#'} className="nav-link">
+                <Link to={item.path || '#'} className="nav-link">
                   {item.label}
                 </Link>
               </li>
@@ -187,7 +187,7 @@ const Header = () => {
                       {/* List Menu */}
                       <ul className="user-menu-list">
                         <li>
-                          <Link to="/profile" className="user-menu-item">
+                          <Link to="/account/home" className="user-menu-item">
                             <User size={16} /> Thông tin tài khoản
                           </Link>
                         </li>

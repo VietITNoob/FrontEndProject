@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext'; // <--- 1. IMPORT AUTH CONTEXT
 
-// Định nghĩa kiểu dữ liệu cho Form (giống interface trong Angular)
+// Định nghĩa kiểu dữ liệu cho Form
 export interface RegisterFormData {
     firstName: string;
     lastName: string;
@@ -21,6 +22,7 @@ export interface RegisterFormData {
 
 export const useRegister = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // <--- 2. LẤY HÀM LOGIN TỪ CONTEXT
     const [loading, setLoading] = useState(false);
     
     // Khởi tạo state
@@ -43,7 +45,7 @@ export const useRegister = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Xử lý thay đổi ngày sinh (Object lồng nhau)
+    // Xử lý thay đổi ngày sinh
     const handleBirthdayChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -82,7 +84,6 @@ export const useRegister = () => {
                 body: JSON.stringify({
                     email: formData.email,
                     password: formData.password,
-                    // Lưu thêm thông tin phụ
                     firstName: formData.firstName,
                     lastName: formData.lastName,
                     phone: formData.phone,
@@ -97,9 +98,11 @@ export const useRegister = () => {
                 throw new Error(data || 'Đăng ký thất bại (Email có thể đã tồn tại)');
             }
 
-            // 3. Auto Login
-            localStorage.setItem('accessToken', data.accessToken);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            // -------------------------------------------------------
+            // 3. SỬA ĐOẠN NÀY: Dùng login() của Context thay vì localStorage
+            // -------------------------------------------------------
+            // Hàm này sẽ tự động lưu localStorage VÀ cập nhật Header ngay lập tức
+            login(data.user, data.accessToken);
 
             alert("Đăng ký tài khoản thành công!");
             navigate('/');
@@ -112,7 +115,6 @@ export const useRegister = () => {
         }
     };
 
-    // Trả về dữ liệu và hàm cần thiết cho View
     return {
         formData,
         loading,

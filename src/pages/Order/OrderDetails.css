@@ -1,0 +1,288 @@
+/* OrderDetails.css */
+:root {
+  --apple-bg: #f5f5f7;
+  --apple-card-bg: #ffffff;
+  --apple-text: #1d1d1f;
+  --apple-subtext: #86868b;
+  --apple-link: #0066cc;
+  --apple-border: #d2d2d7;
+  --apple-success: #008800;
+}
+
+.order-details-page {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--apple-text);
+}
+
+.order-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- TOP NAVIGATION --- */
+.back-nav {
+  padding-top: 40px;
+  margin-bottom: 20px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--apple-subtext);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  color: var(--apple-link);
+}
+
+/* --- PAGE HEADER --- */
+.order-header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.order-title h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.order-subtitle {
+  color: var(--apple-subtext);
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.order-actions-top {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  border-radius: 980px; /* Pill shape */
+  border: 1px solid var(--apple-border);
+  background: transparent;
+  color: var(--apple-link);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 102, 204, 0.05);
+  border-color: var(--apple-link);
+}
+
+/* --- MAIN CONTENT GRID --- */
+.order-content-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Bên trái rộng gấp đôi bên phải */
+  gap: 25px;
+}
+
+/* PRODUCT LIST CARD */
+.apple-card {
+  background: var(--apple-card-bg);
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 30px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item-row {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.product-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid #f0f0f0;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-name {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--apple-text);
+}
+
+.product-meta {
+  font-size: 13px;
+  color: var(--apple-subtext);
+  margin-bottom: 8px;
+}
+
+.license-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  min-width: 100px;
+}
+
+.download-action {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.link-action {
+  font-size: 13px;
+  color: var(--apple-link);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.link-action:hover {
+  text-decoration: underline;
+}
+
+/* PAYMENT SUMMARY CARD */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.summary-label {
+  color: var(--apple-subtext);
+}
+
+.summary-value {
+  font-weight: 500;
+}
+
+.summary-total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.total-amount {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* INFO GRID (Address etc) */
+.info-grid-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.info-block h4 {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--apple-subtext);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.info-block p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* STATUS BAR */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--apple-success);
+}
+
+.status-text {
+  font-weight: 600;
+  color: var(--apple-success);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .order-content-layout {
+    grid-template-columns: 1fr;
+  }
+  .order-title h1 {
+    font-size: 32px;
+  }
+  .order-header-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

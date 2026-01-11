@@ -1,4 +1,3 @@
-import React from 'react';
 import '../Auth.css';
 import { ArrowRight, Edit2 } from 'lucide-react';
 

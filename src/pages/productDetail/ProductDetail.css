@@ -455,3 +455,8 @@
         grid-template-columns: 1fr;
     }
 }
+    /* --- RECOMAND SECTION --- */
+.recomand-section {
+    padding: 80px 0;
+    background-color: var(--bg-color);
+}

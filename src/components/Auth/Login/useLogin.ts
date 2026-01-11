@@ -1,19 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext'; // <--- 1. IMPORT AUTH CONTEXT
+import type { User } from '../../../types';
 
-// Interface cho API response (nếu cần)
+// Cập nhật Interface khớp với dữ liệu User bạn cần hiển thị trên Header
 interface LoginResponse {
   accessToken: string;
-  user: {
-    email: string;
-    id: number;
+  user: User
   };
-}
+
 
 export const useLogin = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); // <--- 2. LẤY HÀM LOGIN TỪ CONTEXT
   
-  // Refs để thao tác DOM (focus)
+  // Refs
   const inputRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -25,13 +26,13 @@ export const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [errorShake, setErrorShake] = useState(false);
 
-  // Effect: Auto focus khi chuyển bước
+  // Effect: Auto focus
   useEffect(() => {
     if (step === 'email' && inputRef.current) inputRef.current.focus();
     if (step === 'password' && passwordRef.current) passwordRef.current.focus();
   }, [step]);
 
-  // Hàm rung lắc báo lỗi
+  // Hàm rung lắc
   const triggerShake = () => {
     setErrorShake(true);
     setTimeout(() => setErrorShake(false), 400);
@@ -41,21 +42,20 @@ export const useLogin = () => {
   const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
 
-    // --- BƯỚC 1: XỬ LÝ EMAIL ---
+    // --- BƯỚC 1: EMAIL ---
     if (step === 'email') {
       if (!email) {
         triggerShake();
         return;
       }
       setLoading(true);
-      // Giả lập check email (0.5s)
       setTimeout(() => {
         setLoading(false);
         setStep('password');
       }, 500);
     } 
     
-    // --- BƯỚC 2: XỬ LÝ PASSWORD & GỌI API ---
+    // --- BƯỚC 2: PASSWORD & API ---
     else {
       if (!password) {
         triggerShake();
@@ -74,9 +74,10 @@ export const useLogin = () => {
 
         const data: LoginResponse = await response.json();
 
-        // Lưu session
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        // -------------------------------------------------------
+        // 3. SỬA ĐOẠN NÀY: Dùng hàm login() thay vì localStorage.setItem()
+        // -------------------------------------------------------
+        login(data.user, data.accessToken); 
 
         // Chuyển trang
         navigate('/');
@@ -84,14 +85,14 @@ export const useLogin = () => {
       } catch (error) {
         console.error(error);
         triggerShake();
-        alert('Đăng nhập thất bại!');
+        alert('Đăng nhập thất bại! Kiểm tra lại email/password.');
       } finally {
         setLoading(false);
       }
     }
   };
 
-  // Logic phụ trợ cho View
+  // Logic phụ
   const handleEditEmail = () => {
     setStep('email');
     setPassword('');
@@ -100,9 +101,7 @@ export const useLogin = () => {
   const isEmailValid = email.length > 0;
   const isPasswordValid = password.length > 0;
 
-  // Trả về tất cả những gì View cần dùng
   return {
-    // State
     step,
     email, setEmail,
     password, setPassword,
@@ -111,12 +110,8 @@ export const useLogin = () => {
     errorShake,
     isEmailValid,
     isPasswordValid,
-    
-    // Refs
     inputRef,
     passwordRef,
-
-    // Actions
     handleSubmit,
     handleEditEmail,
     triggerShake

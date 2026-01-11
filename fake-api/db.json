@@ -1,136 +1,4 @@
 {
-  "members": [
-    {
-      "id": "1",
-      "name": "Minh Tuấn",
-      "job": "Developer"
-    },
-    {
-      "id": "2",
-      "name": "Sarah Nguyen",
-      "job": "Designer"
-    },
-    {
-      "id": "3",
-      "name": "Hoàng K.",
-      "job": "Founder"
-    },
-    {
-      "id": "4",
-      "name": "David Tran",
-      "job": "Freelancer"
-    },
-    {
-      "id": "5",
-      "name": "Linh Phạm",
-      "job": "Product Manager"
-    },
-    {
-      "id": "6",
-      "name": "Jason Lee",
-      "job": "Startup Owner"
-    },
-    {
-      "id": "7",
-      "name": "Trần Văn Bảo",
-      "job": "Senior Developer"
-    },
-    {
-      "id": "8",
-      "name": "Lê Thị Mai",
-      "job": "UI/UX Designer"
-    },
-    {
-      "id": "9",
-      "name": "Phạm Minh Khôi",
-      "job": "DevOps Engineer"
-    },
-    {
-      "id": "10",
-      "name": "Nguyễn Thu Hà",
-      "job": "Business Analyst"
-    },
-    {
-      "id": "11",
-      "name": "Kevin Nguyen",
-      "job": "Solution Architect"
-    },
-    {
-      "id": "12",
-      "name": "Đỗ Quang Huy",
-      "job": "Mobile Developer"
-    },
-    {
-      "id": "13",
-      "name": "Vũ Thị Lan",
-      "job": "QA Engineer"
-    },
-    {
-      "id": "14",
-      "name": "Alex Smith",
-      "job": "Tech Lead"
-    },
-    {
-      "id": "15",
-      "name": "Ngô Văn Hùng",
-      "job": "System Admin"
-    },
-    {
-      "id": "16",
-      "name": "Bùi Phương Thảo",
-      "job": "Content Creator"
-    },
-    {
-      "id": "17",
-      "name": "Đặng Tuấn Anh",
-      "job": "Backend Developer"
-    },
-    {
-      "id": "18",
-      "name": "Hồ Minh Trí",
-      "job": "Frontend Developer"
-    },
-    {
-      "id": "19",
-      "name": "Lý Thị Ngọc",
-      "job": "Data Scientist"
-    },
-    {
-      "id": "20",
-      "name": "Phan Văn Đức",
-      "job": "Project Manager"
-    },
-    {
-      "id": "21",
-      "name": "Trương Mỹ Linh",
-      "job": "Marketing Manager"
-    },
-    {
-      "id": "22",
-      "name": "Võ Thanh Tùng",
-      "job": "AI Engineer"
-    },
-    {
-      "id": "23",
-      "name": "Dương Văn Nam",
-      "job": "Fullstack Developer"
-    },
-    {
-      "id": "24",
-      "name": "Hà Thị Thu",
-      "job": "HR Manager"
-    },
-    {
-      "id": "25",
-      "name": "Nguyễn Quốc Đạt",
-      "job": "Game Developer"
-    },
-    {
-      "id": "26",
-      "name": "Lâm Thị Tuyết",
-      "job": "Customer Support"
-    }
-  ],
   "products": [
     {
       "id": "1",
@@ -829,80 +697,104 @@
       "image": "https://cdn-icons-png.flaticon.com/512/1086/1086576.png"
     }
   ],
-  "orders": [],
-  "cart": [],
+  "orders": [
+    {
+      "userId": 3,
+      "date": "5/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 1196000,
+      "customerName": "Hoang Vu",
+      "email": "vufit20045@icloud.com",
+      "items": [
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 2
+        },
+        {
+          "id": "19",
+          "productName": "VS Code Theme Generator",
+          "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2340&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 99000,
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "date": "5/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 120000,
+      "customerName": "Hoang Vu",
+      "email": "vufit20045@icloud.com",
+      "items": [
+        {
+          "id": "21",
+          "productName": "SaaS Landing Page Template",
+          "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 120000,
+          "quantity": 1
+        }
+      ],
+      "id": 2
+    }
+  ],
+  "cart": [
+    {
+      "id": "21",
+      "title": "SaaS Landing Page Template",
+      "price": 120000,
+      "discount": 0,
+      "categoryId": "web",
+      "description": "Landing page hiện đại cho SaaS, tối ưu SEO, responsive hoàn hảo.",
+      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "database": [],
+      "UI_Framework": [
+        "Bootstrap 5"
+      ],
+      "BackEnd": [],
+      "sold": 150,
+      "createdAt": "2025-03-28",
+      "quantity": 1
+    }
+  ],
   "reviews": [
     {
       "id": "1",
-      "productId": 6,
+      "productId": 1,
       "userId": 1,
       "rating": 5,
       "date": "2 ngày trước",
       "content": "Code structure cực kỳ sạch (clean architecture). Rất đáng tiền để học hỏi pattern."
     },
     {
-      "id": "2",
-      "productId": 1,
       "userId": 2,
+      "productId": 1,
       "rating": 5,
       "date": "1 tuần trước",
-      "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag."
-    },
-    {
-      "id": "3",
-      "productId": 1,
-      "userId": 3,
-      "rating": 4,
-      "date": "2 tuần trước",
-      "content": "Sản phẩm tốt, nhưng document cần chi tiết hơn ở phần deploy server."
-    },
-    {
-      "id": "4",
-      "productId": 7,
-      "userId": 4,
-      "rating": 5,
-      "date": "1 tháng trước",
-      "content": "Mua source này về customize lại cho khách cực nhanh. Tuyệt vời!"
-    },
-    {
-      "id": "5",
-      "productId": 9,
-      "userId": 5,
-      "rating": 5,
-      "date": "3 ngày trước",
-      "content": "Dashboard rất chuyên nghiệp, dùng cho project công ty là quá ổn."
-    },
-    {
-      "id": "6",
-      "productId": 10,
-      "userId": 6,
-      "rating": 4,
-      "date": "5 ngày trước",
-      "content": "AI chạy ổn, cần GPU mạnh nhưng chất lượng ảnh rất tốt."
-    },
-    {
-      "id": "7",
-      "productId": 11,
-      "userId": 12,
-      "rating": 5,
-      "date": "2025-12-10",
-      "content": "Code game Unity viết rất gọn, comment dễ hiểu. Đã reskin và publish thành công."
-    },
-    {
-      "id": "8",
-      "productId": 3,
-      "userId": 5,
-      "rating": 4,
-      "date": "2025-11-05",
-      "content": "Phần Stripe integration hoạt động tốt, nhưng config env hơi phức tạp một chút."
-    },
-    {
-      "id": "9",
-      "productId": 15,
-      "userId": 8,
-      "rating": 5,
-      "date": "2025-10-22",
-      "content": "Design quá đẹp, dark mode chuẩn chỉnh, import vào Figma không bị lỗi font."
+      "content": "Giao diện đúng chuẩn Apple, animation mượt mà không bị giật lag.",
+      "id": "wrJnJIB"
     },
     {
       "id": "10",
@@ -913,132 +805,12 @@
       "content": "Website chạy nhanh, SEO score cao ngay từ đầu. Rất đáng tiền."
     },
     {
-      "id": "11",
-      "productId": 5,
-      "userId": 19,
-      "rating": 3,
-      "date": "2025-12-01",
-      "content": "Cần update thêm document về phần LangChain memory, mình mất 2 ngày mới setup được."
-    },
-    {
       "id": "12",
       "productId": 20,
       "userId": 1,
       "rating": 5,
       "date": "2025-12-20",
       "content": "Animation vuốt trái phải mượt như app thật, logic match chạy ổn định."
-    },
-    {
-      "id": "13",
-      "productId": 8,
-      "userId": 7,
-      "rating": 5,
-      "date": "2025-12-25",
-      "content": "Portfolio đơn giản mà tinh tế, animation scroll mượt."
-    },
-    {
-      "id": "14",
-      "productId": 13,
-      "userId": 15,
-      "rating": 4,
-      "date": "2025-11-12",
-      "content": "App giao hàng đầy đủ tính năng, nhưng phần map tracking đôi khi bị delay 1-2s."
-    },
-    {
-      "id": "15",
-      "productId": 6,
-      "userId": 11,
-      "rating": 5,
-      "date": "2025-10-30",
-      "content": "Best Spring Boot boilerplate I've bought. Clean architecture chuẩn sách giáo khoa."
-    },
-    {
-      "id": "16",
-      "productId": 18,
-      "userId": 3,
-      "rating": 5,
-      "date": "2025-12-15",
-      "content": "Model train giọng khá nhanh, chất lượng voice clone đạt tầm 85% giọng thật."
-    },
-    {
-      "id": "17",
-      "productId": 2,
-      "userId": 4,
-      "rating": 4,
-      "date": "2025-11-18",
-      "content": "Giao diện đẹp nhưng logic Firebase rules cần siết chặt hơn để bảo mật."
-    },
-    {
-      "id": "18",
-      "productId": 10,
-      "userId": 18,
-      "rating": 5,
-      "date": "2025-12-05",
-      "content": "Generate ảnh nhanh, tích hợp sẵn nhiều model LoRA hay."
-    },
-    {
-      "id": "19",
-      "productId": 12,
-      "userId": 9,
-      "rating": 4,
-      "date": "2025-10-10",
-      "content": "Hệ thống booking tốt, quản lý phòng trực quan. Mong bản update có thêm cổng thanh toán VNPay."
-    },
-    {
-      "id": "20",
-      "productId": 19,
-      "userId": 14,
-      "rating": 5,
-      "date": "2025-09-28",
-      "content": "Tool quá tiện, mình đã tự làm được theme riêng chỉ trong 15 phút."
-    },
-    {
-      "id": "21",
-      "productId": 14,
-      "userId": 13,
-      "rating": 5,
-      "date": "2025-12-02",
-      "content": "Cấu trúc Go Microservices rất chuyên nghiệp, Docker compose chạy phát ăn ngay."
-    },
-    {
-      "id": "22",
-      "productId": 7,
-      "userId": 20,
-      "rating": 3,
-      "date": "2025-11-25",
-      "content": "App hơi nặng, cần tối ưu lại ảnh khi load list sản phẩm."
-    },
-    {
-      "id": "23",
-      "productId": 16,
-      "userId": 6,
-      "rating": 5,
-      "date": "2025-12-18",
-      "content": "Vue 3 + Supabase là combo tuyệt vời. Tính năng quiz làm rất hay."
-    },
-    {
-      "id": "24",
-      "productId": 4,
-      "userId": 5,
-      "rating": 5,
-      "date": "2025-10-05",
-      "content": "UI Kit rất đầy đủ, custom widget dễ dàng, tiết kiệm cả tháng code giao diện."
-    },
-    {
-      "id": "25",
-      "productId": 17,
-      "userId": 10,
-      "rating": 4,
-      "date": "2025-11-30",
-      "content": "Socket server chịu tải tốt, test thử 1000 connect vẫn ok."
-    },
-    {
-      "id": "26",
-      "productId": 9,
-      "userId": 16,
-      "rating": 5,
-      "date": "2025-12-12",
-      "content": "Admin dashboard nhìn chuyên nghiệp, code React phân chia component hợp lý."
     },
     {
       "id": "27",
@@ -1049,102 +821,6 @@
       "content": "Đã mua và rất hài lòng, support trả lời nhiệt tình khi mình gặp lỗi build Android."
     },
     {
-      "id": "28",
-      "productId": 3,
-      "userId": 14,
-      "rating": 4,
-      "date": "2025-10-20",
-      "content": "Code base tốt, nhưng cần upgrade lên Next.js bản mới nhất."
-    },
-    {
-      "id": "29",
-      "productId": 13,
-      "userId": 8,
-      "rating": 5,
-      "date": "2025-12-22",
-      "content": "Phần app cho shipper xử lý logic nhận đơn rất thông minh."
-    },
-    {
-      "id": "30",
-      "productId": 1,
-      "userId": 17,
-      "rating": 3,
-      "date": "2025-11-08",
-      "content": "Giao diện mobile chưa responsive lắm ở phần giỏ hàng."
-    },
-    {
-      "id": "31",
-      "productId": 18,
-      "userId": 12,
-      "rating": 5,
-      "date": "2025-12-08",
-      "content": "Tuyệt vời, mình dùng code này build tool đọc truyện tranh tự động."
-    },
-    {
-      "id": "32",
-      "productId": 5,
-      "userId": 4,
-      "rating": 5,
-      "date": "2025-10-15",
-      "content": "Chatbot thông minh, phản hồi nhanh, code Python dễ đọc."
-    },
-    {
-      "id": "33",
-      "productId": 15,
-      "userId": 10,
-      "rating": 4,
-      "date": "2025-12-01",
-      "content": "Đẹp nhưng thiếu màn hình Swap coin chi tiết."
-    },
-    {
-      "id": "34",
-      "productId": 2,
-      "userId": 7,
-      "rating": 5,
-      "date": "2025-11-22",
-      "content": "Source Flutter clean, chạy mượt trên cả iOS và Android."
-    },
-    {
-      "id": "35",
-      "productId": 20,
-      "userId": 6,
-      "rating": 4,
-      "date": "2025-12-19",
-      "content": "Tính năng chat realtime ổn, nhưng phần lọc user theo vị trí cần chính xác hơn."
-    },
-    {
-      "id": "36",
-      "productId": 10,
-      "userId": 3,
-      "rating": 5,
-      "date": "2025-11-02",
-      "content": "Đáng đồng tiền bát gạo, setup GPU xong chạy phà phà."
-    },
-    {
-      "id": "37",
-      "productId": 8,
-      "userId": 15,
-      "rating": 5,
-      "date": "2025-12-27",
-      "content": "Code nhẹ, load trang cực nhanh. 10/10."
-    },
-    {
-      "id": "38",
-      "productId": 12,
-      "userId": 19,
-      "rating": 4,
-      "date": "2025-11-10",
-      "content": "Backend Laravel xử lý logic đặt phòng trùng ngày rất tốt."
-    },
-    {
-      "id": "39",
-      "productId": 14,
-      "userId": 11,
-      "rating": 5,
-      "date": "2025-12-14",
-      "content": "Dành cho ai muốn học Go Microservices, source này là tài liệu tham khảo cực tốt."
-    },
-    {
       "id": "40",
       "productId": 6,
       "userId": 1,
@@ -1153,228 +829,12 @@
       "content": "Security config rất kỹ, JWT + Role base access control đầy đủ."
     },
     {
-      "id": "41",
-      "productId": 19,
-      "userId": 18,
-      "rating": 4,
-      "date": "2025-11-15",
-      "content": "Hữu ích, nhưng bảng màu color picker nên thêm tính năng lưu palette."
-    },
-    {
-      "id": "42",
-      "productId": 16,
-      "userId": 13,
-      "rating": 5,
-      "date": "2025-12-05",
-      "content": "Platform học online đầy đủ nhất mình từng thấy với giá này."
-    },
-    {
-      "id": "43",
-      "productId": 4,
-      "userId": 9,
-      "rating": 5,
-      "date": "2025-09-20",
-      "content": "Thiết kế hiện đại, code Flutter tách widget rất dễ tái sử dụng."
-    },
-    {
       "id": "44",
       "productId": 17,
       "userId": 2,
       "rating": 4,
       "date": "2025-12-20",
       "content": "Phần gửi file/ảnh đôi khi bị lỗi nếu file > 10MB."
-    },
-    {
-      "id": "45",
-      "productId": 7,
-      "userId": 14,
-      "rating": 5,
-      "date": "2025-11-01",
-      "content": "Full flow e-commerce hoạt động trơn tru. Rất hài lòng."
-    },
-    {
-      "id": "46",
-      "productId": 11,
-      "userId": 20,
-      "rating": 5,
-      "date": "2025-12-12",
-      "content": "Game hay, level design tool đi kèm rất tiện để tạo màn chơi mới."
-    },
-    {
-      "id": "47",
-      "productId": 9,
-      "userId": 16,
-      "rating": 5,
-      "date": "2025-10-18",
-      "content": "Ant Design tùy biến lại nhìn không bị nhàm chán, rất đẹp."
-    },
-    {
-      "id": "48",
-      "productId": 13,
-      "userId": 5,
-      "rating": 3,
-      "date": "2025-11-28",
-      "content": "Setup MongoDB replica set hơi cực, document chưa nói kỹ đoạn này."
-    },
-    {
-      "id": "49",
-      "productId": 15,
-      "userId": 12,
-      "rating": 5,
-      "date": "2025-12-24",
-      "content": "UI xuất sắc, đáng để mua về tham khảo cách làm design system."
-    },
-    {
-      "id": "50",
-      "productId": 5,
-      "userId": 17,
-      "rating": 5,
-      "date": "2025-11-09",
-      "content": "Kết hợp với OpenAI API chạy mượt, trả lời thông minh."
-    },
-    {
-      "id": "51",
-      "productId": 2,
-      "userId": 8,
-      "rating": 5,
-      "date": "2025-12-26",
-      "content": "Mua lần 2 ủng hộ team, code vẫn chất lượng như mọi khi."
-    },
-    {
-      "id": "52",
-      "productId": 12,
-      "userId": 10,
-      "rating": 5,
-      "date": "2025-11-05",
-      "content": "Khách sạn bên mình đang dùng source này, chạy ổn định 2 tháng nay rồi."
-    },
-    {
-      "id": "53",
-      "productId": 18,
-      "userId": 4,
-      "rating": 4,
-      "date": "2025-10-12",
-      "content": "Cần máy cấu hình cao chút mới train nhanh được, nhưng kết quả xứng đáng."
-    },
-    {
-      "id": "54",
-      "productId": 20,
-      "userId": 19,
-      "rating": 5,
-      "date": "2025-12-03",
-      "content": "App dating full tính năng nhất trên chợ hiện tại. Good job."
-    },
-    {
-      "id": "55",
-      "productId": 14,
-      "userId": 6,
-      "rating": 5,
-      "date": "2025-11-20",
-      "content": "Code Go sạch, chia package hợp lý, dễ mở rộng."
-    },
-    {
-      "id": "56",
-      "productId": 1,
-      "userId": 15,
-      "rating": 5,
-      "date": "2025-12-15",
-      "content": "Support cài đặt tận tình qua UltraView. 5 sao cho dịch vụ."
-    },
-    {
-      "id": "57",
-      "productId": 21,
-      "userId": 21,
-      "rating": 5,
-      "date": "2025-12-28",
-      "content": "Landing page tối ưu conversion rất tốt, chạy quảng cáo hiệu quả."
-    },
-    {
-      "id": "58",
-      "productId": 21,
-      "userId": 3,
-      "rating": 4,
-      "date": "2025-11-15",
-      "content": "Thiết kế đẹp, clean, dễ chỉnh sửa text."
-    },
-    {
-      "id": "59",
-      "productId": 22,
-      "userId": 12,
-      "rating": 5,
-      "date": "2025-12-10",
-      "content": "Code React Native chuẩn, chạy mượt trên cả Android và iOS."
-    },
-    {
-      "id": "60",
-      "productId": 23,
-      "userId": 24,
-      "rating": 5,
-      "date": "2025-11-20",
-      "content": "Tính năng quản lý ứng viên rất tiện lợi cho HR."
-    },
-    {
-      "id": "61",
-      "productId": 23,
-      "userId": 17,
-      "rating": 4,
-      "date": "2025-12-05",
-      "content": "Backend Node.js xử lý tốt, database design hợp lý."
-    },
-    {
-      "id": "62",
-      "productId": 24,
-      "userId": 25,
-      "rating": 5,
-      "date": "2025-10-25",
-      "content": "Asset low-poly chất lượng, rất hợp với game mobile."
-    },
-    {
-      "id": "63",
-      "productId": 25,
-      "userId": 19,
-      "rating": 5,
-      "date": "2025-12-15",
-      "content": "Script chạy nhanh, vẽ biểu đồ đẹp, tiết kiệm bao nhiêu thời gian làm báo cáo."
-    },
-    {
-      "id": "64",
-      "productId": 26,
-      "userId": 8,
-      "rating": 5,
-      "date": "2025-11-30",
-      "content": "UI Kit thiết kế rất chi tiết, dark mode nhìn rất sang."
-    },
-    {
-      "id": "65",
-      "productId": 27,
-      "userId": 10,
-      "rating": 4,
-      "date": "2025-12-22",
-      "content": "Dashboard trực quan, nhiều biểu đồ hữu ích để phân tích dữ liệu khách hàng."
-    },
-    {
-      "id": "66",
-      "productId": 28,
-      "userId": 22,
-      "rating": 4,
-      "date": "2025-12-01",
-      "content": "API phản hồi nhanh, tóm tắt văn bản tiếng Anh khá chuẩn."
-    },
-    {
-      "id": "67",
-      "productId": 29,
-      "userId": 7,
-      "rating": 5,
-      "date": "2025-11-10",
-      "content": "Source code Flutter tổ chức tốt, dễ maintain và mở rộng."
-    },
-    {
-      "id": "68",
-      "productId": 30,
-      "userId": 9,
-      "rating": 5,
-      "date": "2025-12-18",
-      "content": "Script Jenkins pipeline chuẩn, tích hợp AWS ngon lành."
     }
   ],
   "users": [
@@ -1391,6 +851,48 @@
         "year": "2023"
       },
       "id": 1
+    },
+    {
+      "email": "vufit2004@icloud.com",
+      "password": "$2a$10$8vkWjeIEmaKBTodCzvP1Mu8XzYKjsPrhP8IOe9a6VBRPTrokf0yXC",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "2",
+        "year": "2021"
+      },
+      "id": 2
+    },
+    {
+      "email": "vufit20045@icloud.com",
+      "password": "$2a$10$6PPwSQwRFQ3ApnnBzjFueukwxaaSV8hlhFE6G5DfdENfde0toTz3i",
+      "firstName": "Hoang",
+      "lastName": "Vu",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "4",
+        "year": "2020"
+      },
+      "id": 3
+    },
+    {
+      "email": "hoangvu30@gmail.com",
+      "password": "$2a$10$cF0itJs22bwRWqckWGLLQOeADgUS.CF0fYSWqa/nJGHKbn2m5hiue",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "2",
+        "year": "2021"
+      },
+      "id": 4
     }
   ]
 }
