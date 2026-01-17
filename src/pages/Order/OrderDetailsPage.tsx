@@ -15,18 +15,13 @@ import {
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
-// 1. Cập nhật Interface khớp với dữ liệu trong db.json
 interface OrderItem {
   id: number;
-  productName: string; // Trong db.json lưu là productName
+  productName: string; 
   image: string;
   price: number;
   quantity: number;
-  // Các trường dưới này DB đơn giản chưa có, ta sẽ tự generate khi render
-  licenseType?: string; 
-  version?: string;
-  downloadUrl?: string;
-  licenseKey?: string;
+  downloadUrl?: string; // Link tải thật (nếu có)
 }
 
 interface OrderDetail {
@@ -34,7 +29,7 @@ interface OrderDetail {
   date: string;
   status: string;
   paymentMethod: string;
-  totalPrice: number; // DB lưu totalPrice
+  totalPrice: number; 
   customerName: string;
   email: string;
   items: OrderItem[];
@@ -44,34 +39,29 @@ const OrderDetailsPage = () => {
   const { id } = useParams(); 
   const navigate = useNavigate();
   
-  // State
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  
+  // State để theo dõi xem sản phẩm nào đang được tải (để hiện loading xoay vòng)
+  const [downloadingId, setDownloadingId] = useState<number | null>(null);
 
-  // 2. Fetch API lấy chi tiết đơn hàng
   useEffect(() => {
     if (!id) return;
-
     const fetchOrder = async () => {
       try {
         setLoading(true);
         const response = await fetch(`http://localhost:3001/orders/${id}`);
-        
-        if (!response.ok) {
-          throw new Error('Không tìm thấy đơn hàng.');
-        }
-
+        if (!response.ok) throw new Error('Không tìm thấy đơn hàng.');
         const data = await response.json();
         setOrder(data);
       } catch (err) {
         console.error(err);
-        setError('Không thể tải thông tin đơn hàng hoặc đơn hàng không tồn tại.');
+        setError('Không thể tải thông tin đơn hàng.');
       } finally {
         setLoading(false);
       }
     };
-
     fetchOrder();
   }, [id]);
 
@@ -79,26 +69,68 @@ const OrderDetailsPage = () => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   };
 
-  // --- TRƯỜNG HỢP LOADING ---
+  // --- HÀM XỬ LÝ DOWNLOAD ---
+  const handleDownload = (item: OrderItem) => {
+    // 1. Bật trạng thái loading cho item này
+    setDownloadingId(item.id);
+
+    // Giả lập độ trễ mạng (1.5s) cho giống thật
+    setTimeout(() => {
+      if (item.downloadUrl) {
+        // A. NẾU CÓ LINK THẬT: Mở link tải
+        const link = document.createElement('a');
+        link.href = item.downloadUrl;
+        link.download = `${item.productName}.zip`; // Gợi ý tên file
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // B. NẾU KHÔNG CÓ LINK (DEMO): Tạo file giả bằng Blob
+        // Tạo nội dung file text giả lập source code
+        const fileContent = `
+          DỰ ÁN: ${item.productName}
+          PHIÊN BẢN: v1.0.0
+          LICENSE: Personal Use
+          
+          Cảm ơn bạn đã mua hàng tại CodeStore!
+          Đây là file demo. Trong dự án thực tế, đây sẽ là file .zip chứa source code.
+        `;
+        
+        // Tạo file ảo
+        const blob = new Blob([fileContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        
+        // Kích hoạt tải xuống
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${item.productName.replace(/\s+/g, '_')}_Source.txt`); // Tên file tải về
+        document.body.appendChild(link);
+        link.click();
+        
+        // Dọn dẹp
+        link.parentNode?.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }
+
+      // Tắt trạng thái loading
+      setDownloadingId(null);
+    }, 1500);
+  };
+
   if (loading) {
     return (
       <div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f5f5f7'}}>
-        <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap: 10}}>
-          <Loader2 className="animate-spin" size={40} color="#86868b"/>
-          <span style={{color: '#86868b'}}>Đang tải chi tiết đơn hàng...</span>
-        </div>
+        <Loader2 className="animate-spin" size={40} color="#86868b"/>
       </div>
     );
   }
 
-  // --- TRƯỜNG HỢP LỖI ---
   if (error || !order) {
     return (
       <div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f5f5f7'}}>
         <div style={{textAlign: 'center'}}>
            <AlertCircle size={50} color="#ff3b30" style={{marginBottom: 20, margin:'0 auto', display:'block'}}/>
            <h2 style={{marginBottom: 10}}>Đã có lỗi xảy ra</h2>
-           <p style={{color: '#86868b', marginBottom: 20}}>{error}</p>
            <button onClick={() => navigate('/profile')} style={{padding: '10px 20px', borderRadius: 8, border: 'none', background: '#0071e3', color: 'white', cursor: 'pointer'}}>
              Quay lại danh sách
            </button>
@@ -112,15 +144,12 @@ const OrderDetailsPage = () => {
       <Header />
 
       <div className="order-container animate-enter">
-        {/* --- NAVIGATION --- */}
         <div className="back-nav">
           <div className="back-link" onClick={() => navigate('/profile')}>
-            <ChevronLeft size={16} />
-            Quay lại danh sách đơn hàng
+            <ChevronLeft size={16} /> Quay lại danh sách đơn hàng
           </div>
         </div>
 
-        {/* --- HEADER --- */}
         <div className="order-header-block">
           <div className="order-title">
             <h1>Order #{order.id}</h1>
@@ -130,27 +159,20 @@ const OrderDetailsPage = () => {
              <button className="btn-secondary" onClick={() => window.print()}>
                 <Printer size={16} /> In hóa đơn
              </button>
-             <button className="btn-secondary">
-                <HelpCircle size={16} /> Hỗ trợ
-             </button>
           </div>
         </div>
 
-        {/* --- STATUS BAR --- */}
         <div className="status-bar">
            <div className="status-dot"></div>
            <div style={{flex: 1}}>
               <span className="status-text">{order.status}</span>
               <span style={{margin: '0 8px', color: '#ccc'}}>|</span>
-              <span style={{color: '#86868b', fontSize: 14}}>Xác nhận đã gửi tới {order.email}</span>
+              <span style={{color: '#86868b', fontSize: 14}}>Đã gửi tới {order.email}</span>
            </div>
            <CheckCircle2 size={20} color="#008800" />
         </div>
 
-        {/* --- MAIN CONTENT (2 Columns) --- */}
         <div className="order-content-layout">
-          
-          {/* COLUMN LEFT: PRODUCTS LIST */}
           <div className="left-column">
              <div className="apple-card">
                 <div className="card-title">Sản phẩm đã mua</div>
@@ -162,22 +184,34 @@ const OrderDetailsPage = () => {
                       <div className="product-info">
                          <div className="product-name">{item.productName}</div>
                          <div className="product-meta">
-                            {/* Vì DB chưa có LicenseType, ta giả lập hiển thị */}
-                            <span className="license-badge">STANDARD</span>
-                            Personal License • v1.0.0
+                            <span className="license-badge">STANDARD</span> v1.0.0
                          </div>
                          
-                         {/* Action Buttons specific for Code Store */}
                          <div className="download-action">
-                            <a href="#" className="link-action" onClick={(e) => e.preventDefault()}>
-                               <Download size={14} /> Tải Source Code
+                            {/* NÚT DOWNLOAD ĐƯỢC CẬP NHẬT */}
+                            <a 
+                                href="#" 
+                                className="link-action" 
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  if (downloadingId !== item.id) handleDownload(item);
+                                }}
+                                style={{
+                                    opacity: downloadingId === item.id ? 0.7 : 1, 
+                                    cursor: downloadingId === item.id ? 'wait' : 'pointer'
+                                }}
+                            >
+                               {downloadingId === item.id ? (
+                                   <Loader2 size={14} className="animate-spin" />
+                               ) : (
+                                   <Download size={14} />
+                               )} 
+                               {downloadingId === item.id ? ' Đang tải...' : ' Tải Source Code'}
                             </a>
-                            <span className="link-action" onClick={() => alert(`License Key Giả Lập: XXXX-${item.id}-AAAA-BBBB`)}>
-                                <Key size={14} /> Xem License Key
+
+                            <span className="link-action" onClick={() => alert(`License Key: XXXX-${item.id}-KEY`)}>
+                                <Key size={14} /> License Key
                             </span>
-                            <a href="#" className="link-action">
-                               <FileText size={14} /> Tài liệu
-                            </a>
                          </div>
                       </div>
 
@@ -189,48 +223,21 @@ const OrderDetailsPage = () => {
              </div>
           </div>
 
-          {/* COLUMN RIGHT: SUMMARY & BILLING */}
           <div className="right-column">
              <div className="apple-card">
-                <div className="card-title">Tóm tắt thanh toán</div>
-                
-                <div className="summary-row">
-                   <span className="summary-label">Tạm tính</span>
-                   {/* Giả sử không có discount, subtotal = total */}
-                   <span className="summary-value">{formatCurrency(order.totalPrice)}</span>
-                </div>
-                <div className="summary-row">
-                   <span className="summary-label">Giảm giá</span>
-                   <span className="summary-value" style={{color: '#008800'}}>-{formatCurrency(0)}</span>
-                </div>
-                
+                <div className="card-title">Tóm tắt</div>
                 <div className="summary-total">
                    <span className="total-label">Tổng cộng</span>
                    <span className="total-amount">{formatCurrency(order.totalPrice)}</span>
                 </div>
-
-                <div style={{marginTop: 20, paddingTop: 20, borderTop: '1px solid #f0f0f0'}}>
-                    <div className="info-block">
-                        <h4>Phương thức thanh toán</h4>
-                        <p>{order.paymentMethod}</p>
-                    </div>
-                </div>
-             </div>
-
-             <div className="apple-card" style={{marginTop: 20}}>
-                <div className="card-title">Thông tin khách hàng</div>
-                <div className="info-block">
-                    <h4>Người nhận</h4>
-                    <p>{order.customerName}</p>
-                    <p style={{color: '#86868b', fontSize: 13, marginTop: 4}}>{order.email}</p>
+                <div style={{marginTop: 20}}>
+                    <h4>Thanh toán</h4>
+                    <p style={{color:'#666'}}>{order.paymentMethod}</p>
                 </div>
              </div>
           </div>
-
         </div>
-
       </div>
-      
       <Footer />
     </div>
   );

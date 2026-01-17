@@ -192,7 +192,7 @@ const Header = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link to="/orders" className="user-menu-item">
+                          <Link to="/account/home" className="user-menu-item">
                             <Package size={16} /> Đơn hàng của tôi
                           </Link>
                         </li>
