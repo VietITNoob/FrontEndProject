@@ -6,11 +6,11 @@
   --text-secondary: #6e6e73;
   --accent-orange: #bf4800;
   --apple-blue: #0066cc;
-  
+
   /* Shadow: Mịn hơn, nhiều lớp hơn */
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
   --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
-  
+
   /* Physics: Đường cong chuyển động chuẩn iOS */
   --ease-apple-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -21,14 +21,21 @@
   padding-top: 60px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   overflow-x: hidden;
-  
+
   /* Hiệu ứng Fade In toàn trang */
   animation: fadeInPage 0.8s var(--ease-out-expo);
 }
 
 @keyframes fadeInPage {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- Category Nav (Thêm hiệu ứng nảy) --- */
@@ -49,7 +56,9 @@
   transition: opacity 0.3s ease;
 }
 
-.cat-item:hover { opacity: 0.8; }
+.cat-item:hover {
+  opacity: 0.8;
+}
 
 .cat-icon-box {
   width: 60px;
@@ -71,7 +80,11 @@
   transform: translateY(-8px) scale(1.05);
 }
 
-.cat-icon { width: 100%; height: 100%; object-fit: contain; }
+.cat-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 .cat-name {
   font-size: 12px;
@@ -102,53 +115,79 @@
   display: flex;
   overflow-x: auto;
   gap: 24px;
-  padding: 20px 40px 80px; /* Padding bottom lớn để bóng đổ không bị cắt */
+  padding: 20px 40px 80px;
+  /* Padding bottom lớn để bóng đổ không bị cắt */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   scroll-padding-left: 40px;
 }
-.carousel-container::-webkit-scrollbar { display: none; }
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
 
 /* --- STORE CARD (PHẦN QUAN TRỌNG NHẤT) --- */
 .store-card {
   min-width: 400px;
   height: 520px;
   background: var(--card-bg);
-  border-radius: 24px; /* Bo góc lớn hơn chút */
+  border-radius: 24px;
+  /* Bo góc lớn hơn chút */
   box-shadow: var(--shadow-sm);
   padding: 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  transition: all 0.5s var(--ease-apple-spring); /* Thời gian dài hơn cho mượt */
+  transition: all 0.5s var(--ease-apple-spring);
+  /* Thời gian dài hơn cho mượt */
   scroll-snap-align: start;
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  overflow: hidden; /* Để chứa hiệu ứng Shine */
-  
+  overflow: hidden;
+  /* Để chứa hiệu ứng Shine */
+
   /* Staggered Animation (Thẻ sau hiện chậm hơn thẻ trước) */
   opacity: 0;
   animation: cardEntrance 0.8s var(--ease-out-expo) forwards;
 }
 
 /* Delay cho các thẻ con (tạo hiệu ứng domino) */
-.store-card:nth-child(1) { animation-delay: 0.1s; }
-.store-card:nth-child(2) { animation-delay: 0.2s; }
-.store-card:nth-child(3) { animation-delay: 0.3s; }
-.store-card:nth-child(4) { animation-delay: 0.4s; }
+.store-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.store-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.store-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.store-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 @keyframes cardEntrance {
-  from { opacity: 0; transform: translateY(40px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* --- Hover Effects --- */
 
 /* 1. Scale & Shadow */
 .store-card:hover {
-  transform: scale(1.025) translateY(-5px); /* Phóng to và bay lên */
+  transform: scale(1.025) translateY(-5px);
+  /* Phóng to và bay lên */
   box-shadow: var(--shadow-hover);
   border-color: transparent;
   z-index: 2;
@@ -162,12 +201,10 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   transition: none;
   pointer-events: none;
@@ -178,7 +215,9 @@
 }
 
 @keyframes shine {
-  100% { left: 200%; }
+  100% {
+    left: 200%;
+  }
 }
 
 /* --- Card Content --- */
@@ -211,9 +250,17 @@
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .card-title {
@@ -242,7 +289,8 @@
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 40px;
-  transition: transform 0.6s var(--ease-apple-spring); /* Chậm hơn card để tạo Parallax */
+  transition: transform 0.6s var(--ease-apple-spring);
+  /* Chậm hơn card để tạo Parallax */
   z-index: 2;
 }
 
@@ -250,7 +298,8 @@
   max-width: 85%;
   max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); /* Bóng đổ riêng của ảnh */
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+  /* Bóng đổ riêng của ảnh */
   transition: filter 0.4s ease;
   border-radius: 8px;
 }
@@ -261,7 +310,8 @@
 }
 
 .store-card:hover .card-img {
-  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.2)); /* Bóng đậm hơn khi nổi lên */
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.2));
+  /* Bóng đậm hơn khi nổi lên */
 }
 
 /* --- Button Overlay --- */
@@ -277,21 +327,24 @@
 
 .store-card:hover .card-link-overlay {
   opacity: 1;
-  transform: scale(1) rotate(0deg); /* Xoay và hiện ra */
+  transform: scale(1) rotate(0deg);
+  /* Xoay và hiện ra */
 }
+
 /* --- SỬA LẠI HEADER ĐỂ CHỨA NÚT --- */
 .section-header-wrapper {
   max-width: 1400px;
   margin: 0 auto 24px;
   padding: 0 40px;
   display: flex;
-  justify-content: space-between; /* Đẩy tiêu đề sang trái, nút sang phải */
+  justify-content: space-between;
+  /* Đẩy tiêu đề sang trái, nút sang phải */
   align-items: flex-end;
 }
 
 .section-header {
   /* Bỏ margin/padding cũ đi vì đã có wrapper lo */
-  margin: 0; 
+  margin: 0;
   padding: 0;
   font-size: 28px;
   font-weight: 700;
@@ -299,76 +352,62 @@
 
 /* --- NÚT ĐIỀU HƯỚNG TRÒN (APPLE STYLE) --- */
 .carousel-nav-buttons {
-  display: flex;
   gap: 12px;
 }
 
-.nav-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: #e8e8ed; /* Màu xám nhạt */
-  color: #1d1d1f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.nav-btn:hover {
-  background: #d2d2d7; /* Đậm hơn khi hover */
-  transform: scale(1.05);
-}
-
-.nav-btn:active {
-  transform: scale(0.95);
-}
 
 /* --- SỬA LẠI CONTAINER ĐỂ CUỘN TỐT HƠN --- */
 .carousel-container {
   display: flex;
-  overflow-x: auto; /* Bắt buộc có để cuộn */
+  overflow-x: auto;
+  /* Bắt buộc có để cuộn */
   gap: 24px;
   padding: 20px 40px 80px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth; /* Cuộn mượt */
-  
+  scroll-behavior: smooth;
+  /* Cuộn mượt */
+
   /* Giữ ẩn thanh cuộn nhưng vẫn cho phép cuộn */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
 }
 
 /* Ẩn thanh cuộn trên Chrome/Safari/Opera */
-.carousel-container::-webkit-scrollbar { 
-  display: none; 
+.carousel-container::-webkit-scrollbar {
+  display: none;
 }
+
 /* --- VARIABLES ĐẲNG CẤP --- */
 :root {
-  --store-bg: #fbfbfd; /* Nền sáng hơn một chút cho sạch */
+  --store-bg: #fbfbfd;
+  /* Nền sáng hơn một chút cho sạch */
   --card-bg: #ffffff;
   --text-primary: #1d1d1f;
   --text-secondary: #86868b;
   --accent-orange: #bf4800;
   --apple-blue: #0066cc;
-  
+
   /* SHADOWS: Phức tạp và mềm mại hơn */
   /* Bóng tĩnh: Rất mờ, sát nền */
-  --shadow-static: 
-    0 4px 8px -2px rgba(0,0,0,0.03), 
-    0 8px 16px -4px rgba(0,0,0,0.02);
-    
+  --shadow-static:
+    0 4px 8px -2px rgba(0, 0, 0, 0.03),
+    0 8px 16px -4px rgba(0, 0, 0, 0.02);
+
   /* Bóng hover: 3 lớp để tạo chiều sâu vòm (Ambient + Key + Color reflection) */
-  --shadow-hover-premium: 
-    0 30px 60px -12px rgba(0,0,0,0.12), /* Bóng chính xa */
-    0 18px 36px -18px rgba(0,0,0,0.08), /* Bóng trung gian */
-    0 -12px 36px -8px rgba(255,255,255,0.8) inset; /* Ánh sáng phản xạ bên trong */
-  
+  --shadow-hover-premium:
+    0 30px 60px -12px rgba(0, 0, 0, 0.12),
+    /* Bóng chính xa */
+    0 18px 36px -18px rgba(0, 0, 0, 0.08),
+    /* Bóng trung gian */
+    0 -12px 36px -8px rgba(255, 255, 255, 0.8) inset;
+  /* Ánh sáng phản xạ bên trong */
+
   /* PHYSICS: Độ nảy cực đại (Bouncy) */
   /* Khi hover vào thì nảy mạnh, khi ra thì êm */
-  --ease-bounce-in: cubic-bezier(0.34, 1.56, 0.64, 1); 
+  --ease-bounce-in: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -379,12 +418,13 @@
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Helvetica, sans-serif;
   overflow-x: hidden;
   /* Tăng độ tương phản chữ */
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
 }
 
 /* --- HEADER & NAV BUTTONS --- */
 .section-header-wrapper {
-  max-width: 1440px; /* Rộng hơn chuẩn */
+  max-width: 1440px;
+  /* Rộng hơn chuẩn */
   margin: 0 auto 32px;
   padding: 0 48px;
   display: flex;
@@ -393,57 +433,57 @@
 }
 
 .section-header {
-  font-size: 32px; /* Tiêu đề lớn hơn */
+  font-size: 32px;
+  /* Tiêu đề lớn hơn */
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.heading-highlight { color: var(--text-secondary); }
-.heading-normal { color: var(--text-primary); }
+.heading-highlight {
+  color: var(--text-secondary);
+}
 
-.carousel-nav-buttons { display: flex; gap: 14px; }
-
-.nav-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.05); /* Nền trong suốt hơn */
-  backdrop-filter: blur(10px); /* Hiệu ứng kính mờ nhẹ */
+.heading-normal {
   color: var(--text-primary);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s var(--ease-smooth-out);
 }
 
-.nav-btn:hover {
-  background: rgba(0,0,0,0.1);
-  transform: scale(1.08);
+.carousel-nav-buttons {
+  display: flex;
+  gap: 14px;
 }
-.nav-btn:active { transform: scale(0.96); }
+
 
 
 /* --- CAROUSEL CONTAINER --- */
 .carousel-container {
   display: flex;
   overflow-x: auto;
-  gap: 28px; /* Khoảng cách rộng hơn */
-  padding: 30px 48px 100px; /* Padding đáy rất lớn cho bóng đổ */
+  gap: 28px;
+  /* Khoảng cách rộng hơn */
+  padding: 30px 48px 100px;
+  /* Padding đáy rất lớn cho bóng đổ */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
-.carousel-container::-webkit-scrollbar { display: none; }
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
 
 
 /* =========================================
    ULTRA-PREMIUM STORE CARD
 ========================================= */
 .store-card {
-  min-width: 420px; /* Rộng hơn */
-  height: 540px; /* Cao hơn */
+  min-width: 420px;
+  /* Rộng hơn */
+  height: 540px;
+  /* Cao hơn */
   background: var(--card-bg);
-  border-radius: 28px; /* Bo góc cực lớn */
+  border-radius: 28px;
+  /* Bo góc cực lớn */
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -454,13 +494,14 @@
   overflow: hidden;
 
   /* TRẠNG THÁI TĨNH (Static State) */
-  box-shadow: 
+  box-shadow:
     var(--shadow-static),
-    inset 0 1px 0 rgba(255,255,255,0.6); /* Rim light: Viền sáng mờ ở cạnh trên */
-  border: 1px solid rgba(0,0,0,0.02);
-  
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  /* Rim light: Viền sáng mờ ở cạnh trên */
+  border: 1px solid rgba(0, 0, 0, 0.02);
+
   /* Transition: Dùng bounce khi vào, smooth khi ra */
-  transition: 
+  transition:
     transform 0.6s var(--ease-bounce-in),
     box-shadow 0.6s var(--ease-smooth-out),
     border-color 0.6s var(--ease-smooth-out);
@@ -471,14 +512,34 @@
 }
 
 /* Staggered delay */
-.store-card:nth-child(1) { animation-delay: 0.1s; }
-.store-card:nth-child(2) { animation-delay: 0.2s; }
-.store-card:nth-child(3) { animation-delay: 0.3s; }
-.store-card:nth-child(4) { animation-delay: 0.4s; }
+.store-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.store-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.store-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.store-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 @keyframes cardEntrance {
-  from { opacity: 0; transform: translateY(60px) scale(0.94); filter: blur(10px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.94);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 
 /* === HOVER STATE (THE MAGIC) === */
@@ -486,7 +547,8 @@
   /* Bay lên cao, phóng to nhẹ và áp dụng bóng đổ đa lớp */
   transform: translateY(-12px) scale(1.03);
   box-shadow: var(--shadow-hover-premium);
-  border-color: transparent; /* Ẩn viền đi để bóng đổ trông thực hơn */
+  border-color: transparent;
+  /* Ẩn viền đi để bóng đổ trông thực hơn */
   z-index: 10;
 }
 
@@ -494,22 +556,27 @@
 .store-card::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(
-    115deg, 
-    transparent 30%, 
-    rgba(255, 255, 255, 0.5) 45%, /* Ánh sáng trắng mạnh hơn ở giữa */
-    rgba(255, 255, 255, 0.1) 50%, 
-    transparent 60%
-  );
-  transform: translateX(-100%); /* Bắt đầu từ ngoài bên trái */
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0, 1); /* Nhanh ở đầu, chậm dần */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(115deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 45%,
+      /* Ánh sáng trắng mạnh hơn ở giữa */
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 60%);
+  transform: translateX(-100%);
+  /* Bắt đầu từ ngoài bên trái */
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0, 1);
+  /* Nhanh ở đầu, chậm dần */
   pointer-events: none;
   z-index: 5;
 }
 
 .store-card:hover::before {
-  transform: translateX(100%); /* Quét sang phải */
+  transform: translateX(100%);
+  /* Quét sang phải */
   transition-duration: 1s;
 }
 
@@ -520,13 +587,18 @@
   /* Khi hover, nội dung bị đẩy nhẹ lên trên */
   transition: transform 0.6s var(--ease-apple-spring);
 }
+
 .store-card:hover .card-content {
   transform: translateY(-8px);
 }
 
 .card-tag {
-  font-size: 13px; font-weight: 700; text-transform: uppercase;
-  color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.08em;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
 }
 
 /* Gradient động, rực rỡ hơn */
@@ -537,56 +609,82 @@
   -webkit-text-fill-color: transparent;
   animation: aurora 6s ease infinite alternate;
 }
-@keyframes aurora { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
 
 .card-title {
-  font-size: 32px; font-weight: 700;
-  color: var(--text-primary); margin-bottom: 10px; letter-spacing: -0.015em;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.015em;
 }
 
 .card-price {
-  font-size: 16px; color: var(--text-primary); opacity: 0.9; font-weight: 500;
+  font-size: 16px;
+  color: var(--text-primary);
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 
 /* --- CARD IMAGE (EXTREME PARALLAX) --- */
 .card-image-wrapper {
   position: absolute;
-  bottom: 0; left: 0; width: 100%; height: 68%;
-  display: flex; justify-content: center; align-items: flex-end;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   padding-bottom: 45px;
   z-index: 3;
   /* Parallax: Ảnh di chuyển chậm hơn card */
-  transition: transform 0.7s var(--ease-apple-spring); 
+  transition: transform 0.7s var(--ease-apple-spring);
 }
 
 .card-img {
-  max-width: 88%; max-height: 100%; object-fit: contain;
+  max-width: 88%;
+  max-height: 100%;
+  object-fit: contain;
   /* Bóng mặc định của vật thể */
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.1));
   transition: filter 0.5s ease;
 }
 
 /* Khi hover: Ảnh bay cao hơn hẳn so với card */
 .store-card:hover .card-image-wrapper {
-  transform: scale(1.1) translateY(-20px); /* Bay lên 20px, phóng to 10% */
+  transform: scale(1.1) translateY(-20px);
+  /* Bay lên 20px, phóng to 10% */
 }
 
 /* Khi hover: Bóng đổ của ảnh đậm và xa hơn, tạo cảm giác tách rời nền */
 .store-card:hover .card-img {
-  filter: drop-shadow(0 35px 50px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 35px 50px rgba(0, 0, 0, 0.25));
 }
 
 
 /* --- BUTTON OVERLAY --- */
 .card-link-overlay {
-  position: absolute; top: 35px; right: 35px;
+  position: absolute;
+  top: 35px;
+  right: 35px;
   opacity: 0;
-  transform: scale(0.8) rotate(-90deg); /* Xoay nhiều hơn */
+  transform: scale(0.8) rotate(-90deg);
+  /* Xoay nhiều hơn */
   transition: all 0.5s var(--ease-apple-spring);
   z-index: 6;
   /* Thêm nền mờ cho nút */
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 50%;
 }
@@ -595,20 +693,22 @@
   opacity: 1;
   transform: scale(1) rotate(0deg);
 }
+
 /* --- BIẾN MÀU & HIỆU ỨNG (PREMIUM) --- */
 :root {
-  --bg-page: #f5f5f7; /* Xám nhạt Apple */
+  --bg-page: #f5f5f7;
+  /* Xám nhạt Apple */
   --bg-card: #ffffff;
   --text-primary: #1d1d1f;
   --text-secondary: #86868b;
-  
+
   /* Gradient "Apple Intelligence" trứ danh */
   --gradient-ai: linear-gradient(135deg, #0090F7 0%, #BA62FC 25%, #F2416B 50%, #F55600 75%, #FFAE00 100%);
-  
+
   /* Bóng đổ 3 lớp siêu thực */
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
   --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
-  
+
   /* Physics Curve: Độ nảy đàn hồi */
   --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -631,57 +731,72 @@
 }
 
 .section-header {
-  font-size: 36px; /* Chữ to bản */
+  font-size: 36px;
+  /* Chữ to bản */
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.heading-highlight { color: #6e6e73; }
-.heading-normal { color: #1d1d1f; }
+.heading-highlight {
+  color: #6e6e73;
+}
+
+.heading-normal {
+  color: #1d1d1f;
+}
 
 /* Nút điều hướng tròn */
-.carousel-nav-buttons { display: flex; gap: 14px; }
-.nav-btn {
+.carousel-nav-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+/* .nav-btn {
   width: 40px; height: 40px;
   border-radius: 50%; border: none;
   background: rgba(200, 200, 200, 0.2);
   color: #1d1d1f; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s ease;
-}
-.nav-btn:hover { background: rgba(200, 200, 200, 0.4); transform: scale(1.05); }
+} */
 
 /* --- CAROUSEL --- */
 .carousel-container {
   display: flex;
   overflow-x: auto;
   gap: 24px;
-  padding: 20px 48px 80px; /* Padding dưới lớn để bóng đổ không bị cắt */
+  padding: 20px 48px 80px;
+  /* Padding dưới lớn để bóng đổ không bị cắt */
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   scroll-behavior: smooth;
 }
-.carousel-container::-webkit-scrollbar { display: none; }
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
 
 /* --- CARD SẢN PHẨM (SIÊU CẤP) --- */
 .store-card {
   min-width: 400px;
   height: 520px;
   background: var(--bg-card);
-  border-radius: 28px; /* Bo góc cực lớn */
+  border-radius: 28px;
+  /* Bo góc cực lớn */
   padding: 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  
+
   /* Trạng thái tĩnh */
   box-shadow: var(--shadow-card);
-  border: 1px solid rgba(0,0,0,0.02); /* Viền siêu mờ */
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  /* Viền siêu mờ */
   scroll-snap-align: start;
   cursor: pointer;
   overflow: hidden;
-  
+
   /* Chuyển động */
   transition: all 0.5s var(--ease-spring);
 }
@@ -698,8 +813,11 @@
   z-index: 5;
   transition: transform 0.5s var(--ease-spring);
 }
+
 /* Parallax: Chữ di chuyển nhẹ khi hover */
-.store-card:hover .card-content { transform: translateY(-5px); }
+.store-card:hover .card-content {
+  transform: translateY(-5px);
+}
 
 /* TAG: Phần quan trọng nhất bạn yêu cầu */
 .card-tag {
@@ -712,7 +830,9 @@
 }
 
 /* 1. Tag thường (Màu cam - New) */
-.tag-orange { color: #bf4800; }
+.tag-orange {
+  color: #bf4800;
+}
 
 /* 2. Tag Dải màu (Apple Intelligence Style) */
 .tag-gradient {
@@ -720,11 +840,14 @@
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite; /* Chữ đổi màu liên tục */
+  animation: shimmer 4s linear infinite;
+  /* Chữ đổi màu liên tục */
 }
 
 @keyframes shimmer {
-  to { background-position: 200% center; }
+  to {
+    background-position: 200% center;
+  }
 }
 
 .card-title {
@@ -744,8 +867,13 @@
 /* --- IMAGE (SẢN PHẨM NỔI) --- */
 .card-image-wrapper {
   position: absolute;
-  bottom: 0; left: 0; width: 100%; height: 65%;
-  display: flex; justify-content: center; align-items: flex-end;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   padding-bottom: 40px;
   z-index: 3;
   transition: transform 0.6s var(--ease-spring);
@@ -756,7 +884,7 @@
   max-height: 100%;
   object-fit: contain;
   /* Bóng đổ vật thể: Tạo cảm giác 3D tách biệt khỏi nền */
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.1));
   transition: filter 0.5s ease;
 }
 
@@ -764,20 +892,65 @@
 .store-card:hover .card-image-wrapper {
   transform: scale(1.08) translateY(-15px);
 }
+
 .store-card:hover .card-img {
-  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.25));
 }
 
 /* --- BUTTON (+) --- */
 .card-link-overlay {
-  position: absolute; top: 30px; right: 30px;
-  width: 36px; height: 36px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #e8e8ed;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transform: scale(0.5) rotate(-45deg);
   transition: all 0.4s var(--ease-spring);
   z-index: 10;
 }
-.store-card:hover .card-link-overlay { opacity: 1; transform: scale(1) rotate(0deg); }
+
+.store-card:hover .card-link-overlay {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.nav-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e8e8ed; /* Màu xám nhạt */
+  border: none;
+  cursor: pointer;
+  
+  /* Căn giữa icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Màu icon mặc định */
+  color: #1d1d1f; 
+  transition: all 0.2s ease;
+}
+
+.nav-btn svg {
+  position: static; /* hoặc xoá position */
+}
+
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.5px;
+  display: block;
+}
+.nav-btn svg {
+  margin: auto;
+}

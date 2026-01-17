@@ -753,29 +753,117 @@
         }
       ],
       "id": 2
+    },
+    {
+      "userId": 5,
+      "date": "17/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 918000,
+      "customerName": "Vũ Nguyễn Hoàng",
+      "email": "hoangvu300@gmail.com",
+      "items": [
+        {
+          "id": "21",
+          "productName": "SaaS Landing Page Template",
+          "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 120000,
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 1
+        }
+      ],
+      "id": 3
     }
   ],
   "cart": [
     {
-      "id": "21",
-      "title": "SaaS Landing Page Template",
-      "price": 120000,
-      "discount": 0,
-      "categoryId": "web",
-      "description": "Landing page hiện đại cho SaaS, tối ưu SEO, responsive hoàn hảo.",
-      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2338&auto=format&fit=crop",
+      "id": "7",
+      "title": "E-commerce Mobile App Flutter + Firebase",
+      "price": 599000,
+      "discount": 20,
+      "categoryId": "mobile",
+      "description": "App bán hàng Flutter hoàn chỉnh, auth, cart, order, payment",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2400&auto=format&fit=crop",
       "tech": [
-        "HTML5",
-        "CSS3",
-        "JavaScript"
+        "Flutter",
+        "Firebase"
       ],
-      "database": [],
+      "database": [
+        "Cloud Firestore"
+      ],
       "UI_Framework": [
-        "Bootstrap 5"
+        "Flutter Material"
       ],
       "BackEnd": [],
-      "sold": 150,
-      "createdAt": "2025-03-28",
+      "sold": 140,
+      "createdAt": "2025-03-10",
+      "quantity": 1
+    },
+    {
+      "id": "3",
+      "title": "SaaS Starter Kit Next.js + Stripe",
+      "price": 699000,
+      "discount": 15,
+      "categoryId": "web",
+      "description": "Starter kit SaaS đầy đủ auth, subscription, billing với Stripe",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Next.js 14",
+        "TypeScript"
+      ],
+      "database": [
+        "PostgreSQL"
+      ],
+      "UI_Framework": [
+        "Tailwind CSS"
+      ],
+      "BackEnd": [
+        "NodeJS"
+      ],
+      "sold": 56,
+      "createdAt": "2025-03-01",
+      "quantity": 2
+    },
+    {
+      "id": "2",
+      "title": "App Quản Lý Công Việc Flutter",
+      "price": 299000,
+      "discount": 0,
+      "categoryId": "mobile",
+      "description": "Source Flutter + Firebase",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+      "tech": [
+        "Flutter",
+        "Firebase"
+      ],
+      "database": [
+        "Firebase Firestore",
+        "Firebase Realtime Database"
+      ],
+      "UI_Framework": [
+        "Flutter Material"
+      ],
+      "BackEnd": [
+        "Spring Boot"
+      ],
+      "sold": 80,
+      "createdAt": "2025-02-10",
       "quantity": 1
     }
   ],
@@ -893,6 +981,20 @@
         "year": "2021"
       },
       "id": 4
+    },
+    {
+      "email": "hoangvu300@gmail.com",
+      "password": "$2a$10$pOVQx.CJHmwiZau6/8xNF.T63El5I6mObntVKZYI4LX6UBQtVXfL6",
+      "firstName": "Vũ",
+      "lastName": "Nguyễn Hoàng",
+      "phone": "0909565204",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "2",
+        "day": "2",
+        "year": "2022"
+      },
+      "id": 5
     }
   ]
 }
