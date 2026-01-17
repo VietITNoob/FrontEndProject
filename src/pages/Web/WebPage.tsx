@@ -23,9 +23,10 @@ const WebPage = () => {
   }, []);
 
   // Fetch dữ liệu Web
-  useEffect(() => {
+ useEffect(() => {
     fetchByCategory(WEB_CATEGORY_ID);
-  }, [fetchByCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Logic lọc theo tên công nghệ (Ví dụ: Tìm chữ "Next.js" trong tên sản phẩm)
   const displayedProducts = useMemo(() => {

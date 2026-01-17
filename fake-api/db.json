@@ -713,7 +713,8 @@
           "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
           "category": "Source Code",
           "price": 299000,
-          "quantity": 2
+          "quantity": 2,
+          "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
         },
         {
           "id": "19",
@@ -721,7 +722,8 @@
           "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2340&auto=format&fit=crop",
           "category": "Source Code",
           "price": 99000,
-          "quantity": 1
+          "quantity": 1,
+           "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
         },
         {
           "id": "1",
@@ -729,7 +731,8 @@
           "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
           "category": "Source Code",
           "price": 499000,
-          "quantity": 1
+          "quantity": 1,
+           "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
         }
       ],
       "id": 1
@@ -789,84 +792,53 @@
         }
       ],
       "id": 3
-    }
-  ],
-  "cart": [
-    {
-      "id": "7",
-      "title": "E-commerce Mobile App Flutter + Firebase",
-      "price": 599000,
-      "discount": 20,
-      "categoryId": "mobile",
-      "description": "App bán hàng Flutter hoàn chỉnh, auth, cart, order, payment",
-      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2400&auto=format&fit=crop",
-      "tech": [
-        "Flutter",
-        "Firebase"
-      ],
-      "database": [
-        "Cloud Firestore"
-      ],
-      "UI_Framework": [
-        "Flutter Material"
-      ],
-      "BackEnd": [],
-      "sold": 140,
-      "createdAt": "2025-03-10",
-      "quantity": 1
     },
     {
-      "id": "3",
-      "title": "SaaS Starter Kit Next.js + Stripe",
-      "price": 699000,
-      "discount": 15,
-      "categoryId": "web",
-      "description": "Starter kit SaaS đầy đủ auth, subscription, billing với Stripe",
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
-      "tech": [
-        "Next.js 14",
-        "TypeScript"
+      "userId": 1,
+      "date": "18/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 2795000,
+      "customerName": "Vũ Nguyễn Hoàng",
+      "email": "22130328@st.hcmuaf.edu.vn",
+      "items": [
+        {
+          "id": "7",
+          "productName": "E-commerce Mobile App Flutter + Firebase",
+          "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 599000,
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "productName": "SaaS Starter Kit Next.js + Stripe",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 699000,
+          "quantity": 2
+        },
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 1
+        }
       ],
-      "database": [
-        "PostgreSQL"
-      ],
-      "UI_Framework": [
-        "Tailwind CSS"
-      ],
-      "BackEnd": [
-        "NodeJS"
-      ],
-      "sold": 56,
-      "createdAt": "2025-03-01",
-      "quantity": 2
-    },
-    {
-      "id": "2",
-      "title": "App Quản Lý Công Việc Flutter",
-      "price": 299000,
-      "discount": 0,
-      "categoryId": "mobile",
-      "description": "Source Flutter + Firebase",
-      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
-      "tech": [
-        "Flutter",
-        "Firebase"
-      ],
-      "database": [
-        "Firebase Firestore",
-        "Firebase Realtime Database"
-      ],
-      "UI_Framework": [
-        "Flutter Material"
-      ],
-      "BackEnd": [
-        "Spring Boot"
-      ],
-      "sold": 80,
-      "createdAt": "2025-02-10",
-      "quantity": 1
+      "id": 4
     }
   ],
+  "cart": [],
   "reviews": [
     {
       "id": "1",

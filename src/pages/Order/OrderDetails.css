@@ -286,3 +286,87 @@
     gap: 15px;
   }
 }
+/* --- CẤU HÌNH IN ẤN (PRINT CSS) --- */
+/* Mặc định ẩn Header hóa đơn trên màn hình web */
+.invoice-print-header {
+  display: none;
+}
+
+@media print {
+  /* 1. Ẩn các thành phần thừa */
+  header, footer,           /* Ẩn Header/Footer toàn cục */
+  .back-nav,                /* Ẩn nút quay lại */
+  .order-actions-top,       /* Ẩn nút In & Hỗ trợ */
+  .download-action,         /* Ẩn nút Tải/License Key */
+  .status-bar svg,          /* Ẩn icon check xanh */
+  .icon-eye-btn             /* Ẩn các icon thừa */
+  {
+    display: none !important;
+  }
+
+  /* 2. Hiện Header Hóa đơn */
+  .invoice-print-header {
+    display: block !important;
+  }
+
+  /* 3. Căn chỉnh khổ giấy */
+  @page {
+    size: A4;
+    margin: 20mm; /* Canh lề giấy in */
+  }
+
+  body {
+    background: white;
+    font-family: "Times New Roman", serif; /* Font chữ chuẩn văn bản */
+    color: #000;
+    -webkit-print-color-adjust: exact; /* Giữ màu sắc khi in */
+  }
+
+  /* 4. Reset Layout cho trang in */
+  .order-details-page {
+    padding: 0;
+    margin: 0;
+    background: white;
+    width: 100%;
+  }
+
+  .order-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    animation: none !important; /* Tắt hiệu ứng bay bay */
+  }
+
+  /* 5. Biến các Card thành phẳng (bỏ bóng, bỏ nền xám) */
+  .apple-card {
+    box-shadow: none !important;
+    border: 1px solid #eee !important;
+    border-radius: 0 !important;
+    margin-bottom: 20px !important;
+    break-inside: avoid; /* Tránh bị cắt đôi khi sang trang */
+  }
+
+  /* 6. Chuyển layout 2 cột thành 1 cột dọc để dễ in */
+  .order-content-layout {
+    display: block !important; /* Không dùng Grid/Flex nữa */
+  }
+
+  .left-column, .right-column {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  /* 7. Tinh chỉnh text */
+  h1 { font-size: 24px !important; color: #000 !important; }
+  .order-subtitle { color: #555 !important; }
+  .card-title { font-size: 18px !important; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
+  
+  /* 8. Ẩn ảnh sản phẩm (để tiết kiệm mực) hoặc giữ lại tùy bạn */
+  .product-thumb {
+    display: none; /* Ẩn ảnh đi cho sạch */
+  }
+  
+  .product-item-row {
+    border-bottom: 1px dashed #ddd; /* Kẻ dòng phân cách mờ */
+  }
+}

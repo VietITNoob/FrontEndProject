@@ -21,9 +21,10 @@ const MobilePage = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  useEffect(() => {
+ useEffect(() => {
     fetchByCategory(MOBILE_CATEGORY_ID);
-  }, [fetchByCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Logic lọc theo tên công nghệ có trong tiêu đề sản phẩm
   const displayedProducts = useMemo(() => {
