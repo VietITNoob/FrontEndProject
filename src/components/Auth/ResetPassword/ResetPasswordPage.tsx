@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ArrowRight, Lock, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
-
-import '../Auth/Auth.css'; // Dùng lại CSS cũ
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
+
 
 const ResetPasswordPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   
-  // Lấy ID từ URL (ví dụ: ?id=1)
-  const userId = searchParams.get('id');
+  // 1. CHỈ LẤY EMAIL TỪ URL (Bỏ ID)
   const userEmail = searchParams.get('email');
 
   const [password, setPassword] = useState('');
@@ -23,24 +21,23 @@ const ResetPasswordPage = () => {
   const [error, setError] = useState('');
   const [isFocused, setIsFocused] = useState<string | null>(null);
 
-  // Validate
   const isMatch = password.length > 0 && password === confirmPassword;
   const isValidLength = password.length >= 6;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isMatch || !isValidLength || !userId) return;
+    if (!isMatch || !isValidLength || !userEmail) return;
 
     setLoading(true);
     setError('');
 
     try {
-      // Gọi API custom vừa tạo ở server.js
+      // 2. GỬI EMAIL XUỐNG SERVER
       const response = await fetch('http://localhost:3001/reset-password-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          id: userId, 
+          email: userEmail, // Gửi email thay vì id
           newPassword: password 
         }),
       });
@@ -58,8 +55,16 @@ const ResetPasswordPage = () => {
     }
   };
 
-  if (!userId) {
-    return <div style={{textAlign:'center', marginTop: 100}}>Link không hợp lệ.</div>;
+  // 3. KIỂM TRA EMAIL THAY VÌ ID
+  if (!userEmail) {
+    return (
+      <div className="auth-container">
+        <Header />
+        <div style={{textAlign:'center', marginTop: 100, color: 'red'}}>
+           Link không hợp lệ (Thiếu Email).
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -72,14 +77,15 @@ const ResetPasswordPage = () => {
             <div className="animate-enter delay-1">
               <h1 className="auth-title tag-gradient">Mật khẩu mới.</h1>
               <h2 className="auth-subtitle">
-                Tạo mật khẩu mới cho tài khoản <b>{userEmail}</b>.
+                {/* Hiển thị email đang đổi pass */}
+                Tạo mật khẩu mới cho tài khoản <br/><b>{userEmail}</b>
               </h2>
             </div>
 
             <form onSubmit={handleSubmit} className="animate-enter delay-2">
               <div className="apple-input-group">
                 
-                {/* Mật khẩu mới */}
+                {/* Input Mật khẩu mới */}
                 <div className={`apple-input-wrapper ${isFocused === 'pass' ? 'focused' : ''} ${password.length > 0 ? 'active' : ''}`}>
                   <label className="apple-label">Mật khẩu mới</label>
                   <input 
@@ -95,7 +101,7 @@ const ResetPasswordPage = () => {
                   </button>
                 </div>
 
-                {/* Xác nhận mật khẩu (Slide down animation) */}
+                {/* Input Nhập lại mật khẩu */}
                 <div className={`password-expand-wrapper ${password.length > 0 ? 'open' : ''}`}>
                     <div className={`apple-input-wrapper ${isFocused === 'confirm' ? 'focused' : ''} ${isMatch ? 'valid' : ''}`}>
                     <label className="apple-label">Nhập lại mật khẩu</label>
@@ -108,7 +114,6 @@ const ResetPasswordPage = () => {
                         onBlur={() => setIsFocused(null)}
                     />
                     
-                    {/* Nút Submit */}
                     <button 
                         type="submit" 
                         className="btn-arrow-submit" 
@@ -118,10 +123,8 @@ const ResetPasswordPage = () => {
                     </button>
                     </div>
                 </div>
-
               </div>
               
-              {/* Validation Hints */}
               <div style={{marginTop: 15, fontSize: 13, color: '#86868b', paddingLeft: 10}}>
                 <p style={{color: isValidLength ? '#34c759' : ''}}>• Tối thiểu 6 ký tự</p>
                 <p style={{color: isMatch && password.length > 0 ? '#34c759' : ''}}>• Mật khẩu khớp nhau</p>

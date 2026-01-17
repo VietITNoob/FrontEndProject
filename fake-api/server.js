@@ -74,23 +74,26 @@ server.post('/forgot-password', async (req, res) => {
 // ==========================================
 // KẾT THÚC PHẦN MỚI
 // ==========================================
+// Tìm đoạn server.post('/reset-password-submit'...) và thay bằng đoạn này:
+
 server.post('/reset-password-submit', async (req, res) => {
-  const { id, newPassword } = req.body;
+  // 1. Nhận email thay vì id
+  const { email, newPassword } = req.body;
 
   try {
-    // 1. Tìm user theo ID
-    const userChain = router.db.get('users').find({ id: Number(id) });
+    // 2. Tìm user trong db.json bằng email
+    const userChain = router.db.get('users').find({ email: email });
     const user = userChain.value();
 
     if (!user) {
-      return res.status(404).json({ error: "User không tồn tại." });
+      return res.status(404).json({ error: "Email không tồn tại hoặc sai đường dẫn." });
     }
 
-    // 2. Mã hóa mật khẩu mới (Bắt buộc để login được với json-server-auth)
+    // 3. Mã hóa mật khẩu
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
 
-    // 3. Cập nhật vào DB
+    // 4. Cập nhật mật khẩu mới
     userChain.assign({ password: hashedPassword }).write();
 
     return res.status(200).json({ message: "Đổi mật khẩu thành công!" });

@@ -12,6 +12,7 @@ import MobilePage from '../pages/Mobile/MobilePage.tsx';
 import WebPage from '../pages/Web/WebPage.tsx';
 import UIPage from '../pages/UI/UIPage.tsx';
 import ForgotPasswordPage from '../components/Auth/Forgot/ForgotPage.tsx';
+import ResetPasswordPage from '../components/Auth/ResetPassword/ResetPasswordPage.tsx';
 
 
 export const router = createBrowserRouter([
@@ -28,8 +29,13 @@ export const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path:'/forgot',
-    element:<ForgotPasswordPage/>
+    path: '/forgot',
+    element: <ForgotPasswordPage />
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPasswordPage />
+    
   },
   {
     path: "/products",      // <--- 2. Đường dẫn mới
@@ -54,16 +60,16 @@ export const router = createBrowserRouter([
     element: <OrderDetailsPage />
   },
   {
-    path:'/mobiles',
-    element:<MobilePage/>
+    path: '/mobiles',
+    element: <MobilePage />
   },
   {
-    path:'/webs',
-    element:<WebPage/>
+    path: '/webs',
+    element: <WebPage />
   },
   {
-    path:'/uis',
-    element:<UIPage/>
+    path: '/uis',
+    element: <UIPage />
   }
 
 
