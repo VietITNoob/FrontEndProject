@@ -115,7 +115,7 @@ const LoginPage = () => {
 
             {/* Links chung */}
             <div className="auth-links">
-              <a href="#" className="link-blue">
+              <a href="/forgot" className="link-blue">
                 Quên mật khẩu? <span className="link-icon">↗</span>
               </a>
               <div>
