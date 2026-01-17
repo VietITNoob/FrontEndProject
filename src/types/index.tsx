@@ -14,6 +14,7 @@ export interface Product {
     rating?: number;
     sold: number;
     createdAt: string;
+    marketingBadge?: string;
 }
 
 export interface ProductParams {
@@ -57,4 +58,14 @@ export interface Date{
     month:string;
     day:string;
     year:string;
+}
+export interface ProductProps {
+  data: {
+    id: number;
+    tag?: string;
+    title: string;
+    price: string;
+    image: string;
+    isDark?: boolean;
+  };
 }

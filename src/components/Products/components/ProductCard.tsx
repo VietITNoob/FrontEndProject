@@ -2,17 +2,9 @@ import React from 'react';
 import { Plus } from 'lucide-react';
 import { useCart } from '../../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import type { ProductProps } from '../../../types';
+import './ProductCard.css'; // Import file CSS mới
 
-interface ProductProps {
-  data: {
-    id: number;
-    tag?: string;
-    title: string;
-    price: string;
-    image: string;
-    isDark?: boolean;
-  };
-}
 
 const ProductCard: React.FC<ProductProps> = ({ data }) => {
   const { addToCart } = useCart();
@@ -20,6 +12,7 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    
     await addToCart(data as any);
     navigate('/cart');
   };
@@ -38,14 +31,14 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
       <div className="card-content">
         {/* Render Tag nếu có tồn tại */}
         {tag && (
-          <div 
+          <div
             className={`card-tag ${isAI ? 'tag-gradient' : ''} ${isNew && !isAI ? 'tag-orange' : ''}`}
             style={{ color: !isAI && !isNew ? '#6e6e73' : '' }} // Màu xám mặc định
           >
             {tag}
           </div>
         )}
-        
+
         <h3 className="card-title">{data.title}</h3>
         <p className="card-price">{data.price ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(data.price)) : 'Liên hệ'}</p>
       </div>
@@ -56,7 +49,7 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
 
       {/* Nút cộng tròn */}
       <button onClick={handleAddToCart} className="card-link-overlay" aria-label="Add to cart">
-        <Plus size={20} color="#1d1d1f" />
+        <Plus size={60} color="#1d1d1f" />
       </button>
     </div>
   );

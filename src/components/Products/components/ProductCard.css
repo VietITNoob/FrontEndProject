@@ -1,0 +1,198 @@
+/* --- BIẾN MÀU (Apple Style) --- */
+:root {
+  --bg-card: #ffffff;
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --accent-blue: #0071e3;
+  --accent-orange: #f56300;
+  --btn-bg: #e8e8ed; /* Màu nền nút tròn */
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.02);
+  --shadow-hover: 0 14px 24px rgba(0,0,0,0.08);
+  --radius: 20px;
+}
+
+/* 1. CONTAINER CHÍNH */
+.store-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  height: 400px; /* Chiều cao cố định để các card bằng nhau */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+/* Hiệu ứng Hover vào Card */
+.store-card:hover {
+  transform: scale(1.02); /* Phóng to nhẹ */
+  box-shadow: var(--shadow-hover);
+  border-color: transparent;
+  z-index: 10;
+}
+
+/* 2. PHẦN TEXT (HEADER) */
+.card-content {
+  z-index: 2;
+  margin-bottom: 10px;
+}
+
+/* Tag */
+.card-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.tag-orange { color: var(--accent-orange) !important; }
+
+.tag-gradient {
+  background: linear-gradient(90deg, #0071e3, #9b51e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Title */
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Price */
+.card-price {
+  font-size: 15px;
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+/* 3. PHẦN ẢNH */
+.card-image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Đẩy ảnh xuống một chút để không đè text */
+  margin-top: 10px; 
+  margin-bottom: 30px; 
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Giữ tỉ lệ ảnh */
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
+}
+
+/* Hover: Ảnh bay lên */
+.store-card:hover .card-img {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* 4. NÚT ADD TO CART (Sửa lỗi không hiện icon ở đây) */
+.card-link-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;  /* Kích thước nút */
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--btn-bg); /* Màu xám nhạt */
+  border: none;
+  
+  /* QUAN TRỌNG: Flexbox để căn giữa icon */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 20; /* Đảm bảo nút nằm trên cùng */
+}
+
+/* Hiệu ứng Hover vào nút */
+.card-link-overlay:hover {
+  background-color: var(--accent-blue); /* Đổi nền xanh */
+  transform: scale(1.1);
+}
+
+/* Đổi màu icon thành trắng khi hover nút (Target vào thẻ svg bên trong) */
+.card-link-overlay:hover svg {
+  stroke: #ffffff !important; /* Ép màu trắng */
+  color: #ffffff !important;
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 768px) {
+  .store-card {
+    height: 340px;
+    padding: 16px;
+  }
+  .card-title {
+    font-size: 17px;
+  }
+}
+/* 4. NÚT ADD TO CART (Đã Fix lỗi ẩn icon) */
+.card-link-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  
+  /* Kích thước nút */
+  width: 40px;
+  height: 40px;
+  
+  border-radius: 50%;
+  background-color: var(--btn-bg); /* Màu xám nhạt */
+  border: none;
+  
+  /* QUAN TRỌNG: Reset padding mặc định của button để icon không bị lệch */
+  padding: 0; 
+  margin: 0;
+
+  /* Flexbox để căn giữa icon */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  
+  /* Màu sắc icon mặc định */
+  color: #1d1d1f; 
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 20; /* Đảm bảo nút nằm trên cùng */
+}
+
+/* Đảm bảo icon bên trong có kích thước cố định, không bị co lại */
+.card-link-overlay svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: currentColor; /* Ăn theo màu của nút cha */
+  display: block;
+}
+
+/* Hiệu ứng Hover vào nút */
+.card-link-overlay:hover {
+  background-color: var(--accent-blue); /* Đổi nền xanh */
+  color: #ffffff; /* Đổi icon sang trắng */
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 113, 227, 0.4);
+}
+
