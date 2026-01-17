@@ -7,6 +7,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: Product) => Promise<void>;
   removeFromCart: (cartItemId: string | number) => Promise<void>;
+  clearCart: () => Promise<void>;
   itemCount: number;
   lastAddedItem: CartItem | null;
   clearLastAddedItem: () => void;
@@ -57,6 +58,16 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const clearCart = async () => {
+    try {
+      const deletionPromises = cartItems.map(item => cartService.removeFromCart(item.id));
+      await Promise.all(deletionPromises);
+      setCartItems([]);
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+    }
+  };
+
   const clearLastAddedItem = () => {
     setLastAddedItem(null);
   };
@@ -64,7 +75,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, itemCount, lastAddedItem, clearLastAddedItem }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, itemCount, lastAddedItem, clearLastAddedItem }}>
       {children}
     </CartContext.Provider>
   );

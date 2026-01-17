@@ -8,16 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const CartPage = () => {
-  const { cartItems, removeFromCart } = useCart();
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-import { useAuth } from '../../context/AuthContext'; // Import Auth để lấy User ID
-
-const CartPage = () => {
-  // 1. Lấy dữ liệu từ Context
   const { cartItems, removeFromCart, clearCart } = useCart();
   const { user, isAuthenticated } = useAuth();
-  
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false); // State xử lý loading khi bấm nút
 
@@ -25,24 +17,10 @@ const CartPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleCheckout = () => {
-    if (isAuthenticated) {
-      // Logic thanh toán thực tế sẽ ở đây
-      console.log('Redirecting to checkout...');
-      alert('Chức năng thanh toán đang được phát triển!');
-    } else {
-      alert('Bạn cần đăng nhập để thực hiện thanh toán.');
-      navigate('/login');
-    }
-  };
-
-  // Tính tổng tiền
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const formatVND = (price: number) => price.toLocaleString('vi-VN') + 'đ';
 
-  // --- HÀM XỬ LÝ THANH TOÁN ---
   const handleCheckout = async () => {
-    // Bước 1: Kiểm tra đăng nhập
     if (!isAuthenticated || !user) {
       alert("Vui lòng đăng nhập để tiến hành thanh toán!");
       navigate('/login');
@@ -53,7 +31,6 @@ const CartPage = () => {
 
     setIsProcessing(true);
 
-    // Bước 2: Tạo object đơn hàng chuẩn
     const newOrder = {
       userId: user.id, // ID của user đang đăng nhập
       date: new Date().toLocaleDateString('vi-VN'), // Ngày hiện tại
@@ -73,7 +50,6 @@ const CartPage = () => {
     };
 
     try {
-      // Bước 3: Gửi API tạo đơn hàng lên json-server
       const response = await fetch('http://localhost:3001/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -82,7 +58,6 @@ const CartPage = () => {
 
       if (!response.ok) throw new Error('Đặt hàng thất bại');
 
-      // Bước 4: Thành công
       clearCart(); // Xóa giỏ hàng
       alert("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
       navigate('/profile'); // Chuyển hướng về trang Profile để xem đơn hàng
@@ -99,31 +74,28 @@ const CartPage = () => {
     <div className="cart-container">
       <Header />
 
-      {/* 1. HERO TOTAL SECTION (Phần xám trên cùng) */}
       <section className="cart-header">
         <h1 className="cart-total-title">
           Tổng giá trị giỏ hàng của bạn là <span className="cart-total-price">{formatVND(totalPrice)}.</span>
         </h1>
         <p className="cart-message">Vận chuyển miễn phí (Gửi qua Email ngay lập tức).</p>
-        <button className="btn-checkout-hero" onClick={handleCheckout}>Thanh toán</button>
+        <button className="btn-checkout-hero" onClick={handleCheckout} disabled={isProcessing || cartItems.length === 0}>
+          {isProcessing ? 'Đang xử lý...' : 'Thanh toán'}
+        </button>
       </section>
 
-      {/* 2. ITEM LIST */}
       <section className="cart-body">
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div key={item.id} className="cart-item">
-              {/* Ảnh sản phẩm */}
               <img src={item.image} alt={item.title} className="item-image" />
 
-              {/* Thông tin */}
               <div className="item-details">
                 <div className="item-header">
                   <h3 className="item-name">{item.title}</h3>
                   <span className="item-price">{formatVND(item.price)}</span>
                 </div>
                 
-                {/* Quantity Selector giả lập */}
                 <div style={{display: 'flex', alignItems: 'center', gap: 5}}>
                    <span style={{fontSize: 17, fontWeight: 400}}>SL:</span>
                    <button className="item-quantity-select">
@@ -148,7 +120,6 @@ const CartPage = () => {
         )}
       </section>
 
-      {/* 3. SUMMARY FOOTER (Chỉ hiện khi có sản phẩm) */}
       {cartItems.length > 0 && (
         <section className="cart-summary">
           <div className="summary-row">
@@ -167,7 +138,6 @@ const CartPage = () => {
             <span className="total-value">{formatVND(totalPrice)}</span>
           </div>
           
-          {/* Phần trả góp giả lập */}
           <div className="installment-note">
              hoặc 
              <div style={{fontSize: 17, fontWeight: 600, marginTop: 4, color: '#1d1d1f'}}>
@@ -177,15 +147,11 @@ const CartPage = () => {
           </div>
 
         <div className="checkout-area">
-           <button className="btn-checkout-bottom" onClick={handleCheckout}>Thanh Toán</button>
-        </div>
-      </section>
-          <div className="checkout-area">
-             <button 
+           <button 
                 className="btn-checkout-bottom"
                 onClick={handleCheckout}
                 disabled={isProcessing}
-             >
+           >
                 {isProcessing ? (
                   <span style={{display: 'flex', alignItems: 'center', gap: 8}}>
                     <Loader2 className="animate-spin" size={20} /> Đang xử lý...
@@ -198,7 +164,6 @@ const CartPage = () => {
         </section>
       )}
 
-      {/* 4. RECOMMENDATIONS */}
       <section className="rec-section">
         <h2 className="rec-title">Có thể bạn cũng sẽ thích</h2>
         <div className="rec-grid">

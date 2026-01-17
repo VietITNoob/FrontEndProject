@@ -49,7 +49,7 @@ const Header = () => {
       popoverTimerRef.current = window.setTimeout(() => {
         setShowCartPopover(false);
         clearLastAddedItem();
-      }, 4000); // ẩn sau 4 giây
+      }, 2000); // ẩn sau 2 giây
     }
 
     // Bộ hẹn giờ được dọn dẹp khi gỡ bỏ thành phần
