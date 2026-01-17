@@ -737,3 +737,84 @@ body {
 .apple-input-wrapper.dimmed .apple-input {
   color: var(--text-secondary);
 }
+/* --- CSS CHO TRANG QUÊN MẬT KHẨU --- */
+
+/* Nút quay lại có icon */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  font-size: 15px;
+  transition: gap 0.2s ease;
+}
+
+.back-link:hover {
+  gap: 8px; /* Hiệu ứng icon lùi lại chút khi hover */
+  text-decoration: underline;
+}
+
+/* --- TRẠNG THÁI SUCCESS --- */
+.success-state {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.success-icon-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #f5f5f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+
+.success-icon {
+  color: #1d1d1f;
+  animation: float 3s ease-in-out infinite;
+}
+
+.success-check {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Nút viền (Outline Button) */
+.btn-primary-outline {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid #d2d2d7;
+  border-radius: 980px;
+  color: #1d1d1f;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.btn-primary-outline:hover {
+  border-color: #1d1d1f;
+  background: #f5f5f7;
+  transform: scale(1.02);
+}
+
+/* Animations phụ */
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}

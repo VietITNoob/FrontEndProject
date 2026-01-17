@@ -12,7 +12,7 @@ interface LoginResponse {
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const { login } = useAuth(); // <--- 2. LẤY HÀM LOGIN TỪ CONTEXT
+  const { login } = useAuth(); 
   
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
