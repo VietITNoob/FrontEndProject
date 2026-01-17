@@ -21,9 +21,10 @@ const UIPage = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  useEffect(() => {
+ useEffect(() => {
     fetchByCategory(UI_CATEGORY_ID);
-  }, [fetchByCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Logic lọc sản phẩm
   const displayedProducts = useMemo(() => {
