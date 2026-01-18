@@ -6,6 +6,7 @@ import RegisterPage from '../components/Auth/Register/RegisterPage';
 import ProductDetail from "../pages/productDetail/ProductDetail.tsx";
 import ProductsPage from "../components/Products/ProductsPage.tsx";
 import CartPage from '../pages/Cart/CartPage';
+import WishlistPage from '../pages/Wishlist/WishlistPage';
 import UserProfilePage from '../components/Profile/UserProfilePage.tsx';
 import OrderDetailsPage from '../pages/Order/OrderDetailsPage.tsx';
 import MobilePage from '../pages/Mobile/MobilePage.tsx';
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
     path: '/cart',
     element: <CartPage />,
 
+  },
+  {
+    path: '/wishlist',
+    element: <WishlistPage />
   },
   {
     path: "/product/:id",
