@@ -5,11 +5,12 @@ import MegaDropdown from './MegaDropdown';
 import { useHeaderNavigation } from './hooks/useHeaderNavigation';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext'; // Import Context Auth
 import useProductSearch from '../../hook/useSearch';
 import { categoryService } from '../../service/categroryService';
 import type { Category } from '../../types';
-import { User, LogOut, Package, UserCircle } from 'lucide-react'; // Import Icons
+import { User, LogOut, Package, UserCircle, Heart } from 'lucide-react'; // Import Icons
 
 const Header = () => {
   // --- HOOKS ---
@@ -22,6 +23,7 @@ const Header = () => {
   } = useHeaderNavigation();
 
   const { itemCount, lastAddedItem, clearLastAddedItem } = useCart();
+  const { itemCount: wishlistCount, lastAddedItem: lastWishlistItem, clearLastAddedItem: clearLastWishlistItem } = useWishlist();
   const { user, logout, isAuthenticated } = useAuth(); // Lấy thông tin user và hàm logout
   const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ const Header = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showUserMenu, setShowUserMenu] = useState(false); // State hiển thị menu user
   const [showCartPopover, setShowCartPopover] = useState(false);
+  const [showWishlistPopover, setShowWishlistPopover] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const popoverTimerRef = useRef<number | null>(null);
 
@@ -59,6 +62,31 @@ const Header = () => {
       }
     };
   }, [lastAddedItem, clearLastAddedItem]);
+
+  // LOGIC POPOVER WISHLIST
+  useEffect(() => {
+    if (lastWishlistItem) {
+      setShowWishlistPopover(true);
+
+      // Clear previous timer if it exists
+      if (popoverTimerRef.current) {
+        clearTimeout(popoverTimerRef.current);
+      }
+
+      // Set a new timer to hide the popover
+      popoverTimerRef.current = window.setTimeout(() => {
+        setShowWishlistPopover(false);
+        clearLastWishlistItem();
+      }, 4000); // Hide after 4 seconds
+    }
+
+    // Cleanup timer on component unmount
+    return () => {
+      if (popoverTimerRef.current) {
+        clearTimeout(popoverTimerRef.current);
+      }
+    };
+  }, [lastWishlistItem, clearLastWishlistItem]);
 
   // --- SEARCH LOGIC ---
   const { products: searchResults, loading: searchLoading } = useProductSearch({
@@ -157,6 +185,32 @@ const Header = () => {
                     <div className="popover-footer">
                       <Link to="/cart" className="btn-view-cart">
                         Xem giỏ hàng ({itemCount})
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Wishlist Button & Popover */}
+            <div className="wishlist-action-wrapper">
+              <Link to="/wishlist" className="icon-btn wishlist-icon">
+                <Heart size={20} />
+                {wishlistCount > 0 && <span className="wishlist-badge">{wishlistCount}</span>}
+              </Link>
+
+              {/* --- WISHLIST POPOVER --- */}
+              <div className={`wishlist-popover ${showWishlistPopover ? 'active' : ''}`}>
+                {lastWishlistItem && (
+                  <>
+                    <div className="popover-header">Đã thêm vào danh sách yêu thích</div>
+                    <div className="popover-body">
+                      <img src={lastWishlistItem.image} alt={lastWishlistItem.title} className="popover-item-image" />
+                      <span className="popover-item-title">{lastWishlistItem.title}</span>
+                    </div>
+                    <div className="popover-footer">
+                      <Link to="/wishlist" className="btn-view-wishlist">
+                        Xem danh sách yêu thích ({wishlistCount})
                       </Link>
                     </div>
                   </>

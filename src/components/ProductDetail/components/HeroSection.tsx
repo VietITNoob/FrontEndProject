@@ -1,16 +1,31 @@
 import React from 'react';
 import type { Product } from '../../../types';
 import { useCart } from '../../../context/CartContext';
+import { useWishlist } from '../../../context/WishlistContext';
+import { Heart } from 'lucide-react';
+import './HeroSection.css';
 interface HeroSectionProps {
     product: Product;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
     const { addToCart } = useCart();
+    const { addToWishlist, isInWishlist } = useWishlist();
+    const [isWishlisted, setIsWishlisted] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsWishlisted(isInWishlist(product.id));
+    }, [product.id, isInWishlist]);
 
     const handleAddToCart = async () => {
         await addToCart(product);
+    };
 
+    const handleAddToWishlist = async () => {
+        if (!isWishlisted) {
+            await addToWishlist(product);
+            setIsWishlisted(true);
+        }
     };
 
     const hasDiscount = product.discount > 0;
@@ -33,6 +48,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
                 </p>
                 <div className="cta-group">
                     <button className="btn-primary shadow-blue" onClick={handleAddToCart}>Thêm vào giỏ</button>
+                    <button 
+                        className={`btn-wishlist ${isWishlisted ? 'wishlisted' : ''}`}
+                        onClick={handleAddToWishlist}
+                        disabled={isWishlisted}
+                    >
+                        <Heart size={20} fill={isWishlisted ? 'currentColor' : 'none'} />
+                        {isWishlisted ? 'Đã thêm vào yêu thích' : 'Thêm vào yêu thích'}
+                    </button>
                     <button className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span>Mua ngay — {discountedPrice.toLocaleString()}đ</span>
                         {hasDiscount && (
