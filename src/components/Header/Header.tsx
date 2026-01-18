@@ -77,7 +77,7 @@ const Header = () => {
       popoverTimerRef.current = window.setTimeout(() => {
         setShowWishlistPopover(false);
         clearLastWishlistItem();
-      }, 4000); // Hide after 4 seconds
+      }, 2000); // ẩn sau 2 giây
     }
 
     // Cleanup timer on component unmount
