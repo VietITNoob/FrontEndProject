@@ -3,7 +3,9 @@ import type { Product } from '../../../types';
 import { useCart } from '../../../context/CartContext';
 import { useWishlist } from '../../../context/WishlistContext';
 import { Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
+
 interface HeroSectionProps {
     product: Product;
 }
@@ -12,6 +14,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
     const { addToCart } = useCart();
     const { addToWishlist, isInWishlist } = useWishlist();
     const [isWishlisted, setIsWishlisted] = React.useState(false);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         setIsWishlisted(isInWishlist(product.id));
@@ -19,6 +22,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
 
     const handleAddToCart = async () => {
         await addToCart(product);
+    };
+
+    const handleAddandGoToCart = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+        await addToCart(product);
+        navigate('/cart');
     };
 
     const handleAddToWishlist = async () => {
@@ -56,7 +65,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ product }) => {
                         <Heart size={20} fill={isWishlisted ? 'currentColor' : 'none'} />
                         {isWishlisted ? 'Đã thêm vào yêu thích' : 'Thêm vào yêu thích'}
                     </button>
-                    <button className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <button 
+                        className="btn-secondary" 
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                        onClick={handleAddandGoToCart}
+                    >
                         <span>Mua ngay — {discountedPrice.toLocaleString()}đ</span>
                         {hasDiscount && (
                             <span style={{ textDecoration: 'line-through', opacity: 0.7, fontSize: '0.9em' }}>

@@ -723,7 +723,7 @@
           "category": "Source Code",
           "price": 99000,
           "quantity": 1,
-           "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
+          "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
         },
         {
           "id": "1",
@@ -732,7 +732,7 @@
           "category": "Source Code",
           "price": 499000,
           "quantity": 1,
-           "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
+          "downloadUrl": "https://github.com/VietITNoob/FrontEndProject"
         }
       ],
       "id": 1
@@ -836,6 +836,146 @@
         }
       ],
       "id": 4
+    },
+    {
+      "userId": 6,
+      "date": "18/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 1148000,
+      "customerName": "Hà  Trường",
+      "email": "hacaotantruong0@gmail.com",
+      "items": [
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 2
+        },
+        {
+          "id": "8",
+          "productName": "Personal Portfolio React Template",
+          "image": "https://market-resized.envatousercontent.com/codecanyon.net/files/439183066/Inline%20Preview%20Image%20-%20POS%20(2).png?auto=format&q=94&cf_fit=crop&gravity=top&h=8000&w=590&s=6ed3bf081bac3e9c4d97d94ae1c12b673c9796ee5f509ca4aca3969777546252",
+          "category": "Source Code",
+          "price": 150000,
+          "quantity": 1
+        }
+      ],
+      "id": 5
+    },
+    {
+      "userId": 6,
+      "date": "20/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 2045000,
+      "customerName": "Hà  Trường",
+      "email": "hacaotantruong0@gmail.com",
+      "items": [
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "productName": "SaaS Starter Kit Next.js + Stripe",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 699000,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "productName": "Mobile App UI Kit Flutter",
+          "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 199000,
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "productName": "REST API Boilerplate Spring Boot",
+          "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 349000,
+          "quantity": 1
+        }
+      ],
+      "id": 6
+    },
+    {
+      "userId": 6,
+      "date": "20/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 998000,
+      "customerName": "Hà  Trường",
+      "email": "hacaotantruong0@gmail.com",
+      "items": [
+        {
+          "id": "1",
+          "productName": "Website Bán Hàng React + NodeJS",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 499000,
+          "quantity": 2
+        }
+      ],
+      "id": 7
+    },
+    {
+      "userId": 6,
+      "date": "20/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 299000,
+      "customerName": "Hà  Trường",
+      "email": "hacaotantruong0@gmail.com",
+      "items": [
+        {
+          "id": "2",
+          "productName": "App Quản Lý Công Việc Flutter",
+          "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 299000,
+          "quantity": 1
+        }
+      ],
+      "id": 8
+    },
+    {
+      "userId": 6,
+      "date": "20/1/2026",
+      "status": "Completed",
+      "paymentMethod": "Visa (...4242)",
+      "totalPrice": 899000,
+      "customerName": "Hà  Trường",
+      "email": "hacaotantruong0@gmail.com",
+      "items": [
+        {
+          "id": "5",
+          "productName": "AI Chatbot OpenAI + LangChain",
+          "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2400&auto=format&fit=crop",
+          "category": "Source Code",
+          "price": 899000,
+          "quantity": 1
+        }
+      ],
+      "id": 9
     }
   ],
   "cart": [],
@@ -895,6 +1035,22 @@
       "rating": 4,
       "date": "2025-12-20",
       "content": "Phần gửi file/ảnh đôi khi bị lỗi nếu file > 10MB."
+    },
+    {
+      "userId": 6,
+      "productId": 2,
+      "rating": 5,
+      "date": "2026-01-20",
+      "content": "hello world!!",
+      "id": "fgB63tW"
+    },
+    {
+      "userId": 6,
+      "productId": 8,
+      "rating": 3,
+      "date": "2026-01-20",
+      "content": "giao diện chưa được đẹp lắm\n",
+      "id": "wQ_ZJCL"
     }
   ],
   "users": [
@@ -967,6 +1123,21 @@
         "year": "2022"
       },
       "id": 5
+    },
+    {
+      "email": "hacaotantruong0@gmail.com",
+      "password": "$2a$10$gLOfseVELali6bPbCu/fcO23t8PqnglZNI00wv8NdMQew/MGRa.9u",
+      "firstName": "Hà ",
+      "lastName": "Trường",
+      "phone": "0398322109",
+      "country": "Vietnam",
+      "birthday": {
+        "month": "7",
+        "day": "10",
+        "year": "2011"
+      },
+      "id": 6
     }
-  ]
+  ],
+  "wishlist": []
 }

@@ -147,7 +147,6 @@ const HomePage = () => {
            </p>
         </div>
         <div className="marquee-container">
-          <div className="marquee-content">
             {Array(2).fill(0).map((_, i) => (
               <React.Fragment key={i}>
                 <span className="logo-item">ACME Corp</span>
@@ -160,7 +159,6 @@ const HomePage = () => {
                 <span className="logo-item">Pied Piper</span>
               </React.Fragment>
             ))}
-          </div>
         </div>
       </section>
 

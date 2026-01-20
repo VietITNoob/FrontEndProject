@@ -148,14 +148,16 @@ const Reviews: React.FC<ReviewsProps> = ({ productId }) => {
                                     onChange={(e) => setNewReviewContent(e.target.value)}
                                     placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."
                                     style={{
-                                        width: '100%',
+                                        width: '95%',
                                         minHeight: '100px',
                                         padding: '12px 16px',
                                         borderRadius: '12px',
                                         border: '1px solid #d2d2d7',
                                         fontSize: '15px',
                                         resize: 'vertical',
-                                        fontFamily: 'inherit'
+                                        fontFamily: 'inherit',
+                                        backgroundColor: '#fff',
+                                        color: '#000'
                                     }}
                                     required
                                 />
