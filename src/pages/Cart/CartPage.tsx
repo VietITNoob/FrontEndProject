@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import './Cart.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { ChevronDown, Loader2 } from 'lucide-react'; // Import Icon Loading
+import { Loader2 } from 'lucide-react'; // Import Icon Loading
 import { useCart } from '../../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const CartPage = () => {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false); // State xử lý loading khi bấm nút
@@ -98,9 +98,22 @@ const CartPage = () => {
                 
                 <div style={{display: 'flex', alignItems: 'center', gap: 5}}>
                    <span style={{fontSize: 17, fontWeight: 400}}>SL:</span>
-                   <button className="item-quantity-select">
-                      {item.quantity} <ChevronDown size={14} style={{marginLeft: 4, marginTop: 2}}/>
-                   </button>
+                   <div className="quantity-selector">
+                      <button 
+                        className="quantity-btn decrease"
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        disabled={item.quantity <= 1}
+                      >
+                        -
+                      </button>
+                      <span className="quantity-value">{item.quantity}</span>
+                      <button 
+                        className="quantity-btn increase"
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      >
+                        +
+                      </button>
+                   </div>
                 </div>
 
                 <div className="item-actions">

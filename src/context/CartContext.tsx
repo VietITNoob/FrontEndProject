@@ -7,6 +7,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: Product) => Promise<void>;
   removeFromCart: (cartItemId: string | number) => Promise<void>;
+  updateQuantity: (cartItemId: string | number, newQuantity: number) => Promise<void>;
   clearCart: () => Promise<void>;
   itemCount: number;
   lastAddedItem: CartItem | null;
@@ -68,6 +69,23 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const updateQuantity = async (cartItemId: string | number, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    
+    try {
+      const existingItem = cartItems.find(item => item.id === cartItemId);
+      if (!existingItem) return;
+      
+      const updatedItem = { ...existingItem, quantity: newQuantity };
+      await cartService.updateCartItem(updatedItem);
+      setCartItems(prevItems => 
+        prevItems.map(item => item.id === cartItemId ? updatedItem : item)
+      );
+    } catch (error) {
+      console.error("Failed to update quantity:", error);
+    }
+  };
+
   const clearLastAddedItem = () => {
     setLastAddedItem(null);
   };
@@ -75,7 +93,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, itemCount, lastAddedItem, clearLastAddedItem }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, itemCount, lastAddedItem, clearLastAddedItem }}>
       {children}
     </CartContext.Provider>
   );
