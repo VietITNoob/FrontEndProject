@@ -14,7 +14,6 @@ const ProductCard: React.FC<ProductProps> = ({ data }) => {
     e.stopPropagation();
     
     await addToCart(data as any);
-    navigate('/cart');
   };
 
   const handleCardClick = () => {

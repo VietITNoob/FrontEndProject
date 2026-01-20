@@ -6,16 +6,18 @@
   font-size: 12px;
   line-height: 1.33337;
   font-weight: 400;
-  padding: 0 22px;
   /* Đảm bảo footer luôn nằm dưới cùng nếu nội dung ngắn */
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden; /* Ngăn chặn tràn ngang */
 }
 
 .footer-content {
   max-width: 980px; /* Độ rộng chuẩn nội dung Apple */
   margin: 0 auto;
-  padding: 40px 0 20px;
+  padding: 40px 22px 20px; /* Padding trái phải 22px để không dính lề */
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng width */
+  width: 100%;
 }
 
 /* --- PHẦN 1: GHI CHÚ (Top Notes) --- */
@@ -42,11 +44,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding-bottom: 20px;
+  margin: 0 -10px; /* Negative margin để cân bằng padding của column */
 }
 
 .footer-column {
-  flex-basis: 20%; /* Chia 5 cột đều nhau */
-  min-width: 150px;
+  flex: 1;
+  min-width: 140px; /* Giảm min-width để tránh vỡ layout trên màn hình nhỏ */
+  padding: 0 10px; /* Padding cho cột */
+  box-sizing: border-box;
 }
 
 .column-section {
@@ -96,17 +101,20 @@
 .footer-legal {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px; /* Giảm gap để tránh tràn */
+  align-items: center;
 }
 
 .copyright {
   color: #6e6e73;
   margin-right: 10px;
+  white-space: nowrap; /* Giữ copyright trên 1 dòng nếu đủ chỗ */
 }
 
 .legal-links {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 0;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -115,8 +123,9 @@
 .legal-link {
   color: #424245;
   text-decoration: none;
-  padding-right: 10px;
+  padding: 0 10px;
   border-right: 1px solid #d2d2d7;
+  white-space: nowrap;
 }
 
 .legal-link:last-child {
@@ -134,6 +143,7 @@
   color: #424245;
   font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .footer-locale:hover {
@@ -141,21 +151,49 @@
 }
 
 /* --- RESPONSIVE --- */
+@media (max-width: 834px) {
+  .footer-links {
+    margin: 0; /* Reset margin */
+  }
+
+  .footer-column {
+    flex-basis: 33.33%; /* 3 cột trên tablet */
+    max-width: 33.33%;
+    padding: 0 10px 20px;
+  }
+}
+
 @media (max-width: 768px) {
+  .footer-content {
+    padding: 30px 16px 20px; /* Giảm padding trên mobile */
+  }
+
   .footer-links {
     flex-direction: column; /* Xếp chồng trên mobile */
+    margin: 0;
   }
   
   .footer-column {
     flex-basis: 100%;
-    margin-bottom: 10px;
+    max-width: 100%;
+    padding: 0 0 20px;
   }
   
-  /* Trên mobile Apple thường dùng accordion (click để mở), 
-     nhưng để đơn giản ta sẽ hiển thị hết hoặc ẩn bớt */
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .copyright {
+    margin-right: 0;
+    white-space: normal; /* Cho phép xuống dòng copyright trên mobile */
   }
   
   .legal-links {
@@ -165,6 +203,7 @@
   
   .legal-link {
     border-right: none; /* Bỏ gạch ngăn cách trên mobile */
-    margin-right: 8px;
+    padding: 0;
+    margin-right: 10px;
   }
 }
